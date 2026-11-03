@@ -1,0 +1,7 @@
+# robots.txt - Perú Conchuela (peruconchuela.com)
+# CAMBIAR DOMINIO SI ES NECESARIO
+User-agent: *
+Allow: /
+
+Sitemap: https://peruconchuela.com/sitemap.xml
+
