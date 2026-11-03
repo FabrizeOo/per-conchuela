@@ -865,11 +865,62 @@ textarea {
 }
 
 /* ==========================================================================
-   3. QUÉ ES LA CONCHUELA Y LÍNEA DE TIEMPO
+   3. QUÉ ES LA CONCHUELA, VIDEO INSTAGRAM Y LÍNEA DE TIEMPO
    ========================================================================== */
 .editorial-grid {
   display: grid;
   gap: 3rem;
+}
+
+.origin-instagram-card {
+  margin-top: 1.85rem;
+  background-color: var(--color-hueso);
+  border: 1px solid var(--color-borde-oro);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.origin-instagram-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.85rem 1.15rem;
+  background-color: var(--color-arena);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.origin-instagram-badge {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-mar);
+}
+
+.origin-instagram-link {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-terracota-text);
+  text-decoration: underline;
+}
+
+.origin-instagram-link:hover {
+  color: var(--color-mar);
+}
+
+.origin-instagram-frame-wrap {
+  width: 100%;
+  background-color: #FFFFFF;
+}
+
+.origin-instagram-iframe {
+  width: 100%;
+  min-height: 540px;
+  border: 0;
+  display: block;
 }
 
 .timeline-wrapper {
@@ -1559,24 +1610,103 @@ textarea {
 }
 
 /* ==========================================================================
-   9. CLIENTES
+   9. PROFESIONALES QUE NOS RECOMIENDAN
    ========================================================================== */
-.clients-grid {
+.professionals-showcase {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  gap: 2.75rem;
+}
+
+.prof-category-block {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.prof-category-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.prof-category-tag {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-terracota-text);
+}
+
+.prof-category-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-mar);
+  white-space: nowrap;
+}
+
+.prof-category-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-borde-oro), transparent);
+}
+
+.prof-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 1.15rem;
 }
 
-.client-logo-card {
+.prof-card {
   background-color: var(--color-hueso);
   border: 1px solid var(--color-borde);
+  border-left: 3px solid var(--color-terracota);
   border-radius: var(--radius-md);
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 110px;
+  padding: 1.45rem 1.55rem;
   box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.45rem;
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base), background-color var(--transition-base);
+}
+
+.prof-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevated);
+  border-color: var(--color-mar);
+  border-left-color: var(--color-mar);
+}
+
+.prof-card-role {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-terracota-text);
+}
+
+.prof-card-name {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--color-carbon);
+}
+
+.prof-card-link {
+  margin-top: 0.5rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--color-borde);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--color-mar);
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.prof-card:hover .prof-card-link {
+  color: var(--color-terracota-text);
 }
 
 /* ==========================================================================
@@ -2204,8 +2334,8 @@ textarea {
   .masonry-gallery {
     columns: 2;
   }
-  .clients-grid {
-    grid-template-columns: repeat(3, 1fr);
+  .prof-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
   .mission-vision-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -2258,8 +2388,8 @@ textarea {
   .masonry-gallery {
     columns: 3;
   }
-  .clients-grid {
-    grid-template-columns: repeat(6, 1fr);
+  .prof-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
   .about-layout {
     grid-template-columns: 1.05fr 1fr;
