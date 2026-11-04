@@ -63,10 +63,29 @@
     var header = document.getElementById('site-header');
     var navToggle = document.getElementById('nav-toggle');
     var primaryNav = document.getElementById('primary-nav');
+    var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-list .nav-link'));
+    var trackedSections = navLinks
+      .map(function (link) {
+        var href = link.getAttribute('href') || '';
+        return href.charAt(0) === '#' ? document.querySelector(href) : null;
+      })
+      .filter(Boolean);
 
     function updateHeaderOnScroll() {
       if (!header) return;
-      header.classList.toggle('is-scrolled', window.scrollY > 36);
+      header.classList.toggle('is-scrolled', window.scrollY > 24);
+
+      if (!trackedSections.length) return;
+      var scrollMark = window.scrollY + 140;
+      var activeId = trackedSections[0].id;
+      trackedSections.forEach(function (sec) {
+        if (sec.offsetTop <= scrollMark) {
+          activeId = sec.id;
+        }
+      });
+      navLinks.forEach(function (link) {
+        link.classList.toggle('is-active', link.getAttribute('href') === '#' + activeId);
+      });
     }
 
     window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });

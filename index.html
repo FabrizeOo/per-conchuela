@@ -7,7 +7,7 @@
   <title>Perú Conchuela | Concesión Minera No Metálica · Conchuela Natural a Granel e Industrializada</title>
   <meta name="description" content="Perú Conchuela: más de 23 años liderando la extracción y comercialización de conchuela natural (32 a 36% de calcio) para los sectores avícola, construcción, paisajismo e industrial en el Perú.">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#1C1410">
+  <meta name="theme-color" content="#FFFFFF">
   <link rel="canonical" href="https://peruconchuela.com/">
 
   <!-- Favicon -->
@@ -33,10 +33,10 @@
   <meta name="twitter:description" content="Solución natural, efectiva y asequible de conchuela marina milenaria para avicultura, construcción, paisajismo y arquitectura.">
   <meta name="twitter:image" content="https://peruconchuela.com/assets/img/og-peru-conchuela.webp">
 
-  <!-- Google Fonts con font-display: swap -->
+  <!-- Google Fonts con font-display: swap (Outfit + Plus Jakarta Sans: minimalismo arquitectónico elegante) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Hoja de estilos principal -->
   <link rel="stylesheet" href="css/styles.css">
@@ -129,11 +129,10 @@
   <!-- Enlace de salto accesible por teclado -->
   <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
 
-  <!-- 1. HEADER FIJO -->
+  <!-- 1. HEADER FIJO MINIMALISTA -->
   <header class="site-header" id="site-header">
     <div class="container header-inner">
       <a href="#inicio" class="brand-logo" aria-label="Perú Conchuela - Ir al inicio">
-        <!-- CAMBIAR IMAGEN DE LOGO: /assets/img/logo.webp (generado desde logo JPG.jpeg) -->
         <img src="assets/img/logo.webp" alt="Logotipo de Perú Conchuela, concesión minera no metálica" width="240" height="111">
       </a>
 
@@ -145,106 +144,50 @@
 
       <nav class="primary-nav" id="primary-nav" aria-label="Navegación principal">
         <ul class="nav-list">
-          <li><a href="#inicio" class="nav-link">Inicio</a></li>
+          <li><a href="#inicio" class="nav-link is-active">Inicio</a></li>
           <li><a href="#quienes-somos" class="nav-link">Quiénes somos</a></li>
           <li><a href="#aplicaciones" class="nav-link">Aplicaciones</a></li>
           <li><a href="#productos" class="nav-link">Productos</a></li>
+          <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
           <li><a href="#clientes" class="nav-link">Clientes</a></li>
-          <li><a href="#contacto" class="nav-link">Contacto</a></li>
         </ul>
-        <a href="#contacto" class="btn btn-primary nav-cta">Solicitar información</a>
+        <a href="#contacto" class="btn btn-primary nav-cta">Contacto</a>
       </nav>
     </div>
   </header>
 
   <main id="contenido-principal">
-    <!-- 2. HERO: RECORRIDO POR SCROLL CON VIDEO -->
-    <!-- CAMBIAR VIDEOS Y POSTERS EN /assets/video/ Y /assets/img/posters/ Y EN js/scroll-video.js -->
-    <section class="hero-scroll" id="inicio" aria-label="Recorrido visual de la conchuela desde la cantera hasta tu proyecto">
+    <!-- 2. HERO MINIMALISTA: TÍTULO LIMPIO + RECORRIDO POR SCROLL CON VIDEO -->
+    <section class="hero-scroll" id="inicio" aria-label="Presentación visual de Perú Conchuela">
       <div class="hero-Viewport" id="hero-viewport">
-        <!-- Capa de videos y posters para el recorrido -->
-        <div class="hero-media-stage" id="hero-media-stage">
-          <!-- Clip 1: Excavación en la mina (precarga activa para el primer clip) -->
-          <div class="hero-clip-layer is-active" data-clip-index="0">
-            <img class="hero-poster-fallback" src="assets/img/posters/01-excavacion.webp" alt="Maquinaria realizando extracción responsable de conchuela en cantera" width="1920" height="1080">
-            <video class="hero-video" id="hero-video-0" muted playsinline preload="auto" poster="assets/img/posters/01-excavacion.webp" width="1920" height="1080">
-              <source src="assets/video/01-excavacion.mp4" type="video/mp4">
+        <div class="container hero-clean-layout">
+          <div class="hero-clean-header" id="hero-clean-header">
+            <h1 class="hero-clean-title">
+              Descubre la Conchuela<br>
+              <span>Nobleza Mineral en Estado Puro</span>
+            </h1>
+          </div>
+
+          <div class="hero-capsule-stage" id="hero-media-stage">
+            <img
+              class="hero-poster-fallback"
+              src="assets/img/posters/scroll-video-poster.webp"
+              alt="Conchuela natural en estado puro de Perú Conchuela"
+              width="1920"
+              height="1080"
+            >
+            <video
+              class="hero-video"
+              id="hero-scroll-video"
+              muted
+              playsinline
+              preload="auto"
+              poster="assets/img/posters/scroll-video-poster.webp"
+              width="1920"
+              height="1080"
+            >
+              <source src="assets/video/scroll-video.mp4" type="video/mp4">
             </video>
-          </div>
-
-          <!-- Clip 2: Concha fósil (preload metadata) -->
-          <div class="hero-clip-layer" data-clip-index="1">
-            <img class="hero-poster-fallback" src="assets/img/posters/02-concha-fosil.webp" alt="Concha marina fosilizada de hace 11 millones de años en estado natural" width="1920" height="1080" loading="lazy">
-            <video class="hero-video" id="hero-video-1" muted playsinline preload="metadata" poster="assets/img/posters/02-concha-fosil.webp" width="1920" height="1080">
-              <source src="assets/video/02-concha-fosil.mp4" type="video/mp4">
-            </video>
-          </div>
-
-          <!-- Clip 3: De la mina al proyecto arquitectónico y paisajismo (preload metadata) -->
-          <div class="hero-clip-layer" data-clip-index="2">
-            <img class="hero-poster-fallback" src="assets/img/posters/03-proyecto-paisajismo.webp" alt="Terraza arquitectónica y jardín con acabados de conchuela natural" width="1920" height="1080" loading="lazy">
-            <video class="hero-video" id="hero-video-2" muted playsinline preload="metadata" poster="assets/img/posters/03-proyecto-paisajismo.webp" width="1920" height="1080">
-              <source src="assets/video/03-proyecto-paisajismo.mp4" type="video/mp4">
-            </video>
-          </div>
-
-          <div class="hero-scrim" aria-hidden="true"></div>
-        </div>
-
-        <!-- Contenido editorial superpuesto -->
-        <div class="container hero-overlay">
-          <!-- Bloque principal de bienvenida con el único H1 de la página -->
-          <div class="hero-intro" id="hero-intro">
-            <p class="eyebrow hero-eyebrow">Concesión minera no metálica · Más de 23 años de experiencia</p>
-            <!-- CAMBIAR TITULAR Y SUBTÍTULO DEL HERO AQUÍ -->
-            <h1 class="hero-title">Descubre la conchuela</h1>
-            <p class="hero-subtitle">Solución natural, efectiva y asequible para ornamentar, embellecer y decorar espacios interiores y exteriores.</p>
-            <div class="hero-actions">
-              <a href="#contacto" class="btn btn-primary">Solicitar información</a>
-              <a href="#aplicaciones" class="btn btn-outline-light">Ver aplicaciones</a>
-            </div>
-          </div>
-
-          <!-- Capítulos sincronizados con el avance del video -->
-          <!-- CAMBIAR TEXTOS DE LOS CAPÍTULOS DEL RECORRIDO AQUÍ -->
-          <div class="hero-chapters" aria-live="polite">
-            <article class="hero-chapter is-active" data-chapter="0">
-              <span class="chapter-index">Capítulo 01 · Extracción en cantera</span>
-              <h2 class="chapter-heading">Pureza mineral desde el origen</h2>
-              <p class="chapter-copy">Extraemos y seleccionamos conchuela en estado natural desde nuestros yacimientos con control granulométrico riguroso.</p>
-            </article>
-
-            <article class="hero-chapter" data-chapter="1">
-              <span class="chapter-index">Capítulo 02 · Herencia geológica</span>
-              <h2 class="chapter-heading">Hace 11 millones de años</h2>
-              <p class="chapter-copy">Depósitos de conchas marinas fosilizadas acumulados de forma natural, ricos en carbonato de calcio biodisponible y textura noble.</p>
-            </article>
-
-            <article class="hero-chapter" data-chapter="2">
-              <span class="chapter-index">Capítulo 03 · Aplicaciones reales</span>
-              <h2 class="chapter-heading">De la mina a tu proyecto</h2>
-              <p class="chapter-copy">Abastecimiento continuo a granel e industrializado para arquitectura, paisajismo, construcción e industria avícola en todo el Perú.</p>
-            </article>
-          </div>
-
-          <!-- Barra inferior: indicador de progreso + botón para saltar el recorrido -->
-          <div class="hero-controls">
-            <div class="scroll-progress-wrap" role="region" aria-label="Progreso del recorrido visual">
-              <div class="scroll-progress-meta">
-                <span class="scroll-progress-label" id="scroll-stage-label">01 / 03 · Cantera</span>
-                <span class="scroll-progress-pct" id="scroll-progress-pct">0%</span>
-              </div>
-              <div class="scroll-progress-track" aria-hidden="true">
-                <div class="scroll-progress-bar" id="scroll-progress-bar"></div>
-              </div>
-            </div>
-
-            <a href="#que-es" class="skip-tour-btn" id="skip-tour-btn" aria-label="Saltar recorrido de video e ir a Qué es la conchuela">
-              <span>Saltar recorrido</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M12 5v14M5 12l7 7 7-7"/>
-              </svg>
-            </a>
           </div>
         </div>
       </div>
