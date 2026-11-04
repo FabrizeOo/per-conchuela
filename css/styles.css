@@ -1205,8 +1205,133 @@ textarea {
 }
 
 /* ==========================================================================
-   6. PRODUCTOS Y SELECTOR DE GRANULOMETRÍA
+   6. PRODUCTOS, PARTICIPACIONES Y SELECTOR DE GRANULOMETRÍA
    ========================================================================== */
+.participations-grid {
+  display: grid;
+  gap: 1.6rem;
+  margin-bottom: 3.25rem;
+}
+
+.participation-card {
+  background-color: var(--color-hueso);
+  border: 1px solid var(--color-borde);
+  border-top: 3.5px solid var(--color-terracota);
+  border-radius: var(--radius-md);
+  padding: 2.2rem 1.85rem;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-fast);
+}
+
+.participation-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-top-color: var(--color-mar);
+}
+
+.participation-header {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.35rem;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.participation-icon-badge {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1.5px solid var(--color-borde-fuerte);
+  color: var(--color-terracota-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04);
+  transition: border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.participation-card:hover .participation-icon-badge {
+  border-color: var(--color-terracota);
+  color: var(--color-terracota);
+  transform: scale(1.06);
+}
+
+.participation-icon-badge svg {
+  width: 26px;
+  height: 26px;
+}
+
+.participation-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-terracota-text);
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.participation-title {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--color-mar);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.participation-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.05rem;
+}
+
+.participation-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.95rem;
+  padding-bottom: 1.05rem;
+  border-bottom: 1px dashed rgba(200, 132, 46, 0.28);
+}
+
+.participation-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.participation-year-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-terracota-text);
+  background-color: rgba(200, 132, 46, 0.12);
+  border: 1px solid rgba(200, 132, 46, 0.35);
+  border-radius: var(--radius-sm);
+  padding: 0.22rem 0.6rem;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.participation-content {
+  font-size: 0.94rem;
+  line-height: 1.55;
+  color: var(--color-texto-secundario);
+}
+
+.participation-content strong {
+  color: var(--color-carbon);
+  font-weight: 700;
+}
+
 .products-cards-grid {
   display: grid;
   gap: 1.35rem;
@@ -2300,6 +2425,7 @@ textarea {
   .pillar-card,
   .app-card-body,
   .product-tier-card,
+  .participation-card,
   .granulometry-workbench,
   .mv-card,
   .process-block,
@@ -2398,6 +2524,9 @@ textarea {
     grid-template-columns: repeat(3, 1fr);
   }
   .applications-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .participations-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   .products-cards-grid {
