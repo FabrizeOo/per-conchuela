@@ -1,7 +1,8 @@
 # robots.txt - Perú Conchuela (peruconchuela.com)
-# CAMBIAR DOMINIO SI ES NECESARIO
 User-agent: *
 Allow: /
+Disallow: /security-audit.js
+Disallow: /SECURITY.md
+Disallow: /nginx-security.conf
 
 Sitemap: https://peruconchuela.com/sitemap.xml
-

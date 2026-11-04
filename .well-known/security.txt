@@ -1,0 +1,7 @@
+# Política de Divulgación Responsable de Vulnerabilidades (RFC 9116)
+# Perú Conchuela — Alineado con ISO/IEC 27001:2022 (A.8.8), SOC 2 (CC7.3) y OWASP ASVS (V14.2)
+
+Contact: mailto:contactos@peruconchuela.com
+Expires: 2027-11-04T23:59:59.000Z
+Preferred-Languages: es, en
+Canonical: https://peruconchuela.com/.well-known/security.txt

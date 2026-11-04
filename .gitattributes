@@ -1,0 +1,21 @@
+# Integridad binaria determinista para librerías auditadas (SHA-384 inmutable)
+js/vendor/*.js -text
+
+# Normalización determinista de finales de línea en código fuente
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.xml text eol=lf
+*.conf text eol=lf
+_headers text eol=lf
+.htaccess text eol=lf
+
+# Archivos multimedia binarios
+*.webp binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.mp4 binary

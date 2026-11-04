@@ -1,0 +1,35 @@
+# ==============================================================================
+# Prevención de Fuga de Secretos y Artefactos Crudos (ISO 27001 A.8.12 / SOC 2 CC6.1)
+# ==============================================================================
+
+# Variables de entorno, claves criptográficas y certificados privados
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+*.p12
+*.crt
+*.csr
+*.jks
+secrets.*
+credentials.*
+
+# Dependencias, logs y artefactos temporales del sistema / IDE
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+*.bak
+*.tmp
+*.swp
+
+# Archivos fuente crudos locales en la raíz (ya optimizados dentro de assets/)
+/*.png
+/*.jpeg
+/SCROLLVIDEO.mp4

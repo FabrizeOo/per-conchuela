@@ -7,6 +7,9 @@
   <title>Perú Conchuela | Concesión Minera No Metálica · Conchuela Natural a Granel e Industrializada</title>
   <meta name="description" content="Perú Conchuela: más de 23 años liderando la extracción y comercialización de conchuela natural (32 a 36% de calcio) para los sectores avícola, construcción, paisajismo e industrial en el Perú.">
   <meta name="robots" content="index, follow">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; frame-src https://www.instagram.com https://www.google.com https://maps.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="theme-color" content="#FFFFFF">
   <link rel="canonical" href="https://peruconchuela.com/">
 
@@ -216,10 +219,9 @@
                 class="origin-instagram-iframe"
                 src="https://www.instagram.com/p/Dd9Zaa2BpBb/embed"
                 title="Video de Instagram sobre la conchuela natural de Perú Conchuela"
-                allowtransparency="true"
-                allowfullscreen="true"
-                frameborder="0"
-                scrolling="no"
+                sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="encrypted-media; fullscreen"
                 loading="lazy">
               </iframe>
             </div>
@@ -914,16 +916,22 @@
           <!-- Formulario de contacto -->
           <div class="contact-form-card reveal-up">
             <form id="contact-form" class="contact-form" novalidate>
+              <!-- Campo señuelo anti-automatización (OWASP Automated Threats / SOC 2 CC7.2) -->
+              <div class="form-hp-trap" aria-hidden="true">
+                <label for="website_url">No completar este campo</label>
+                <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off">
+              </div>
+
               <div class="form-row">
                 <div class="form-group">
                   <label for="nombre" class="form-label">Nombre completo <span class="required-mark" aria-hidden="true">*</span></label>
-                  <input type="text" id="nombre" name="nombre" class="form-control" autocomplete="name" required minlength="2" placeholder="Ej. Carlos Mendoza" aria-describedby="error-nombre">
+                  <input type="text" id="nombre" name="nombre" class="form-control" autocomplete="name" required minlength="2" maxlength="100" placeholder="Ej. Carlos Mendoza" aria-describedby="error-nombre">
                   <span class="field-error" id="error-nombre" role="alert" aria-live="polite"></span>
                 </div>
 
                 <div class="form-group">
                   <label for="empresa" class="form-label">Empresa o proyecto <span class="required-mark" aria-hidden="true">*</span></label>
-                  <input type="text" id="empresa" name="empresa" class="form-control" autocomplete="organization" required minlength="2" placeholder="Ej. Avícola San Martín / Estudio Sur" aria-describedby="error-empresa">
+                  <input type="text" id="empresa" name="empresa" class="form-control" autocomplete="organization" required minlength="2" maxlength="120" placeholder="Ej. Avícola San Martín / Estudio Sur" aria-describedby="error-empresa">
                   <span class="field-error" id="error-empresa" role="alert" aria-live="polite"></span>
                 </div>
               </div>
@@ -944,15 +952,23 @@
 
                 <div class="form-group">
                   <label for="toneladas" class="form-label">Cantidad estimada (toneladas) <span class="required-mark" aria-hidden="true">*</span></label>
-                  <input type="number" id="toneladas" name="toneladas" class="form-control" required min="0.5" step="0.5" placeholder="Ej. 20" aria-describedby="error-toneladas">
+                  <input type="number" id="toneladas" name="toneladas" class="form-control" required min="0.5" max="100000" step="0.5" placeholder="Ej. 20" aria-describedby="error-toneladas">
                   <span class="field-error" id="error-toneladas" role="alert" aria-live="polite"></span>
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="mensaje" class="form-label">Mensaje y granulometría requerida <span class="required-mark" aria-hidden="true">*</span></label>
-                <textarea id="mensaje" name="mensaje" class="form-control" rows="4" required minlength="10" placeholder="Indícanos la presentación deseada (gruesa, mediana o fina), lugar de entrega y consultas técnicas..." aria-describedby="error-mensaje"></textarea>
+                <textarea id="mensaje" name="mensaje" class="form-control" rows="4" required minlength="10" maxlength="1000" placeholder="Indícanos la presentación deseada (gruesa, mediana o fina), lugar de entrega y consultas técnicas..." aria-describedby="error-mensaje"></textarea>
                 <span class="field-error" id="error-mensaje" role="alert" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group form-consent-group">
+                <label class="form-consent-label" for="privacidad-consent">
+                  <input type="checkbox" id="privacidad-consent" name="privacidad_consent" class="form-consent-checkbox" required aria-describedby="error-privacidad">
+                  <span>Acepto el tratamiento de mis datos únicamente para atender esta cotización conforme a la <button type="button" class="inline-policy-trigger" data-open-privacy>Política de Privacidad y Seguridad</button>. <span class="required-mark" aria-hidden="true">*</span></span>
+                </label>
+                <span class="field-error" id="error-privacidad" role="alert" aria-live="polite"></span>
               </div>
 
               <div class="form-actions">
@@ -1012,8 +1028,8 @@
               <div class="map-card-header">
                 <span class="map-card-title">Ubicación de nuestras oficinas</span>
                 <div class="map-office-tabs" role="group" aria-label="Seleccionar sede en el mapa">
-                  <button type="button" class="map-tab is-active" data-map-query="Av.+Jose+Carlos+Mariategui+2587+El+Agustino+Lima+Peru" data-map-label="Oficina Principal · Av. José Carlos Mariátegui 2587, El Agustino">El Agustino</button>
-                  <button type="button" class="map-tab" data-map-query="Las+Fresias+263+Camacho+La+Molina+Lima+Peru" data-map-label="Oficina Administrativa · Las Fresias 263, Camacho, La Molina">La Molina</button>
+                  <button type="button" class="map-tab is-active" data-office-id="el-agustino">El Agustino</button>
+                  <button type="button" class="map-tab" data-office-id="la-molina">La Molina</button>
                 </div>
               </div>
 
@@ -1023,8 +1039,10 @@
                   class="map-iframe"
                   title="Mapa de ubicación de oficinas de Perú Conchuela"
                   src="https://www.google.com/maps?q=Av.+Jose+Carlos+Mariategui+2587+El+Agustino+Lima+Peru&output=embed"
-                  referrerpolicy="no-referrer-when-downgrade"
-                  allowfullscreen>
+                  sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  loading="lazy"
+                  allow="fullscreen">
                 </iframe>
               </div>
               <div class="map-card-footer">
@@ -1081,9 +1099,34 @@
 
       <div class="footer-bottom">
         <p class="copyright">© 2026 Perú Conchuela. Todos los derechos reservados.</p>
+        <div class="footer-legal-links">
+          <button type="button" class="footer-legal-btn" data-open-privacy>Privacidad y Seguridad (ISO 27001 · SOC 2)</button>
+          <span aria-hidden="true">·</span>
+          <a href=".well-known/security.txt" class="footer-legal-link">Divulgación de Seguridad</a>
+        </div>
       </div>
     </div>
   </footer>
+
+  <!-- MODAL ACCESIBLE DE POLÍTICA DE PRIVACIDAD Y SEGURIDAD DE LA INFORMACIÓN (SOC 2 / ISO 27001 / ISO 27071 / LEY 29733) -->
+  <div class="policy-modal" id="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title" hidden>
+    <div class="policy-modal-backdrop" id="privacy-modal-backdrop"></div>
+    <div class="policy-modal-dialog">
+      <div class="policy-modal-header">
+        <h2 class="policy-modal-title" id="privacy-modal-title">Política de Privacidad y Seguridad de la Información</h2>
+        <button type="button" class="policy-modal-close" id="privacy-modal-close" aria-label="Cerrar política de privacidad">×</button>
+      </div>
+      <div class="policy-modal-body">
+        <p><strong>Perú Conchuela</strong> aplica controles de seguridad y privacidad alineados con <strong>ISO/IEC 27001:2022</strong>, <strong>ISO/IEC 27071:2023</strong> (conexiones confiables), <strong>SOC 2</strong>, <strong>OWASP ASVS</strong> y la <strong>Ley N° 29733</strong> de Protección de Datos Personales del Perú.</p>
+        <h3>1. Minimización de datos y finalidad</h3>
+        <p>Los datos ingresados en el formulario de cotización (nombre, empresa, sector, volumen estimado y requerimiento) se utilizan exclusivamente para preparar su propuesta comercial y técnica. Este sitio web no almacena su información en bases de datos intermedias ni utiliza cookies de rastreo publicitario.</p>
+        <h3>2. Conexiones confiables e integridad</h3>
+        <p>La comunicación se realiza bajo transporte cifrado HTTPS/TLS con aislamiento estricto de recursos (CSP), librerías verificadas localmente sin ejecución de código de terceros no auditado y envío directo hacia nuestros canales oficiales (WhatsApp corporativo <strong>935 373 326</strong> o correo <strong>contactos@peruconchuela.com</strong>).</p>
+        <h3>3. Derechos ARCO y contacto de seguridad</h3>
+        <p>Puede ejercer sus derechos de acceso, rectificación, cancelación u oposición, así como reportar cualquier consulta de seguridad de la información, escribiendo a <a href="mailto:contactos@peruconchuela.com">contactos@peruconchuela.com</a>.</p>
+      </div>
+    </div>
+  </div>
 
   <!-- LIGHTBOX ACCESIBLE PARA GALERÍA DE PROYECTOS -->
   <div class="lightbox" id="project-lightbox" role="dialog" aria-modal="true" aria-label="Vista ampliada del proyecto" hidden>
@@ -1107,9 +1150,9 @@
     </svg>
   </a>
 
-  <!-- GSAP y ScrollTrigger desde cdnjs.cloudflare.com con defer -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <!-- GSAP y ScrollTrigger alojados localmente (Zero-CDN Supply Chain Hardening: ISO 27071 / OWASP A08) -->
+  <script src="js/vendor/gsap.min.js" defer></script>
+  <script src="js/vendor/ScrollTrigger.min.js" defer></script>
 
   <!-- Scripts propios con defer -->
   <script src="js/scroll-video.js" defer></script>

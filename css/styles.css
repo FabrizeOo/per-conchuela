@@ -1953,6 +1953,55 @@ textarea {
   margin-top: 0.25rem;
 }
 
+.form-hp-trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.form-consent-group {
+  margin-top: 0.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-consent-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--color-texto-secundario);
+  cursor: pointer;
+}
+
+.form-consent-checkbox {
+  margin-top: 0.22rem;
+  width: 17px;
+  height: 17px;
+  accent-color: var(--color-mar);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.inline-policy-trigger {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: var(--color-mar);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.inline-policy-trigger:hover {
+  color: var(--color-terracota-text);
+}
+
 .form-helper-text {
   margin-top: 0.65rem;
   font-size: 0.83rem;
@@ -2180,6 +2229,135 @@ textarea {
   padding-top: 1.75rem;
   font-size: 0.85rem;
   color: rgba(250, 247, 242, 0.68);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+}
+
+.footer-legal-links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.footer-legal-btn,
+.footer-legal-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-size: 0.83rem;
+  color: rgba(250, 247, 242, 0.78);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.footer-legal-btn:hover,
+.footer-legal-link:hover {
+  color: var(--color-oro-mineral);
+}
+
+/* Modal de Política de Privacidad y Seguridad de la Información */
+.policy-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.policy-modal[hidden] {
+  display: none;
+}
+
+.policy-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(21, 20, 19, 0.68);
+  backdrop-filter: blur(8px);
+}
+
+.policy-modal-dialog {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 620px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background-color: #FFFFFF;
+  color: var(--color-carbon);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-elevated);
+}
+
+.policy-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1.15rem;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.policy-modal-title {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--color-carbon);
+}
+
+.policy-modal-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--color-borde-fuerte);
+  background-color: var(--color-arena);
+  color: var(--color-carbon);
+  font-size: 1.35rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.policy-modal-close:hover {
+  background-color: var(--color-mar);
+  color: #FFFFFF;
+}
+
+.policy-modal-body {
+  display: grid;
+  gap: 0.75rem;
+  font-size: 0.92rem;
+  color: var(--color-texto-secundario);
+}
+
+.policy-modal-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: var(--color-carbon);
+  margin-top: 0.35rem;
+}
+
+.policy-modal-body a {
+  color: var(--color-mar);
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 /* Botón flotante de WhatsApp en bola verde */

@@ -1,13 +1,60 @@
 /**
- * PERÚ CONCHUELA (peruconchuela.com) — Interacciones Principales
- * Header fijo, menú móvil accesible, línea de tiempo, contadores, selector de granulometría,
- * lightbox accesible por teclado, mapa interactivo y formulario con envío a WhatsApp.
+ * PERÚ CONCHUELA (peruconchuela.com) — Interacciones Principales (Hardened Edition)
+ * Controles de seguridad aplicados bajo OWASP ASVS L2 / Top 10, ISO/IEC 27001:2022 (A.8.26, A.8.28),
+ * ISO/IEC 27071:2023 (conexiones confiables) y SOC 2 (CC6, CC7, PI1, Privacy):
+ * - Cero uso de sinks inseguros (innerHTML, outerHTML, eval, document.write).
+ * - Estructuras de configuración inmutables (deepFreeze) contra manipulación en memoria.
+ * - Listas blancas estrictas (allowlists) para rutas de imágenes, mapas y selectores.
+ * - Sanitización contra caracteres de control, inyección CRLF y suplantación Unicode BiDi.
+ * - Protección anti-automatización (honeypot + umbral temporal + rate limiting local) y consentimiento informado.
  */
 (function () {
   'use strict';
 
+  function deepFreeze(obj) {
+    if (!obj || typeof obj !== 'object' || Object.isFrozen(obj)) return obj;
+    Object.freeze(obj);
+    Object.keys(obj).forEach(function (key) {
+      deepFreeze(obj[key]);
+    });
+    return obj;
+  }
+
+  /* Sanitización estricta de texto plano (elimina controles ASCII, CRLF en líneas simples y overrides BiDi) */
+  function sanitizePlainText(input, maxLen, allowNewlines) {
+    var raw = String(input == null ? '' : input);
+    var cleaned = raw
+      .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F\u202A-\u202E\u2066-\u2069]/g, '');
+    if (!allowNewlines) {
+      cleaned = cleaned.replace(/[\r\n]+/g, ' ');
+    } else {
+      cleaned = cleaned.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    }
+    cleaned = cleaned.trim();
+    if (typeof maxLen === 'number' && maxLen > 0 && cleaned.length > maxLen) {
+      cleaned = cleaned.slice(0, maxLen);
+    }
+    return cleaned;
+  }
+
+  var SAFE_LOCAL_PROJECT_IMG_RE = /^assets\/img\/proyectos\/[a-z0-9._-]+\.webp$/i;
+  var SAFE_SECTION_HASH_RE = /^#[a-z0-9-]+$/i;
+
+  var ALLOWED_SECTORS = deepFreeze(['Avícola', 'Inmobiliario', 'Paisajismo', 'Industrial', 'Otro']);
+
+  var ALLOWED_MAP_OFFICES = deepFreeze({
+    'el-agustino': {
+      query: 'Av. Jose Carlos Mariategui 2587 El Agustino Lima Peru',
+      label: 'Oficina Principal · Av. José Carlos Mariátegui 2587, El Agustino'
+    },
+    'la-molina': {
+      query: 'Las Fresias 263 Camacho La Molina Lima Peru',
+      label: 'Oficina Administrativa · Las Fresias 263, Camacho, La Molina'
+    }
+  });
+
   /* CAMBIAR ESPECIFICACIONES DE GRANULOMETRÍA Y USOS RECOMENDADOS AQUÍ */
-  var GRAIN_DATA = {
+  var GRAIN_DATA = deepFreeze({
     gruesa: {
       badge: '3 a 4 mm',
       title: 'Conchuela Gruesa (3 a 4 mm)',
@@ -56,7 +103,118 @@
       rulerX: 6,
       rulerWidth: 26
     }
-  };
+  });
+
+  /* Defensa en profundidad para enlaces externos (ISO/IEC 27071:2023 / Anti-Tabnabbing) */
+  function enforceExternalLinkSafety() {
+    document.querySelectorAll('a[target="_blank"]').forEach(function (anchor) {
+      var rel = (anchor.getAttribute('rel') || '').toLowerCase();
+      var parts = rel ? rel.split(/\s+/) : [];
+      if (parts.indexOf('noopener') === -1) parts.push('noopener');
+      if (parts.indexOf('noreferrer') === -1) parts.push('noreferrer');
+      anchor.setAttribute('rel', parts.join(' ').trim());
+    });
+  }
+
+  /* 0. Pantalla de carga interactiva con el logo en cada entrada o F5 */
+  function initInteractivePreloader() {
+    var preloader = document.getElementById('site-preloader');
+    if (!preloader) return;
+
+    var ringProgress = document.getElementById('preloader-ring-progress');
+    var barFill = document.getElementById('preloader-bar-fill');
+    var pctText = document.getElementById('preloader-pct');
+    var statusText = document.getElementById('preloader-status');
+    var enterBtn = document.getElementById('preloader-enter-btn');
+    var emblem = document.getElementById('preloader-emblem');
+    var glow = document.getElementById('preloader-glow');
+
+    var circumference = 741.4;
+    var progress = 0;
+    var isClosed = false;
+    var rafId = null;
+
+    function updateVisualProgress(val) {
+      var clamped = Math.max(0, Math.min(100, Math.round(val)));
+      if (pctText) pctText.textContent = clamped + '%';
+      if (barFill) barFill.style.width = clamped + '%';
+      if (ringProgress) {
+        var offset = circumference - (clamped / 100) * circumference;
+        ringProgress.style.strokeDashoffset = String(offset);
+      }
+      if (statusText) {
+        if (clamped < 40) {
+          statusText.textContent = 'Extrayendo pureza mineral · 11 millones de años';
+        } else if (clamped < 85) {
+          statusText.textContent = 'Calibrando granulometría natural (32% – 36% Ca)...';
+        } else {
+          statusText.textContent = 'Experiencia lista · Bienvenido a Perú Conchuela';
+        }
+      }
+    }
+
+    function finishPreloader() {
+      if (isClosed) return;
+      isClosed = true;
+      if (rafId) cancelAnimationFrame(rafId);
+      updateVisualProgress(100);
+      setTimeout(function () {
+        preloader.classList.add('is-hidden');
+        document.body.classList.remove('is-loading');
+      }, 180);
+    }
+
+    preloader.addEventListener('pointermove', function (e) {
+      if (isClosed) return;
+      if (glow) {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top = e.clientY + 'px';
+      }
+      if (emblem) {
+        var rect = emblem.getBoundingClientRect();
+        var cx = rect.left + rect.width / 2;
+        var cy = rect.top + rect.height / 2;
+        var dx = (e.clientX - cx) / 18;
+        var dy = (e.clientY - cy) / 18;
+        emblem.style.transform =
+          'translate3d(' +
+          Math.max(-10, Math.min(10, dx)) +
+          'px, ' +
+          Math.max(-10, Math.min(10, dy)) +
+          'px, 0)';
+      }
+    });
+
+    if (enterBtn) {
+      enterBtn.addEventListener('click', finishPreloader);
+    }
+    if (emblem) {
+      emblem.addEventListener('click', function () {
+        progress = Math.min(100, progress + 35);
+        updateVisualProgress(progress);
+        if (progress >= 100) finishPreloader();
+      });
+    }
+
+    var startTime = performance.now();
+    var duration = 1450;
+
+    function step(now) {
+      if (isClosed) return;
+      var elapsed = now - startTime;
+      var naturalPct = Math.min(100, (elapsed / duration) * 100);
+      progress = Math.max(progress, naturalPct);
+      updateVisualProgress(progress);
+
+      if (progress < 100) {
+        rafId = requestAnimationFrame(step);
+      } else {
+        finishPreloader();
+      }
+    }
+
+    rafId = requestAnimationFrame(step);
+  }
 
   /* 1. Header fijo + Menú móvil accesible */
   function initHeaderAndNav() {
@@ -67,7 +225,7 @@
     var trackedSections = navLinks
       .map(function (link) {
         var href = link.getAttribute('href') || '';
-        return href.charAt(0) === '#' ? document.querySelector(href) : null;
+        return SAFE_SECTION_HASH_RE.test(href) ? document.getElementById(href.slice(1)) : null;
       })
       .filter(Boolean);
 
@@ -96,7 +254,10 @@
         var expanded = navToggle.getAttribute('aria-expanded') === 'true';
         var nextState = !expanded;
         navToggle.setAttribute('aria-expanded', String(nextState));
-        navToggle.setAttribute('aria-label', nextState ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
+        navToggle.setAttribute(
+          'aria-label',
+          nextState ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'
+        );
         primaryNav.classList.toggle('is-open', nextState);
       });
 
@@ -120,46 +281,51 @@
 
   /* 2. Animaciones de entrada y contadores interactivos */
   function initAnimationsAndCounters() {
-    var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var reducedMotion =
+      window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var counterEls = document.querySelectorAll('[data-counter-target]');
 
     counterEls.forEach(function (el) {
       var target = parseInt(el.getAttribute('data-counter-target') || '23', 10);
+      if (!Number.isFinite(target) || target <= 0) target = 23;
       if (reducedMotion || typeof window.IntersectionObserver === 'undefined') {
         el.textContent = String(target);
         return;
       }
 
       var animated = false;
-      var obs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting && !animated) {
-            animated = true;
-            var startVal = 1;
-            var duration = target > 100 ? 1600 : 1200;
-            var startTime = performance.now();
+      var obs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && !animated) {
+              animated = true;
+              var startVal = 1;
+              var duration = target > 100 ? 1600 : 1200;
+              var startTime = performance.now();
 
-            function tick(now) {
-              var elapsed = now - startTime;
-              var progress = Math.min(1, elapsed / duration);
-              var eased = 1 - Math.pow(1 - progress, 3);
-              var current = Math.max(1, Math.round(startVal + (target - startVal) * eased));
-              el.textContent = String(current);
-              if (progress < 1) {
-                requestAnimationFrame(tick);
+              function tick(now) {
+                var elapsed = now - startTime;
+                var progress = Math.min(1, elapsed / duration);
+                var eased = 1 - Math.pow(1 - progress, 3);
+                var current = Math.max(1, Math.round(startVal + (target - startVal) * eased));
+                el.textContent = String(current);
+                if (progress < 1) {
+                  requestAnimationFrame(tick);
+                }
               }
+              requestAnimationFrame(tick);
+              obs.disconnect();
             }
-            requestAnimationFrame(tick);
-            obs.disconnect();
-          }
-        });
-      }, { threshold: 0.35 });
+          });
+        },
+        { threshold: 0.35 }
+      );
 
       obs.observe(el);
     });
   }
 
-  /* 3. Selector interactivo de granulometría + preselección en formulario */
+  /* 3. Selector interactivo de granulometría (Construcción DOM segura sin innerHTML) */
   function initGranulometrySelector() {
     var tabs = Array.prototype.slice.call(document.querySelectorAll('.grain-tab'));
     var panel = document.getElementById('grain-panel');
@@ -176,8 +342,8 @@
     if (!tabs.length || !panel) return;
 
     function activateGrain(grainKey) {
+      if (!grainKey || !Object.prototype.hasOwnProperty.call(GRAIN_DATA, grainKey)) return;
       var data = GRAIN_DATA[grainKey];
-      if (!data) return;
 
       tabs.forEach(function (tab) {
         var isMatch = tab.getAttribute('data-grain') === grainKey;
@@ -209,9 +375,16 @@
       }
 
       if (usesListEl) {
-        usesListEl.innerHTML = data.uses.map(function (u) {
-          return '<li>' + u + '</li>';
-        }).join('');
+        var fragment = document.createDocumentFragment();
+        data.uses.forEach(function (useText) {
+          var li = document.createElement('li');
+          li.textContent = useText;
+          fragment.appendChild(li);
+        });
+        while (usesListEl.firstChild) {
+          usesListEl.removeChild(usesListEl.firstChild);
+        }
+        usesListEl.appendChild(fragment);
       }
 
       if (ctaLinkEl) {
@@ -242,7 +415,7 @@
 
     if (ctaLinkEl) {
       ctaLinkEl.addEventListener('click', function () {
-        var selectedGrain = ctaLinkEl.getAttribute('data-grain-cta') || '';
+        var selectedGrain = sanitizePlainText(ctaLinkEl.getAttribute('data-grain-cta') || '', 80, false);
         var msgInput = document.getElementById('mensaje');
         if (msgInput && selectedGrain && !msgInput.value.trim()) {
           msgInput.value = 'Solicito cotización de ' + selectedGrain + '. ';
@@ -250,19 +423,19 @@
       });
     }
 
-    /* Enlaces desde tarjetas de Aplicaciones que preseleccionan el sector en el formulario */
+    /* Enlaces desde tarjetas de Aplicaciones con validación contra lista blanca */
     document.querySelectorAll('[data-select-sector]').forEach(function (link) {
       link.addEventListener('click', function () {
-        var sectorVal = link.getAttribute('data-select-sector');
+        var sectorVal = link.getAttribute('data-select-sector') || '';
         var sectorSelect = document.getElementById('sector');
-        if (sectorSelect && sectorVal) {
+        if (sectorSelect && ALLOWED_SECTORS.indexOf(sectorVal) !== -1) {
           sectorSelect.value = sectorVal;
         }
       });
     });
   }
 
-  /* 4. Lightbox accesible para la galería Masonry (Teclado, Escape, Flechas) */
+  /* 4. Lightbox accesible para la galería Masonry con validación de ruta local */
   function initLightbox() {
     var triggers = Array.prototype.slice.call(document.querySelectorAll('.masonry-trigger'));
     var lightbox = document.getElementById('project-lightbox');
@@ -281,10 +454,14 @@
     function showSlide(index) {
       currentIndex = (index + triggers.length) % triggers.length;
       var btn = triggers[currentIndex];
-      var src = btn.getAttribute('data-lightbox-src');
-      var caption = btn.getAttribute('data-lightbox-caption') || '';
+      var src = btn.getAttribute('data-lightbox-src') || '';
+      if (!SAFE_LOCAL_PROJECT_IMG_RE.test(src)) return;
+
+      var caption = sanitizePlainText(btn.getAttribute('data-lightbox-caption') || '', 240, false);
       var thumbImg = btn.querySelector('img');
-      var altText = thumbImg ? thumbImg.getAttribute('alt') : caption;
+      var altText = thumbImg
+        ? sanitizePlainText(thumbImg.getAttribute('alt') || caption, 240, false)
+        : caption;
 
       imgEl.setAttribute('src', src);
       imgEl.setAttribute('alt', altText);
@@ -341,104 +518,7 @@
     });
   }
 
-  /* 0. Pantalla de carga interactiva con el logo en cada entrada o F5 */
-  function initInteractivePreloader() {
-    var preloader = document.getElementById('site-preloader');
-    if (!preloader) return;
-
-    var ringProgress = document.getElementById('preloader-ring-progress');
-    var barFill = document.getElementById('preloader-bar-fill');
-    var pctText = document.getElementById('preloader-pct');
-    var statusText = document.getElementById('preloader-status');
-    var enterBtn = document.getElementById('preloader-enter-btn');
-    var emblem = document.getElementById('preloader-emblem');
-    var glow = document.getElementById('preloader-glow');
-
-    var circumference = 741.4;
-    var progress = 0;
-    var isClosed = false;
-    var rafId = null;
-
-    function updateVisualProgress(val) {
-      var clamped = Math.max(0, Math.min(100, Math.round(val)));
-      if (pctText) pctText.textContent = clamped + '%';
-      if (barFill) barFill.style.width = clamped + '%';
-      if (ringProgress) {
-        var offset = circumference - (clamped / 100) * circumference;
-        ringProgress.style.strokeDashoffset = String(offset);
-      }
-      if (statusText) {
-        if (clamped < 40) {
-          statusText.textContent = 'Extrayendo pureza mineral · 11 millones de años';
-        } else if (clamped < 85) {
-          statusText.textContent = 'Calibrando granulometría natural (32% – 36% Ca)...';
-        } else {
-          statusText.textContent = 'Experiencia lista · Bienvenido a Perú Conchuela';
-        }
-      }
-    }
-
-    function finishPreloader() {
-      if (isClosed) return;
-      isClosed = true;
-      if (rafId) cancelAnimationFrame(rafId);
-      updateVisualProgress(100);
-      setTimeout(function () {
-        preloader.classList.add('is-hidden');
-        document.body.classList.remove('is-loading');
-      }, 180);
-    }
-
-    /* Interacción con cursor / toque: inclinación 3D sutil del medallón y halo de luz */
-    preloader.addEventListener('pointermove', function (e) {
-      if (isClosed) return;
-      if (glow) {
-        glow.style.left = e.clientX + 'px';
-        glow.style.top = e.clientY + 'px';
-      }
-      if (emblem) {
-        var rect = emblem.getBoundingClientRect();
-        var cx = rect.left + rect.width / 2;
-        var cy = rect.top + rect.height / 2;
-        var dx = (e.clientX - cx) / 18;
-        var dy = (e.clientY - cy) / 18;
-        emblem.style.transform = 'translate3d(' + Math.max(-10, Math.min(10, dx)) + 'px, ' + Math.max(-10, Math.min(10, dy)) + 'px, 0)';
-      }
-    });
-
-    /* Clic en el logo o botón para acelerar / entrar de inmediato */
-    if (enterBtn) {
-      enterBtn.addEventListener('click', finishPreloader);
-    }
-    if (emblem) {
-      emblem.addEventListener('click', function () {
-        progress = Math.min(100, progress + 35);
-        updateVisualProgress(progress);
-        if (progress >= 100) finishPreloader();
-      });
-    }
-
-    var startTime = performance.now();
-    var duration = 1450;
-
-    function step(now) {
-      if (isClosed) return;
-      var elapsed = now - startTime;
-      var naturalPct = Math.min(100, (elapsed / duration) * 100);
-      progress = Math.max(progress, naturalPct);
-      updateVisualProgress(progress);
-
-      if (progress < 100) {
-        rafId = requestAnimationFrame(step);
-      } else {
-        finishPreloader();
-      }
-    }
-
-    rafId = requestAnimationFrame(step);
-  }
-
-  /* 5. Mapa embebido visible directamente al cargar con cambio instantáneo de sede */
+  /* 5. Mapa embebido gobernado por allowlist inmutable (previene inyección de URL en iframe) */
   function initMapEmbed() {
     var mapIframe = document.getElementById('office-map-iframe');
     var activeLabel = document.getElementById('map-active-label');
@@ -449,32 +529,88 @@
 
     mapTabs.forEach(function (tab) {
       tab.addEventListener('click', function () {
+        var officeId = tab.getAttribute('data-office-id') || '';
+        if (!Object.prototype.hasOwnProperty.call(ALLOWED_MAP_OFFICES, officeId)) return;
+
+        var office = ALLOWED_MAP_OFFICES[officeId];
+        var encodedQuery = encodeURIComponent(office.query);
+
         mapTabs.forEach(function (t) {
           t.classList.toggle('is-active', t === tab);
         });
-        var query = tab.getAttribute('data-map-query') || 'Av.+Jose+Carlos+Mariategui+2587+El+Agustino+Lima+Peru';
-        var label = tab.getAttribute('data-map-label') || '';
-        mapIframe.src = 'https://www.google.com/maps?q=' + query + '&output=embed';
-        if (activeLabel) activeLabel.textContent = label;
+
+        mapIframe.src = 'https://www.google.com/maps?q=' + encodedQuery + '&output=embed';
+        if (activeLabel) activeLabel.textContent = office.label;
         if (externalLink) {
-          externalLink.href = 'https://www.google.com/maps/search/?api=1&query=' + query;
+          externalLink.href = 'https://www.google.com/maps/search/?api=1&query=' + encodedQuery;
         }
       });
     });
   }
 
-  /* 6. Validación en tiempo real del formulario + envío a WhatsApp (935373326) y alternativa email */
+  /* 6. Modal accesible de Política de Privacidad y Seguridad de la Información */
+  function initPrivacyModal() {
+    var modal = document.getElementById('privacy-modal');
+    var backdrop = document.getElementById('privacy-modal-backdrop');
+    var closeBtn = document.getElementById('privacy-modal-close');
+    var triggers = Array.prototype.slice.call(document.querySelectorAll('[data-open-privacy]'));
+
+    if (!modal || !triggers.length) return;
+
+    var lastTrigger = null;
+
+    function openModal(e) {
+      if (e) e.preventDefault();
+      lastTrigger = document.activeElement;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function closeModal() {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      if (lastTrigger && typeof lastTrigger.focus === 'function') {
+        lastTrigger.focus();
+      }
+    }
+
+    triggers.forEach(function (btn) {
+      btn.addEventListener('click', openModal);
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (backdrop) backdrop.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', function (e) {
+      if (!modal.hidden && e.key === 'Escape') {
+        e.preventDefault();
+        closeModal();
+      }
+    });
+  }
+
+  /* 7. Validación estricta del formulario + Anti-Bot + Rate Limiting + Consentimiento (OWASP ASVS V5 / SOC 2) */
   function initContactForm() {
     var form = document.getElementById('contact-form');
     if (!form) return;
+
+    var formMountedAt = Date.now();
+    var lastSubmitAt = 0;
+    var SUBMIT_COOLDOWN_MS = 15000;
+    var MIN_HUMAN_FILL_MS = 1200;
+
+    var honeypotInput = document.getElementById('website_url');
 
     var fields = {
       nombre: {
         input: document.getElementById('nombre'),
         error: document.getElementById('error-nombre'),
         validate: function (val) {
-          if (!val.trim()) return 'Por favor, ingresa tu nombre completo.';
-          if (val.trim().length < 2) return 'El nombre debe tener al menos 2 caracteres.';
+          var clean = sanitizePlainText(val, 150, false);
+          if (!clean) return 'Por favor, ingresa tu nombre completo.';
+          if (clean.length < 2) return 'El nombre debe tener al menos 2 caracteres.';
+          if (clean.length > 100) return 'El nombre no debe exceder 100 caracteres.';
           return '';
         }
       },
@@ -482,7 +618,10 @@
         input: document.getElementById('empresa'),
         error: document.getElementById('error-empresa'),
         validate: function (val) {
-          if (!val.trim()) return 'Por favor, indica el nombre de tu empresa o proyecto.';
+          var clean = sanitizePlainText(val, 160, false);
+          if (!clean) return 'Por favor, indica el nombre de tu empresa o proyecto.';
+          if (clean.length < 2) return 'Ingresa al menos 2 caracteres.';
+          if (clean.length > 120) return 'El campo empresa no debe exceder 120 caracteres.';
           return '';
         }
       },
@@ -490,7 +629,9 @@
         input: document.getElementById('sector'),
         error: document.getElementById('error-sector'),
         validate: function (val) {
-          if (!val) return 'Selecciona el sector de aplicación.';
+          if (!val || ALLOWED_SECTORS.indexOf(val) === -1) {
+            return 'Selecciona un sector válido de la lista.';
+          }
           return '';
         }
       },
@@ -499,8 +640,8 @@
         error: document.getElementById('error-toneladas'),
         validate: function (val) {
           var num = parseFloat(val);
-          if (!val || Number.isNaN(num) || num <= 0) {
-            return 'Ingresa una cantidad estimada válida en toneladas (ej. 10).';
+          if (!val || !Number.isFinite(num) || num < 0.5 || num > 100000) {
+            return 'Ingresa una cantidad válida entre 0.5 y 100,000 toneladas.';
           }
           return '';
         }
@@ -509,8 +650,21 @@
         input: document.getElementById('mensaje'),
         error: document.getElementById('error-mensaje'),
         validate: function (val) {
-          if (!val.trim()) return 'Por favor, escribe los detalles de tu requerimiento.';
-          if (val.trim().length < 10) return 'Detalla un poco más tu consulta (mínimo 10 caracteres).';
+          var clean = sanitizePlainText(val, 1200, true);
+          if (!clean) return 'Por favor, escribe los detalles de tu requerimiento.';
+          if (clean.length < 10) return 'Detalla un poco más tu consulta (mínimo 10 caracteres).';
+          if (clean.length > 1000) return 'El mensaje no debe exceder 1,000 caracteres.';
+          return '';
+        }
+      },
+      privacidad: {
+        input: document.getElementById('privacidad-consent'),
+        error: document.getElementById('error-privacidad'),
+        validate: function () {
+          var cb = document.getElementById('privacidad-consent');
+          if (cb && !cb.checked) {
+            return 'Debes aceptar la Política de Privacidad y Seguridad para continuar.';
+          }
           return '';
         }
       }
@@ -529,7 +683,8 @@
     Object.keys(fields).forEach(function (key) {
       var item = fields[key];
       if (!item.input) return;
-      item.input.addEventListener('input', function () {
+      var eventName = item.input.type === 'checkbox' ? 'change' : 'input';
+      item.input.addEventListener(eventName, function () {
         validateSingleField(key);
       });
       item.input.addEventListener('blur', function () {
@@ -539,6 +694,23 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+
+      /* Bloqueo silencioso de bots automatizados (honeypot o envío instantáneo no humano) */
+      if (honeypotInput && honeypotInput.value.trim() !== '') {
+        return;
+      }
+      var now = Date.now();
+      if (now - formMountedAt < MIN_HUMAN_FILL_MS) {
+        return;
+      }
+      if (lastSubmitAt > 0 && now - lastSubmitAt < SUBMIT_COOLDOWN_MS) {
+        var msgErrorEl = fields.privacidad && fields.privacidad.error;
+        if (msgErrorEl) {
+          msgErrorEl.textContent = 'Por seguridad, espera unos segundos antes de enviar otra solicitud.';
+        }
+        return;
+      }
+
       var allValid = true;
       var firstInvalid = null;
 
@@ -555,11 +727,13 @@
         return;
       }
 
-      var nombre = fields.nombre.input.value.trim();
-      var empresa = fields.empresa.input.value.trim();
+      lastSubmitAt = now;
+
+      var nombre = sanitizePlainText(fields.nombre.input.value, 100, false);
+      var empresa = sanitizePlainText(fields.empresa.input.value, 120, false);
       var sector = fields.sector.input.value;
-      var toneladas = fields.toneladas.input.value.trim();
-      var mensaje = fields.mensaje.input.value.trim();
+      var toneladas = String(parseFloat(fields.toneladas.input.value));
+      var mensaje = sanitizePlainText(fields.mensaje.input.value, 1000, true);
 
       var textLines = [
         'Hola Perú Conchuela, solicito una cotización desde peruconchuela.com:',
@@ -570,26 +744,41 @@
         '• Mensaje: ' + mensaje
       ].join('\n');
 
-      var whatsappUrl = 'https://wa.me/51935373326?text=' + encodeURIComponent(textLines);
-      var mailSubject = 'Solicitud de cotización - ' + empresa + ' (' + sector + ')';
-      var mailtoUrl = 'mailto:contactos@peruconchuela.com?subject=' + encodeURIComponent(mailSubject) + '&body=' + encodeURIComponent(textLines);
+      var whatsappPrefix = 'https://wa.me/51935373326?text=';
+      var whatsappUrl = whatsappPrefix + encodeURIComponent(textLines);
+      var mailSubject = sanitizePlainText(
+        'Solicitud de cotización - ' + empresa + ' (' + sector + ')',
+        160,
+        false
+      );
+      var mailtoUrl =
+        'mailto:contactos@peruconchuela.com?subject=' +
+        encodeURIComponent(mailSubject) +
+        '&body=' +
+        encodeURIComponent(textLines);
 
       var feedbackBox = document.getElementById('form-feedback');
       var mailtoLink = document.getElementById('feedback-mailto-link');
-      if (mailtoLink) mailtoLink.href = mailtoUrl;
+      if (mailtoLink && mailtoUrl.indexOf('mailto:contactos@peruconchuela.com?') === 0) {
+        mailtoLink.href = mailtoUrl;
+      }
       if (feedbackBox) feedbackBox.hidden = false;
 
-      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      if (whatsappUrl.indexOf(whatsappPrefix) === 0) {
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      }
     });
   }
 
   function initAll() {
+    enforceExternalLinkSafety();
     initInteractivePreloader();
     initHeaderAndNav();
     initAnimationsAndCounters();
     initGranulometrySelector();
     initLightbox();
     initMapEmbed();
+    initPrivacyModal();
     initContactForm();
   }
 
@@ -599,4 +788,3 @@
     initAll();
   }
 })();
-
