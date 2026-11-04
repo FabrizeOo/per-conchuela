@@ -1396,7 +1396,7 @@ textarea {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 0.5rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
   font-size: 0.84rem;
   font-weight: 700;
 }
@@ -1405,9 +1405,49 @@ textarea {
   color: var(--color-mar);
 }
 
+.grain-photo-display {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 340px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 10px 24px -6px rgba(28, 20, 16, 0.16);
+  border: 1px solid var(--color-borde-oro);
+  background-color: #FFFFFF;
+  margin-bottom: 1.15rem;
+}
+
+.grain-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.35s ease, transform 0.45s ease;
+}
+
+.grain-photo-img:hover {
+  transform: scale(1.05);
+}
+
+.grain-photo-badge {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  background-color: rgba(28, 20, 16, 0.78);
+  color: var(--color-oro-mineral);
+  backdrop-filter: blur(8px);
+  padding: 0.28rem 0.7rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: 1px solid rgba(229, 193, 88, 0.3);
+}
+
 .grain-scale-svg {
   width: 100%;
   height: auto;
+  margin-top: 0.25rem;
 }
 
 .scale-caption {

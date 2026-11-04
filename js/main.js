@@ -12,6 +12,9 @@
       badge: '3 a 4 mm',
       title: 'Conchuela Gruesa (3 a 4 mm)',
       measure: 'Diámetro: 3.0 – 4.0 mm',
+      photoSrc: 'assets/img/productos/conchuela-gruesa.webp',
+      photoAlt: 'Fotografía de Conchuela Gruesa (3 a 4 mm) en estado natural',
+      photoBadge: 'Fotografía real · Conchuela Gruesa',
       summary: 'Partículas laminares de alta resistencia mecánica y drenaje superior. Mantiene la estructura visual del nácar y carbonato natural.',
       uses: [
         'Avicultura: gallinas ponedoras en postura (retención prolongada en molleja y máxima dureza de cáscara).',
@@ -19,22 +22,15 @@
         'Paisajismo: cobertura ornamental en parques, jardines de bajo consumo hídrico y alcorques.'
       ],
       rulerX: 96,
-      rulerWidth: 32,
-      particlesSvg: [
-        '<polygon points="165,85 182,78 190,94 172,102" fill="#FFFFFF" stroke="#4A1F12" stroke-width="1.5"/>',
-        '<polygon points="210,72 230,68 236,86 216,92" fill="#FAF7F2" stroke="#C8842E" stroke-width="1.5"/>',
-        '<polygon points="246,98 266,92 272,110 252,116" fill="#FFFFFF" stroke="#4A1F12" stroke-width="1.5"/>',
-        '<polygon points="148,118 168,110 175,128 156,135" fill="#F4ECE1" stroke="#4A1F12" stroke-width="1.5"/>',
-        '<polygon points="194,108 216,102 224,122 200,128" fill="#FFFFFF" stroke="#C8842E" stroke-width="1.5"/>',
-        '<polygon points="232,126 252,120 260,138 238,144" fill="#FAF7F2" stroke="#C8842E" stroke-width="1.5"/>',
-        '<polygon points="172,146 194,138 202,156 180,162" fill="#FFFFFF" stroke="#4A1F12" stroke-width="1.5"/>',
-        '<polygon points="214,150 235,144 242,162 220,168" fill="#F4ECE1" stroke="#4A1F12" stroke-width="1.5"/>'
-      ].join('')
+      rulerWidth: 32
     },
     mediana: {
       badge: 'Hasta 2 mm',
       title: 'Conchuela Mediana (hasta 2 mm)',
       measure: 'Diámetro: 1.2 – 2.0 mm',
+      photoSrc: 'assets/img/productos/conchuela-mediana.webp',
+      photoAlt: 'Fotografía de Conchuela Mediana (hasta 2 mm) en estado natural',
+      photoBadge: 'Fotografía real · Conchuela Mediana',
       summary: 'Granulometría intermedia versátil que equilibra cobertura uniforme, rápida incorporación en mezclas y textura antideslizante.',
       uses: [
         'Avicultura: alimento balanceado para aves en etapa de crecimiento y engorde (32 a 36% de calcio).',
@@ -42,26 +38,15 @@
         'Industrial y arquitectura: sustituto de granalla de mármol para terrazo lavado y revestimientos.'
       ],
       rulerX: 38,
-      rulerWidth: 26,
-      particlesSvg: [
-        '<polygon points="168,82 178,78 182,88 172,92" fill="#FFFFFF" stroke="#4A1F12" stroke-width="1.4"/>',
-        '<polygon points="202,74 212,71 216,81 205,84" fill="#FAF7F2" stroke="#C8842E" stroke-width="1.4"/>',
-        '<polygon points="236,84 247,80 250,90 240,94" fill="#F4ECE1" stroke="#4A1F12" stroke-width="1.4"/>',
-        '<polygon points="156,112 167,108 171,118 160,122" fill="#FFFFFF" stroke="#4A1F12" stroke-width="1.4"/>',
-        '<polygon points="188,105 199,101 203,111 192,115" fill="#FAF7F2" stroke="#C8842E" stroke-width="1.4"/>',
-        '<polygon points="220,108 231,104 235,114 224,118" fill="#FFFFFF" stroke="#4A1F12" stroke-width="1.4"/>',
-        '<polygon points="252,114 262,110 266,120 255,124" fill="#F4ECE1" stroke="#C8842E" stroke-width="1.4"/>',
-        '<polygon points="174,136 185,132 189,142 178,146" fill="#FFFFFF" stroke="#C8842E" stroke-width="1.4"/>',
-        '<polygon points="208,134 219,130 223,140 212,144" fill="#FFFFFF" stroke="#4A1F12" stroke-width="1.4"/>',
-        '<polygon points="240,140 250,136 254,146 244,150" fill="#F4ECE1" stroke="#4A1F12" stroke-width="1.4"/>',
-        '<polygon points="192,158 203,154 207,164 196,168" fill="#FFFFFF" stroke="#4A1F12" stroke-width="1.4"/>',
-        '<polygon points="224,160 234,156 238,166 228,170" fill="#FAF7F2" stroke="#C8842E" stroke-width="1.4"/>'
-      ].join('')
+      rulerWidth: 26
     },
     fina: {
       badge: 'Hasta 1 mm',
       title: 'Conchuela Fina (hasta 1 mm)',
       measure: 'Diámetro: 0.3 – 1.0 mm',
+      photoSrc: 'assets/img/productos/conchuela-fina.webp',
+      photoAlt: 'Fotografía de Conchuela Fina (hasta 1 mm) en estado natural',
+      photoBadge: 'Fotografía real · Conchuela Fina',
       summary: 'Grano fino tamizado de tacto sedoso y alta superficie específica, ideal para acabados arquitectónicos continuos y raciones iniciales.',
       uses: [
         'Avicultura: raciones de inicio para pollitos y premezclas minerales de rápida biodisponibilidad.',
@@ -69,30 +54,7 @@
         'Paisajismo: playas artificiales en hoteles y condominios, jardines interiores y sustrato de acuarios.'
       ],
       rulerX: 6,
-      rulerWidth: 26,
-      particlesSvg: [
-        '<circle cx="172" cy="82" r="4" fill="#FFFFFF" stroke="#4A1F12" stroke-width="1.2"/>',
-        '<circle cx="192" cy="76" r="3.5" fill="#FAF7F2" stroke="#C8842E" stroke-width="1.2"/>',
-        '<circle cx="214" cy="78" r="4" fill="#F4ECE1" stroke="#4A1F12" stroke-width="1.2"/>',
-        '<circle cx="236" cy="84" r="3.5" fill="#FFFFFF" stroke="#4A1F12" stroke-width="1.2"/>',
-        '<circle cx="252" cy="96" r="4" fill="#FAF7F2" stroke="#C8842E" stroke-width="1.2"/>',
-        '<circle cx="160" cy="104" r="3.5" fill="#F4ECE1" stroke="#4A1F12" stroke-width="1.2"/>',
-        '<circle cx="182" cy="100" r="4" fill="#FFFFFF" stroke="#4A1F12" stroke-width="1.2"/>',
-        '<circle cx="204" cy="98" r="3.5" fill="#FAF7F2" stroke="#C8842E" stroke-width="1.2"/>',
-        '<circle cx="226" cy="102" r="4" fill="#FFFFFF" stroke="#4A1F12" stroke-width="1.2"/>',
-        '<circle cx="244" cy="114" r="3.5" fill="#F4ECE1" stroke="#C8842E" stroke-width="1.2"/>',
-        '<circle cx="166" cy="126" r="4" fill="#FFFFFF" stroke="#C8842E" stroke-width="1.2"/>',
-        '<circle cx="190" cy="122" r="3.5" fill="#FFFFFF" stroke="#4A1F12" stroke-width="1.2"/>',
-        '<circle cx="212" cy="120" r="4" fill="#FAF7F2" stroke="#4A1F12" stroke-width="1.2"/>',
-        '<circle cx="234" cy="128" r="3.5" fill="#FFFFFF" stroke="#4A1F12" stroke-width="1.2"/>',
-        '<circle cx="254" cy="134" r="4" fill="#FAF7F2" stroke="#C8842E" stroke-width="1.2"/>',
-        '<circle cx="176" cy="148" r="3.5" fill="#FFFFFF" stroke="#4A1F12" stroke-width="1.2"/>',
-        '<circle cx="198" cy="144" r="4" fill="#F4ECE1" stroke="#C8842E" stroke-width="1.2"/>',
-        '<circle cx="220" cy="146" r="3.5" fill="#FFFFFF" stroke="#C8842E" stroke-width="1.2"/>',
-        '<circle cx="240" cy="152" r="4" fill="#FFFFFF" stroke="#4A1F12" stroke-width="1.2"/>',
-        '<circle cx="190" cy="164" r="3.5" fill="#FAF7F2" stroke="#C8842E" stroke-width="1.2"/>',
-        '<circle cx="214" cy="166" r="4" fill="#FFFFFF" stroke="#4A1F12" stroke-width="1.2"/>'
-      ].join('')
+      rulerWidth: 26
     }
   };
 
@@ -188,7 +150,8 @@
     var usesListEl = document.getElementById('grain-uses-list');
     var ctaLinkEl = document.getElementById('grain-cta-link');
     var measureReadout = document.getElementById('scale-measure-Readout');
-    var svgParticles = document.getElementById('svg-grain-particles');
+    var photoImg = document.getElementById('grain-photo-img');
+    var photoBadge = document.getElementById('grain-photo-badge');
     var svgRulerHighlight = document.getElementById('svg-ruler-highlight');
 
     if (!tabs.length || !panel) return;
@@ -211,6 +174,21 @@
       if (summaryEl) summaryEl.textContent = data.summary;
       if (measureReadout) measureReadout.textContent = data.measure;
 
+      if (photoImg) {
+        photoImg.style.opacity = '0.3';
+        photoImg.style.transform = 'scale(0.98)';
+        setTimeout(function () {
+          photoImg.src = data.photoSrc;
+          photoImg.alt = data.photoAlt;
+          photoImg.style.opacity = '1';
+          photoImg.style.transform = 'scale(1)';
+        }, 150);
+      }
+
+      if (photoBadge) {
+        photoBadge.textContent = data.photoBadge;
+      }
+
       if (usesListEl) {
         usesListEl.innerHTML = data.uses.map(function (u) {
           return '<li>' + u + '</li>';
@@ -219,10 +197,6 @@
 
       if (ctaLinkEl) {
         ctaLinkEl.setAttribute('data-grain-cta', data.title);
-      }
-
-      if (svgParticles) {
-        svgParticles.innerHTML = data.particlesSvg;
       }
 
       if (svgRulerHighlight) {

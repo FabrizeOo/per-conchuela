@@ -495,41 +495,30 @@
             </div>
           </div>
 
-          <!-- Ilustración vectorial de escala milimétrica -->
-          <div class="workbench-visualizer" aria-label="Ilustración comparativa de escala granulométrica">
+          <!-- Visualizador con fotografía real y escala milimétrica -->
+          <div class="workbench-visualizer" aria-label="Fotografía real y escala granulométrica">
             <div class="scale-card">
               <div class="scale-card-header">
-                <span class="scale-card-title">Escala granulométrica referencial</span>
+                <span class="scale-card-title">Muestra real de conchuela</span>
                 <span class="scale-card-measure" id="scale-measure-Readout">Diámetro: 3.0 – 4.0 mm</span>
               </div>
 
-              <!-- Lienzo SVG interactivo controlado por JS -->
-              <svg class="grain-scale-svg" id="grain-scale-svg" viewBox="0 0 420 280" role="img" aria-label="Representación visual del tamaño de grano sobre regla milimétrica">
-                <defs>
-                  <radialGradient id="petriBg" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stop-color="#FFFFFF"/>
-                    <stop offset="100%" stop-color="#EFE7DC"/>
-                  </radialGradient>
-                </defs>
-                <!-- Círculo de muestra mineral -->
-                <circle cx="210" cy="118" r="92" fill="url(#petriBg)" stroke="#C8842E" stroke-width="1.5"/>
-                <circle cx="210" cy="118" r="84" fill="none" stroke="#4A1F12" stroke-opacity="0.18" stroke-dasharray="3 3"/>
+              <!-- Contenedor de fotografía real del producto -->
+              <div class="grain-photo-display">
+                <img
+                  src="assets/img/productos/conchuela-gruesa.webp"
+                  alt="Fotografía de Conchuela Gruesa (3 a 4 mm) en estado natural"
+                  id="grain-photo-img"
+                  class="grain-photo-img"
+                  width="800"
+                  height="800"
+                  loading="lazy">
+                <span class="grain-photo-badge" id="grain-photo-badge">Fotografía real · Conchuela Gruesa</span>
+              </div>
 
-                <!-- Grupo de partículas generadas/actualizadas según granulometría -->
-                <g id="svg-grain-particles">
-                  <!-- Partículas iniciales (Gruesa 3-4mm) -->
-                  <polygon points="165,85 182,78 190,94 172,102" fill="#FFFFFF" stroke="#4A1F12" stroke-width="1.5"/>
-                  <polygon points="210,72 230,68 236,86 216,92" fill="#FAF7F2" stroke="#C8842E" stroke-width="1.5"/>
-                  <polygon points="246,98 266,92 272,110 252,116" fill="#FFFFFF" stroke="#4A1F12" stroke-width="1.5"/>
-                  <polygon points="148,118 168,110 175,128 156,135" fill="#F4ECE1" stroke="#4A1F12" stroke-width="1.5"/>
-                  <polygon points="194,108 216,102 224,122 200,128" fill="#FFFFFF" stroke="#C8842E" stroke-width="1.5"/>
-                  <polygon points="232,126 252,120 260,138 238,144" fill="#FAF7F2" stroke="#C8842E" stroke-width="1.5"/>
-                  <polygon points="172,146 194,138 202,156 180,162" fill="#FFFFFF" stroke="#4A1F12" stroke-width="1.5"/>
-                  <polygon points="214,150 235,144 242,162 220,168" fill="#F4ECE1" stroke="#4A1F12" stroke-width="1.5"/>
-                </g>
-
-                <!-- Regla milimétrica inferior (0 a 10 mm ampliada con precisión) -->
-                <g transform="translate(50, 232)">
+              <!-- Regla milimétrica interactiva inferior (0 a 10 mm) -->
+              <svg class="grain-scale-svg" id="grain-scale-svg" viewBox="0 0 420 70" role="img" aria-label="Escala sobre regla milimétrica">
+                <g transform="translate(50, 20)">
                   <line x1="0" y1="0" x2="320" y2="0" stroke="#1C1410" stroke-width="2"/>
                   <!-- Marcas cada 1 mm (32px = 1 mm en escala ampliada 10x) -->
                   <line x1="0" y1="0" x2="0" y2="14" stroke="#1C1410" stroke-width="2"/>
@@ -556,7 +545,7 @@
                 </g>
               </svg>
 
-              <p class="scale-caption">Vista macro ampliada 10× para comparación técnica de tamiz.</p>
+              <p class="scale-caption">Vista fotográfica de muestra extraída en cantera y escala comparativa de tamiz.</p>
             </div>
           </div>
         </div>
