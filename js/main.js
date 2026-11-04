@@ -137,13 +137,13 @@
     }
   }
 
-  /* 2. Animaciones de entrada, línea de tiempo y contador 25+ (nunca muestra 0) */
+  /* 2. Animaciones de entrada y contadores interactivos */
   function initAnimationsAndCounters() {
     var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var counterEls = document.querySelectorAll('[data-counter-target]');
 
     counterEls.forEach(function (el) {
-      var target = parseInt(el.getAttribute('data-counter-target') || '25', 10);
+      var target = parseInt(el.getAttribute('data-counter-target') || '23', 10);
       if (reducedMotion || typeof window.IntersectionObserver === 'undefined') {
         el.textContent = String(target);
         return;
@@ -155,7 +155,7 @@
           if (entry.isIntersecting && !animated) {
             animated = true;
             var startVal = 1;
-            var duration = 1200;
+            var duration = target > 100 ? 1600 : 1200;
             var startTime = performance.now();
 
             function tick(now) {
@@ -176,28 +176,6 @@
 
       obs.observe(el);
     });
-
-    if (!reducedMotion && typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
-      window.gsap.registerPlugin(window.ScrollTrigger);
-
-      var timelineBar = document.getElementById('timeline-line-progress');
-      if (timelineBar) {
-        window.gsap.fromTo(
-          timelineBar,
-          { scaleY: 0.15 },
-          {
-            scaleY: 1,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: '.timeline-wrapper',
-              start: 'top 75%',
-              end: 'bottom 65%',
-              scrub: 0.4
-            }
-          }
-        );
-      }
-    }
   }
 
   /* 3. Selector interactivo de granulometría + preselección en formulario */
