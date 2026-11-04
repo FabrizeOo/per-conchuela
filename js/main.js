@@ -116,104 +116,221 @@
     });
   }
 
-  /* 0. Pantalla de carga interactiva con el logo en cada entrada o F5 */
+  /* 0. Coreografía FLIP de entrada: inicia solo con el logo al centro -> pasa arriba a la izquierda + componentes suben hacia el estado de scroll */
   function initInteractivePreloader() {
     var preloader = document.getElementById('site-preloader');
-    if (!preloader) return;
+    var introLogo = document.getElementById('intro-logo');
+    var brandLogoLink = document.querySelector('.brand-logo');
+    var headerLogoImg = document.querySelector('.brand-logo img');
 
-    var ringProgress = document.getElementById('preloader-ring-progress');
-    var barFill = document.getElementById('preloader-bar-fill');
-    var pctText = document.getElementById('preloader-pct');
-    var statusText = document.getElementById('preloader-status');
-    var enterBtn = document.getElementById('preloader-enter-btn');
-    var emblem = document.getElementById('preloader-emblem');
-    var glow = document.getElementById('preloader-glow');
+    if (!preloader) {
+      document.body.classList.remove('is-intro-active', 'is-loading');
+      return;
+    }
 
-    var circumference = 741.4;
-    var progress = 0;
-    var isClosed = false;
-    var rafId = null;
+    var reducedMotion =
+      window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    function updateVisualProgress(val) {
-      var clamped = Math.max(0, Math.min(100, Math.round(val)));
-      if (pctText) pctText.textContent = clamped + '%';
-      if (barFill) barFill.style.width = clamped + '%';
-      if (ringProgress) {
-        var offset = circumference - (clamped / 100) * circumference;
-        ringProgress.style.strokeDashoffset = String(offset);
+    var heroHeader = document.getElementById('hero-clean-header');
+    var heroStage = document.getElementById('hero-media-stage');
+    var whatsappBtn = document.querySelector('.whatsapp-float');
+    var isDesktop = window.matchMedia && window.matchMedia('(min-width: 1024px)').matches;
+    var navTargets = isDesktop
+      ? Array.prototype.slice.call(document.querySelectorAll('.nav-list > li, .nav-cta'))
+      : Array.prototype.slice.call(document.querySelectorAll('#nav-toggle'));
+
+    var allRevealTargets = []
+      .concat(navTargets)
+      .concat([heroHeader, heroStage, whatsappBtn])
+      .filter(Boolean);
+
+    var isFinished = false;
+    var failSafeTimer = null;
+
+    function completeIntroInstantly() {
+      if (isFinished) return;
+      isFinished = true;
+      if (failSafeTimer) clearTimeout(failSafeTimer);
+
+      document.body.classList.remove('is-intro-active', 'is-loading');
+      preloader.classList.add('is-hidden');
+      preloader.hidden = true;
+
+      if (brandLogoLink) {
+        brandLogoLink.style.opacity = '';
       }
-      if (statusText) {
-        if (clamped < 40) {
-          statusText.textContent = 'Extrayendo pureza mineral · 11 millones de años';
-        } else if (clamped < 85) {
-          statusText.textContent = 'Calibrando granulometría natural (32% – 36% Ca)...';
-        } else {
-          statusText.textContent = 'Experiencia lista · Bienvenido a Perú Conchuela';
+
+      if (typeof window.gsap !== 'undefined' && allRevealTargets.length) {
+        window.gsap.set(allRevealTargets, { clearProps: 'transform,opacity,willChange' });
+      }
+
+      if (typeof window.ScrollTrigger !== 'undefined') {
+        window.ScrollTrigger.refresh();
+      }
+    }
+
+    if (
+      reducedMotion ||
+      typeof window.gsap === 'undefined' ||
+      !introLogo ||
+      !headerLogoImg
+    ) {
+      completeIntroInstantly();
+      return;
+    }
+
+    if (!window.location.hash) {
+      try {
+        if ('scrollRestoration' in window.history) {
+          window.history.scrollRestoration = 'manual';
         }
-      }
+        window.scrollTo(0, 0);
+      } catch (e) {}
     }
 
-    function finishPreloader() {
-      if (isClosed) return;
-      isClosed = true;
-      if (rafId) cancelAnimationFrame(rafId);
-      updateVisualProgress(100);
-      setTimeout(function () {
-        preloader.classList.add('is-hidden');
-        document.body.classList.remove('is-loading');
-      }, 180);
-    }
+    failSafeTimer = setTimeout(completeIntroInstantly, 3800);
 
-    preloader.addEventListener('pointermove', function (e) {
-      if (isClosed) return;
-      if (glow) {
-        glow.style.left = e.clientX + 'px';
-        glow.style.top = e.clientY + 'px';
-      }
-      if (emblem) {
-        var rect = emblem.getBoundingClientRect();
-        var cx = rect.left + rect.width / 2;
-        var cy = rect.top + rect.height / 2;
-        var dx = (e.clientX - cx) / 18;
-        var dy = (e.clientY - cy) / 18;
-        emblem.style.transform =
-          'translate3d(' +
-          Math.max(-10, Math.min(10, dx)) +
-          'px, ' +
-          Math.max(-10, Math.min(10, dy)) +
-          'px, 0)';
-      }
-    });
+    function startChoreography() {
+      if (isFinished) return;
 
-    if (enterBtn) {
-      enterBtn.addEventListener('click', finishPreloader);
-    }
-    if (emblem) {
-      emblem.addEventListener('click', function () {
-        progress = Math.min(100, progress + 35);
-        updateVisualProgress(progress);
-        if (progress >= 100) finishPreloader();
+      var gsap = window.gsap;
+      var cachedDelta = null;
+
+      function getLogoDelta() {
+        if (!cachedDelta) {
+          var introRect = introLogo.getBoundingClientRect();
+          var targetRect = headerLogoImg.getBoundingClientRect();
+          var introW = introRect.width || 220;
+          var targetW = targetRect.width || 112;
+          cachedDelta = {
+            dx: targetRect.left + targetRect.width / 2 - (introRect.left + introRect.width / 2),
+            dy: targetRect.top + targetRect.height / 2 - (introRect.top + introRect.height / 2),
+            scale: targetW / introW
+          };
+        }
+        return cachedDelta;
+      }
+
+      var tl = gsap.timeline({
+        onComplete: completeIntroInstantly
       });
-    }
 
-    var startTime = performance.now();
-    var duration = 1450;
+      /* Paso 1: Únicamente el logo en el centro sobre lienzo blanco puro */
+      tl.fromTo(
+        introLogo,
+        { scale: 0.92, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.46, ease: 'power2.out' }
+      );
 
-    function step(now) {
-      if (isClosed) return;
-      var elapsed = now - startTime;
-      var naturalPct = Math.min(100, (elapsed / duration) * 100);
-      progress = Math.max(progress, naturalPct);
-      updateVisualProgress(progress);
+      /* Breve pausa limpia con solo el logo al centro */
+      tl.to({}, { duration: 0.24 });
 
-      if (progress < 100) {
-        rafId = requestAnimationFrame(step);
-      } else {
-        finishPreloader();
+      /* Paso 2: El logo viaja hacia arriba a la izquierda mientras los componentes suben automáticamente */
+      tl.addLabel('glideAndRise');
+
+      tl.call(
+        function () {
+          preloader.classList.add('is-revealing');
+        },
+        null,
+        'glideAndRise'
+      );
+
+      tl.to(
+        introLogo,
+        {
+          x: function () {
+            return getLogoDelta().dx;
+          },
+          y: function () {
+            return getLogoDelta().dy;
+          },
+          scale: function () {
+            return getLogoDelta().scale;
+          },
+          duration: 1.02,
+          ease: 'expo.inOut',
+          onComplete: function () {
+            if (brandLogoLink) brandLogoLink.style.opacity = '1';
+            preloader.classList.add('is-hidden');
+            preloader.hidden = true;
+          }
+        },
+        'glideAndRise'
+      );
+
+      if (navTargets.length) {
+        tl.fromTo(
+          navTargets,
+          { opacity: 0, y: 24 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.68,
+            stagger: 0.045,
+            ease: 'power3.out'
+          },
+          'glideAndRise+=0.24'
+        );
+      }
+
+      if (heroHeader) {
+        tl.fromTo(
+          heroHeader,
+          { opacity: 0, y: 48 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.82,
+            ease: 'power3.out'
+          },
+          'glideAndRise+=0.22'
+        );
+      }
+
+      if (heroStage) {
+        tl.fromTo(
+          heroStage,
+          { opacity: 0, y: 72, scale: 0.96 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.92,
+            ease: 'power3.out'
+          },
+          'glideAndRise+=0.30'
+        );
+      }
+
+      if (whatsappBtn) {
+        tl.fromTo(
+          whatsappBtn,
+          { opacity: 0, y: 28, scale: 0.88 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.62,
+            ease: 'power3.out'
+          },
+          'glideAndRise+=0.44'
+        );
       }
     }
 
-    rafId = requestAnimationFrame(step);
+    if (introLogo.complete && headerLogoImg.complete) {
+      requestAnimationFrame(startChoreography);
+    } else {
+      var started = false;
+      var triggerOnce = function () {
+        if (started) return;
+        started = true;
+        requestAnimationFrame(startChoreography);
+      };
+      introLogo.addEventListener('load', triggerOnce, { once: true });
+      setTimeout(triggerOnce, 220);
+    }
   }
 
   /* 1. Header fijo + Menú móvil accesible */

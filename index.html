@@ -100,33 +100,10 @@
   }
   </script>
 </head>
-<body class="is-loading">
-  <!-- PANTALLA DE CARGA INTERACTIVA CON EL LOGO DE LA WEB (SE MUESTRA EN CADA ENTRADA O F5) -->
-  <div class="site-preloader" id="site-preloader" role="status" aria-live="polite" aria-label="Cargando experiencia web de Perú Conchuela">
-    <div class="preloader-glow" id="preloader-glow" aria-hidden="true"></div>
-    <div class="preloader-stage" id="preloader-stage">
-      <div class="preloader-emblem" id="preloader-emblem">
-        <svg class="preloader-ringSvg" viewBox="0 0 260 260" aria-hidden="true">
-          <circle class="preloader-ring-track" cx="130" cy="130" r="118" />
-          <circle class="preloader-ring-dashed" cx="130" cy="130" r="104" />
-          <circle class="preloader-ring-progress" id="preloader-ring-progress" cx="130" cy="130" r="118" />
-        </svg>
-        <div class="preloader-logo-card">
-          <img src="assets/img/logo.webp" alt="Perú Conchuela" width="240" height="111" class="preloader-logo-img">
-        </div>
-      </div>
-
-      <div class="preloader-meta">
-        <p class="preloader-status" id="preloader-status">Extrayendo pureza mineral · 11 millones de años</p>
-        <div class="preloader-bar-wrap" aria-hidden="true">
-          <div class="preloader-bar-fill" id="preloader-bar-fill"></div>
-        </div>
-        <div class="preloader-Readout">
-          <span class="preloader-pct" id="preloader-pct">0%</span>
-          <button type="button" class="preloader-enter-btn" id="preloader-enter-btn">Entrar al sitio ↗</button>
-        </div>
-      </div>
-    </div>
+<body class="is-loading is-intro-active">
+  <!-- ANIMACIÓN DE ENTRADA: INICIA SOLO CON EL LOGO AL CENTRO Y SE DESPLAZA AL HEADER SUPERIOR IZQUIERDO -->
+  <div class="site-preloader" id="site-preloader" aria-hidden="true">
+    <img src="assets/img/logo.webp" alt="" width="240" height="111" class="intro-logo-img" id="intro-logo">
   </div>
 
   <!-- Enlace de salto accesible por teclado -->
