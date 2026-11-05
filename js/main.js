@@ -187,7 +187,16 @@
         window.gsap.set(allRevealTargets, { clearProps: 'transform,opacity,willChange' });
       }
 
+      try {
+        window.scrollTo(0, 0);
+      } catch (e) {}
+
       if (typeof window.ScrollTrigger !== 'undefined') {
+        try {
+          if (window.ScrollTrigger.clearScrollMemory) {
+            window.ScrollTrigger.clearScrollMemory();
+          }
+        } catch (e) {}
         window.ScrollTrigger.refresh();
       }
     }

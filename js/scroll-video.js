@@ -48,6 +48,12 @@
 
     window.gsap.registerPlugin(window.ScrollTrigger);
 
+    try {
+      if (window.ScrollTrigger.clearScrollMemory) {
+        window.ScrollTrigger.clearScrollMemory();
+      }
+    } catch (e) {}
+
     /* Desbloqueo inicial del decodificador en navegadores móviles/escritorio */
     function primeVideoDecoder() {
       if (videoFailed) return;
