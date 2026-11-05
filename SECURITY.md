@@ -41,3 +41,4 @@ El script valida criptográficamente los hashes SHA-384 de las dependencias loca
 Si identifica alguna vulnerabilidad de seguridad en **peruconchuela.com**, por favor repórtela de forma confidencial a través de:
 - **Correo oficial**: `contactos@peruconchuela.com`
 - **Descriptor RFC 9116**: `https://peruconchuela.com/.well-known/security.txt`
+
