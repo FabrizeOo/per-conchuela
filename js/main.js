@@ -11,6 +11,29 @@
 (function () {
   'use strict';
 
+  /* Asegurar reinicio completo desde el inicio al recargar (F5) o abrir la página */
+  try {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  } catch (e) {}
+
+  if (window.location.hash) {
+    try {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    } catch (e) {}
+  }
+
+  try {
+    window.scrollTo(0, 0);
+  } catch (e) {}
+
+  window.addEventListener('beforeunload', function () {
+    try {
+      window.scrollTo(0, 0);
+    } catch (e) {}
+  });
+
   function deepFreeze(obj) {
     if (!obj || typeof obj !== 'object' || Object.isFrozen(obj)) return obj;
     Object.freeze(obj);
@@ -179,14 +202,9 @@
       return;
     }
 
-    if (!window.location.hash) {
-      try {
-        if ('scrollRestoration' in window.history) {
-          window.history.scrollRestoration = 'manual';
-        }
-        window.scrollTo(0, 0);
-      } catch (e) {}
-    }
+    try {
+      window.scrollTo(0, 0);
+    } catch (e) {}
 
     failSafeTimer = setTimeout(completeIntroInstantly, 3800);
 
