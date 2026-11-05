@@ -675,127 +675,133 @@
         </div>
 
         <div class="professionals-showcase">
-          <!-- Categoría 1: ARQUITECTOS -->
-          <div class="prof-category-block reveal-up">
-            <div class="prof-category-header">
-              <span class="prof-category-tag">01</span>
-              <h3 class="prof-category-title">Arquitectos</h3>
-              <span class="prof-category-line" aria-hidden="true"></span>
+          <!-- Carrusel de deslizamiento (Slider) de profesionales -->
+          <div class="prof-slider-wrapper reveal-up" id="prof-slider-wrapper">
+            <div class="prof-slider-header">
+              <div class="prof-slider-counter" id="prof-slider-counter" aria-live="polite">
+                <span class="prof-counter-current" id="prof-counter-current">01</span>
+                <span class="prof-counter-sep">/</span>
+                <span class="prof-counter-total" id="prof-counter-total">09</span>
+              </div>
+              <div class="prof-slider-nav" role="toolbar" aria-label="Controles del carrusel de profesionales">
+                <button type="button" class="prof-slider-btn prof-slider-prev" id="prof-slider-prev" aria-label="Deslizar al profesional anterior">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                </button>
+                <button type="button" class="prof-slider-btn prof-slider-next" id="prof-slider-next" aria-label="Deslizar al siguiente profesional">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </button>
+              </div>
             </div>
 
-            <div class="prof-cards-grid">
-              <article class="prof-card">
-                <div class="prof-card-avatar">
-                  <img src="assets/img/profesionales/mateo-peschiera.webp" alt="Arquitecto Mateo Peschiera" width="500" height="500" loading="lazy">
-                </div>
-                <div class="prof-card-info">
-                  <span class="prof-card-role">Arquitecto</span>
-                  <h4 class="prof-card-name">Mateo Peschiera</h4>
-                </div>
-              </article>
+            <div class="prof-slider-track-wrap" id="prof-slider-track-wrap" tabindex="0" role="region" aria-label="Carrusel de profesionales">
+              <div class="prof-slider-track" id="prof-slider-track">
+                <!-- Profesional 1 -->
+                <article class="prof-card prof-slide">
+                  <div class="prof-card-avatar">
+                    <img src="assets/img/profesionales/mateo-peschiera.webp" alt="Arquitecto Mateo Peschiera" width="500" height="500" loading="lazy">
+                  </div>
+                  <div class="prof-card-info">
+                    <span class="prof-card-role">Arquitecto</span>
+                    <h3 class="prof-card-name">Mateo Peschiera</h3>
+                  </div>
+                </article>
 
-              <article class="prof-card">
-                <div class="prof-card-avatar">
-                  <img src="assets/img/profesionales/ricardo-martin-de-rossi.webp" alt="Arquitecto Ricardo Martín de Rossi" width="500" height="500" loading="lazy">
-                </div>
-                <div class="prof-card-info">
-                  <span class="prof-card-role">Arquitecto</span>
-                  <h4 class="prof-card-name">Ricardo Martín de Rossi</h4>
-                </div>
-              </article>
+                <!-- Profesional 2 -->
+                <article class="prof-card prof-slide">
+                  <div class="prof-card-avatar">
+                    <img src="assets/img/profesionales/ricardo-martin-de-rossi.webp" alt="Arquitecto Ricardo Martín de Rossi" width="500" height="500" loading="lazy">
+                  </div>
+                  <div class="prof-card-info">
+                    <span class="prof-card-role">Arquitecto</span>
+                    <h3 class="prof-card-name">Ricardo Martín de Rossi</h3>
+                  </div>
+                </article>
 
-              <article class="prof-card">
-                <div class="prof-card-avatar">
-                  <img src="assets/img/profesionales/barbara-biglieri.webp" alt="Arquitecta Bárbara Biglieri" width="500" height="500" loading="lazy">
-                </div>
-                <div class="prof-card-info">
-                  <span class="prof-card-role">Arquitecta</span>
-                  <h4 class="prof-card-name">Bárbara Biglieri</h4>
-                </div>
-              </article>
+                <!-- Profesional 3 -->
+                <article class="prof-card prof-slide">
+                  <div class="prof-card-avatar">
+                    <img src="assets/img/profesionales/barbara-biglieri.webp" alt="Arquitecta Bárbara Biglieri" width="500" height="500" loading="lazy">
+                  </div>
+                  <div class="prof-card-info">
+                    <span class="prof-card-role">Arquitecta</span>
+                    <h3 class="prof-card-name">Bárbara Biglieri</h3>
+                  </div>
+                </article>
 
-              <article class="prof-card">
-                <div class="prof-card-avatar">
-                  <img src="assets/img/profesionales/cesar-lee.webp" alt="Arquitecto César Lee" width="500" height="500" loading="lazy">
-                </div>
-                <div class="prof-card-info">
-                  <span class="prof-card-role">Arquitecto</span>
-                  <h4 class="prof-card-name">César Lee</h4>
-                </div>
-              </article>
+                <!-- Profesional 4 -->
+                <article class="prof-card prof-slide">
+                  <div class="prof-card-avatar">
+                    <img src="assets/img/profesionales/cesar-lee.webp" alt="Arquitecto César Lee" width="500" height="500" loading="lazy">
+                  </div>
+                  <div class="prof-card-info">
+                    <span class="prof-card-role">Arquitecto</span>
+                    <h3 class="prof-card-name">César Lee</h3>
+                  </div>
+                </article>
 
-              <article class="prof-card">
-                <div class="prof-card-avatar">
-                  <img src="assets/img/profesionales/karim-chaman.webp" alt="Arquitecta Karim Chamán" width="500" height="500" loading="lazy">
-                </div>
-                <div class="prof-card-info">
-                  <span class="prof-card-role">Arquitecta</span>
-                  <h4 class="prof-card-name">Karim Chamán</h4>
-                </div>
-              </article>
+                <!-- Profesional 5 -->
+                <article class="prof-card prof-slide">
+                  <div class="prof-card-avatar">
+                    <img src="assets/img/profesionales/karim-chaman.webp" alt="Arquitecta Karim Chamán" width="500" height="500" loading="lazy">
+                  </div>
+                  <div class="prof-card-info">
+                    <span class="prof-card-role">Arquitecta</span>
+                    <h3 class="prof-card-name">Karim Chamán</h3>
+                  </div>
+                </article>
+
+                <!-- Profesional 6 -->
+                <article class="prof-card prof-slide">
+                  <div class="prof-card-avatar">
+                    <img src="assets/img/profesionales/diego-oliveira.webp" alt="Diseñador Diego Oliveira" width="500" height="500" loading="lazy">
+                  </div>
+                  <div class="prof-card-info">
+                    <span class="prof-card-role">Diseñador</span>
+                    <h3 class="prof-card-name">Diego Oliveira</h3>
+                  </div>
+                </article>
+
+                <!-- Profesional 7 -->
+                <article class="prof-card prof-slide">
+                  <div class="prof-card-avatar">
+                    <img src="assets/img/profesionales/marcia-lenz.webp" alt="Paisajista Marcia Lenz" width="500" height="500" loading="lazy">
+                  </div>
+                  <div class="prof-card-info">
+                    <span class="prof-card-role">Paisajista</span>
+                    <h3 class="prof-card-name">Marcia Lenz</h3>
+                  </div>
+                </article>
+
+                <!-- Profesional 8 -->
+                <article class="prof-card prof-slide">
+                  <div class="prof-card-avatar">
+                    <img src="assets/img/profesionales/lizette-miro-quesada.webp" alt="Paisajista Lizette Miro Quesada" width="500" height="500" loading="lazy">
+                  </div>
+                  <div class="prof-card-info">
+                    <span class="prof-card-role">Paisajista</span>
+                    <h3 class="prof-card-name">Lizette Miro Quesada</h3>
+                  </div>
+                </article>
+
+                <!-- Profesional 9 -->
+                <article class="prof-card prof-slide">
+                  <div class="prof-card-avatar">
+                    <img src="assets/img/profesionales/nashwa-salazar.webp" alt="Paisajista Nashwa Salazar" width="500" height="500" loading="lazy">
+                  </div>
+                  <div class="prof-card-info">
+                    <span class="prof-card-role">Paisajista</span>
+                    <h3 class="prof-card-name">Nashwa Salazar</h3>
+                  </div>
+                </article>
+              </div>
             </div>
-          </div>
 
-          <!-- Categoría 2: DISEÑADORES -->
-          <div class="prof-category-block reveal-up">
-            <div class="prof-category-header">
-              <span class="prof-category-tag">02</span>
-              <h3 class="prof-category-title">Diseñadores</h3>
-              <span class="prof-category-line" aria-hidden="true"></span>
-            </div>
-
-            <div class="prof-cards-grid">
-              <article class="prof-card">
-                <div class="prof-card-avatar">
-                  <img src="assets/img/profesionales/diego-oliveira.webp" alt="Diseñador Diego Oliveira" width="500" height="500" loading="lazy">
-                </div>
-                <div class="prof-card-info">
-                  <span class="prof-card-role">Diseñador</span>
-                  <h4 class="prof-card-name">Diego Oliveira</h4>
-                </div>
-              </article>
-            </div>
-          </div>
-
-          <!-- Categoría 3: PAISAJISTAS -->
-          <div class="prof-category-block reveal-up">
-            <div class="prof-category-header">
-              <span class="prof-category-tag">03</span>
-              <h3 class="prof-category-title">Paisajistas</h3>
-              <span class="prof-category-line" aria-hidden="true"></span>
-            </div>
-
-            <div class="prof-cards-grid">
-              <article class="prof-card">
-                <div class="prof-card-avatar">
-                  <img src="assets/img/profesionales/marcia-lenz.webp" alt="Paisajista Marcia Lenz" width="500" height="500" loading="lazy">
-                </div>
-                <div class="prof-card-info">
-                  <span class="prof-card-role">Paisajista</span>
-                  <h4 class="prof-card-name">Marcia Lenz</h4>
-                </div>
-              </article>
-
-              <article class="prof-card">
-                <div class="prof-card-avatar">
-                  <img src="assets/img/profesionales/lizette-miro-quesada.webp" alt="Paisajista Lizette Miro Quesada" width="500" height="500" loading="lazy">
-                </div>
-                <div class="prof-card-info">
-                  <span class="prof-card-role">Paisajista</span>
-                  <h4 class="prof-card-name">Lizette Miro Quesada</h4>
-                </div>
-              </article>
-
-              <article class="prof-card">
-                <div class="prof-card-avatar">
-                  <img src="assets/img/profesionales/nashwa-salazar.webp" alt="Paisajista Nashwa Salazar" width="500" height="500" loading="lazy">
-                </div>
-                <div class="prof-card-info">
-                  <span class="prof-card-role">Paisajista</span>
-                  <h4 class="prof-card-name">Nashwa Salazar</h4>
-                </div>
-              </article>
-            </div>
+            <!-- Paginación con puntos (Dots) interactivos -->
+            <div class="prof-slider-dots" id="prof-slider-dots" role="tablist" aria-label="Indicadores de diapositivas"></div>
           </div>
         </div>
       </div>

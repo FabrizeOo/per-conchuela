@@ -1534,11 +1534,164 @@ textarea {
 }
 
 /* ==========================================================================
-   9. PROFESIONALES QUE NOS RECOMIENDAN
+   9. PROFESIONALES QUE NOS RECOMIENDAN (SLIDER / CARRUSEL)
    ========================================================================== */
 .professionals-showcase {
-  display: grid;
-  gap: 3rem;
+  width: 100%;
+}
+
+.prof-slider-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.prof-slider-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-inline: 0.25rem;
+}
+
+.prof-slider-counter {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-carbon);
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.prof-counter-current {
+  color: var(--color-terracota-text);
+  font-size: 1.45rem;
+  font-weight: 700;
+}
+
+.prof-counter-sep {
+  opacity: 0.4;
+  font-size: 1rem;
+}
+
+.prof-counter-total {
+  opacity: 0.6;
+  font-size: 1.05rem;
+}
+
+.prof-slider-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.prof-slider-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-borde-fuerte);
+  background-color: var(--color-hueso);
+  color: var(--color-carbon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: var(--shadow-soft);
+}
+
+.prof-slider-btn:hover:not(:disabled) {
+  background-color: var(--color-mar);
+  border-color: var(--color-mar);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.prof-slider-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.prof-slider-track-wrap {
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-block: 0.5rem 1.25rem;
+  margin-block: -0.5rem -0.25rem;
+  outline: none;
+  cursor: grab;
+}
+
+.prof-slider-track-wrap::-webkit-scrollbar {
+  display: none;
+}
+
+.prof-slider-track-wrap.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+  scroll-snap-type: none;
+  user-select: none;
+}
+
+.prof-slider-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+}
+
+.prof-card.prof-slide {
+  flex: 0 0 calc(100vw - 3rem);
+  max-width: 320px;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 640px) {
+  .prof-card.prof-slide {
+    flex: 0 0 290px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .prof-card.prof-slide {
+    flex: 0 0 320px;
+  }
+}
+
+.prof-slider-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  margin-top: 1.5rem;
+}
+
+.prof-slider-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 0;
+  background-color: var(--color-borde-fuerte);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.prof-slider-dot:hover {
+  background-color: var(--color-terracota);
+  transform: scale(1.15);
+}
+
+.prof-slider-dot.is-active {
+  width: 28px;
+  background-color: var(--color-mar);
 }
 
 .prof-category-block {
