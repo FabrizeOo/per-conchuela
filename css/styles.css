@@ -603,9 +603,9 @@ textarea {
 
 .origin-instagram-card {
   width: 100%;
-  background-color: var(--color-hueso);
+  background-color: #000000;
   border: 1px solid var(--color-borde-oro);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-elevated);
 }
@@ -615,8 +615,8 @@ textarea {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
-  padding: 1rem 1.35rem;
+  gap: 0.75rem;
+  padding: 0.95rem 1.35rem;
   background-color: var(--color-arena);
   border-bottom: 1px solid var(--color-borde);
 }
@@ -629,25 +629,45 @@ textarea {
   color: var(--color-mar);
 }
 
-.origin-instagram-link {
-  font-size: 0.84rem;
+.origin-instagram-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  color: var(--color-terracota-text);
-  text-decoration: underline;
+  color: #FFFFFF;
+  background-color: var(--color-mar);
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  transition: all 0.22s ease;
+  box-shadow: 0 4px 12px rgba(61, 25, 14, 0.2);
 }
 
-.origin-instagram-link:hover {
-  color: var(--color-mar);
+.origin-instagram-btn:hover {
+  background-color: var(--color-terracota-text);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(61, 25, 14, 0.3);
+  color: #FFFFFF;
+}
+
+.origin-instagram-btn svg {
+  flex-shrink: 0;
 }
 
 .origin-instagram-frame-wrap {
+  position: relative;
   width: 100%;
-  background-color: #FFFFFF;
+  height: 610px;
+  overflow: hidden;
+  background-color: #000000;
 }
 
 .origin-instagram-iframe {
-  width: 100%;
-  min-height: 680px;
+  position: absolute;
+  top: -65px;
+  left: -22%;
+  width: 144%;
+  height: calc(100% + 220px);
   border: 0;
   display: block;
 }
@@ -720,24 +740,45 @@ textarea {
 }
 
 /* ==========================================================================
-   4. CIFRAS (BANDA ARQUITECTÓNICA EN OBSIDIANA Y BRONCE)
+   4. CIFRAS (BANDA ARQUITECTÓNICA CON FONDO NARANJA CÁLIDO Y PALMERA)
    ========================================================================== */
 #cifras {
-  background-color: var(--color-carbon);
-  color: var(--color-crema);
-  border-bottom: 1px solid rgba(200, 132, 46, 0.22);
+  position: relative;
+  background-color: #C3530F;
+  background-image: linear-gradient(135deg, rgba(200, 80, 10, 0.55) 0%, rgba(140, 45, 8, 0.75) 100%), url('../assets/img/fondo-cifras-palmera.webp');
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  color: #FFFFFF;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+
+#cifras::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 18% 45%, rgba(255, 125, 40, 0.3) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+#cifras .container {
+  position: relative;
+  z-index: 2;
 }
 
 #cifras .eyebrow {
-  color: var(--color-oro-mineral);
+  color: #FFE6CC;
 }
 
 #cifras .eyebrow::before {
-  background-color: var(--color-oro-mineral);
+  background-color: #FFE6CC;
 }
 
 #cifras .section-title {
   color: #FFFFFF;
+  font-weight: 600;
+  letter-spacing: -0.025em;
 }
 
 .metrics-grid {
@@ -746,14 +787,23 @@ textarea {
 }
 
 .metric-card {
-  background: linear-gradient(160deg, rgba(74, 31, 18, 0.34) 0%, rgba(28, 20, 16, 0.9) 100%);
-  border: 1px solid rgba(229, 193, 88, 0.24);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: var(--radius-md);
-  padding: 2.25rem 1.85rem;
-  box-shadow: 0 20px 44px -14px rgba(0, 0, 0, 0.45);
+  padding: 2.35rem 1.95rem;
+  box-shadow: 0 16px 36px -10px rgba(70, 20, 0, 0.35);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: transform var(--transition-base), background-color var(--transition-base), border-color var(--transition-base);
+}
+
+.metric-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.42);
 }
 
 .metric-value-wrap {
@@ -761,23 +811,10 @@ textarea {
   font-size: clamp(3.2rem, 6vw, 4.5rem);
   font-weight: 600;
   line-height: 1;
-  color: var(--color-oro-mineral);
+  color: #FFFFFF;
   margin-bottom: 0.85rem;
-}
-
-.metric-badge-pending {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: rgba(250, 247, 242, 0.78);
-  margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px dashed rgba(229, 193, 88, 0.3);
-}
-
-.metric-card .confirm-tag {
-  background-color: rgba(229, 193, 88, 0.16);
-  color: var(--color-oro-mineral);
-  border-color: rgba(229, 193, 88, 0.45);
+  letter-spacing: -0.03em;
+  text-shadow: 0 2px 12px rgba(80, 20, 0, 0.3);
 }
 
 .metric-label {
@@ -786,11 +823,13 @@ textarea {
   font-weight: 600;
   color: #FFFFFF;
   margin-bottom: 0.45rem;
+  letter-spacing: -0.01em;
 }
 
 .metric-note {
   font-size: 0.93rem;
-  color: rgba(250, 247, 242, 0.76);
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.55;
 }
 
 /* ==========================================================================
