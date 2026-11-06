@@ -63,7 +63,7 @@
   var SAFE_LOCAL_PROJECT_IMG_RE = /^assets\/img\/proyectos\/[a-z0-9._-]+\.webp$/i;
   var SAFE_SECTION_HASH_RE = /^#[a-z0-9-]+$/i;
 
-  var ALLOWED_SECTORS = deepFreeze(['Avícola', 'Inmobiliario', 'Paisajismo', 'Industrial', 'Otro']);
+  var ALLOWED_SECTORS = deepFreeze(['Fósila', 'Esculturas', 'Avícola', 'Inmobiliario', 'Paisajismo', 'Industrial', 'Otro']);
 
   var ALLOWED_MAP_OFFICES = deepFreeze({
     'el-agustino': {

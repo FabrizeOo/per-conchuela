@@ -832,143 +832,326 @@ textarea {
 }
 
 /* ==========================================================================
-   5. APLICACIONES
+   5. VERSATILIDAD: FÓSILA & ESCULTURAS
    ========================================================================== */
-.applications-grid {
-  display: grid;
-  gap: 2rem;
-}
-
-.app-card {
-  background-color: var(--color-hueso);
-  border: 1px solid var(--color-borde);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-soft);
-  display: flex;
-  flex-direction: column;
-  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
-}
-
-.app-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-elevated);
-  border-color: var(--color-borde-oro);
-}
-
-.app-card-media {
-  position: relative;
-  aspect-ratio: 3 / 2;
-  overflow: hidden;
-  background-color: var(--color-arena);
-}
-
-.app-card-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.app-card:hover .app-card-media img {
-  transform: scale(1.04);
-}
-
-.app-highlight-pill {
+.section-anchor-alias {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background-color: var(--color-carbon);
-  color: var(--color-oro-mineral);
-  border: 1px solid rgba(229, 193, 88, 0.45);
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.4rem 0.9rem;
-  border-radius: 999px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+  top: -80px;
+  visibility: hidden;
+  pointer-events: none;
 }
 
-.app-card-body {
-  padding: 1.85rem;
+.versatilidad-container {
+  display: grid;
+  gap: 3.5rem;
+}
+
+.versatilidad-block {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.75rem, 3.5vw, 3rem);
+  box-shadow: 0 16px 40px -10px rgba(45, 20, 10, 0.08);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  overflow: hidden;
+  position: relative;
+}
+
+.versatilidad-block:hover {
+  border-color: var(--color-borde-oro);
+  box-shadow: 0 24px 50px -12px rgba(45, 20, 10, 0.14);
+}
+
+.versatilidad-grid {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .versatilidad-grid {
+    grid-template-columns: 1.1fr 1fr;
+    gap: 3.5rem;
+  }
+  .versatilidad-grid.versatilidad-grid-reverse {
+    grid-template-columns: 0.95fr 1.15fr;
+  }
+}
+
+.versatilidad-tag-row {
   display: flex;
-  flex-direction: column;
-  flex: 1;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.85rem;
+  flex-wrap: wrap;
 }
 
-.app-sector-tag {
-  font-size: 0.73rem;
+.versatilidad-tag {
+  font-size: 0.74rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: var(--color-terracota-text);
-  margin-bottom: 0.35rem;
 }
 
-.app-card-title {
+.versatilidad-badge-eco {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #236B28;
+  background-color: rgba(46, 125, 50, 0.12);
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(46, 125, 50, 0.25);
+}
+
+.versatilidad-badge-gold {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-oro-mineral);
+  background-color: rgba(229, 193, 88, 0.16);
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(229, 193, 88, 0.4);
+}
+
+.versatilidad-title {
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: clamp(2.2rem, 4vw, 3rem);
   font-weight: 600;
   color: var(--color-carbon);
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.95rem;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
 }
 
-.app-card-desc {
-  font-size: 0.95rem;
+.versatilidad-lead {
+  font-size: 1.05rem;
+  line-height: 1.65;
   color: var(--color-texto-secundario);
-  margin-bottom: 1rem;
+  margin-bottom: 1.85rem;
 }
 
-.calcium-callout {
-  background-color: rgba(200, 132, 46, 0.09);
-  border-left: 3px solid var(--color-terracota);
-  padding: 0.8rem 1rem;
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  font-size: 0.9rem;
-  color: var(--color-carbon);
-  margin-bottom: 1.1rem;
-}
-
-.app-list {
-  margin-bottom: 1.5rem;
+.versatilidad-features {
   display: grid;
-  gap: 0.48rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
 }
 
-.app-list li {
-  position: relative;
-  padding-left: 1.25rem;
-  font-size: 0.92rem;
-  color: var(--color-carbon);
+.v-feature-item {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
 }
 
-.app-list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.6em;
-  width: 6px;
-  height: 6px;
+.v-feature-icon {
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background-color: var(--color-terracota);
-}
-
-.app-card-link {
-  margin-top: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 0.02em;
+  background-color: var(--color-arena);
   color: var(--color-mar);
-  padding-top: 0.85rem;
-  border-top: 1px solid var(--color-borde);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-.app-card-link:hover {
+.v-feature-title {
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: var(--color-carbon);
+  margin-bottom: 0.25rem;
+}
+
+.v-feature-desc {
+  font-size: 0.85rem;
+  color: var(--color-texto-secundario);
+  line-height: 1.45;
+}
+
+.versatilidad-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+/* Panel de muestras cromáticas Fósila */
+.versatilidad-swatches-panel {
+  background-color: var(--color-arena);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.swatches-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.35rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.swatches-panel-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-mar);
+}
+
+.swatches-panel-subtitle {
+  font-size: 0.78rem;
+  font-weight: 700;
   color: var(--color-terracota-text);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.swatches-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+@media (min-width: 540px) {
+  .swatches-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.swatch-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.45rem;
+  border-radius: var(--radius-sm);
+  transition: transform 0.25s ease, background-color 0.25s ease;
+  cursor: pointer;
+}
+
+.swatch-card:hover,
+.swatch-card:focus-visible {
+  transform: translateY(-4px);
+  background-color: rgba(255, 255, 255, 0.65);
+  outline: none;
+}
+
+.swatch-tile {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid #FFFFFF;
+  margin-bottom: 0.55rem;
+  background-color: #FFFFFF;
+}
+
+.swatch-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.swatch-card:hover .swatch-tile img,
+.swatch-card:focus-visible .swatch-tile img {
+  transform: scale(1.1);
+}
+
+.swatch-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-carbon);
+  margin-bottom: 0.15rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.swatch-shade {
+  font-size: 0.72rem;
+  color: var(--color-texto-secundario);
+  line-height: 1.3;
+}
+
+.swatches-foot-note {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--color-texto-secundario);
+  text-align: center;
+  margin-top: 1.25rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed rgba(180, 140, 100, 0.35);
+}
+
+/* Columna de Esculturas Artwork Frame */
+.esculturas-artwork-frame {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--color-borde-oro);
+  background-color: #F8F5EE;
+  aspect-ratio: 4 / 5;
+  max-height: 580px;
+  width: 100%;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.esculturas-artwork-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.esculturas-artwork-frame:hover img {
+  transform: scale(1.03);
+}
+
+.artwork-overlay-caption {
+  position: absolute;
+  bottom: 0;
+  inset-inline: 0;
+  padding: 2.25rem 1.75rem 1.35rem;
+  background: linear-gradient(to top, rgba(20, 12, 8, 0.9) 0%, rgba(20, 12, 8, 0.45) 60%, transparent 100%);
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+
+.artwork-caption-pre {
+  font-size: 0.88rem;
+  font-style: italic;
+  color: #FFE6CC;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.15rem;
+}
+
+.artwork-caption-main {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
 }
 
 /* ==========================================================================
@@ -2617,9 +2800,6 @@ textarea {
   }
   .metrics-grid {
     grid-template-columns: repeat(3, 1fr);
-  }
-  .applications-grid {
-    grid-template-columns: repeat(2, 1fr);
   }
   .participations-grid {
     grid-template-columns: repeat(2, 1fr);
