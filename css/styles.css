@@ -1157,270 +1157,157 @@ textarea {
 /* ==========================================================================
    6. PRODUCTOS, PARTICIPACIONES (SLIDERS) Y SELECTOR DE GRANULOMETRÍA
    ========================================================================== */
-.participations-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.75rem;
-  margin-bottom: 3.5rem;
-}
-
-@media (min-width: 992px) {
-  .participations-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.participation-card {
-  background-color: #FFFFFF;
-  border: 1px solid var(--color-borde);
-  border-radius: var(--radius-lg);
-  padding: 2rem 1.65rem;
-  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.05);
+.participations-horizontal-list {
   display: flex;
   flex-direction: column;
-  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
-  position: relative;
+  gap: 1.35rem;
+  margin-bottom: 3.5rem;
+  width: 100%;
+}
+
+.part-horizontal-card {
+  background-color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px rgba(61, 25, 14, 0.04);
+  display: flex;
+  align-items: center;
   overflow: hidden;
+  position: relative;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
-.participation-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.1);
-  border-color: var(--color-borde-oro);
+.part-horizontal-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(61, 25, 14, 0.08);
 }
 
-.participation-header {
+.part-card-brand {
+  flex: 0 0 250px;
+  padding: 1.6rem 2rem;
+  background-color: #FAF8F5;
+  border-right: 1px solid rgba(61, 25, 14, 0.05);
   display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding-bottom: 1.15rem;
-  margin-bottom: 1.25rem;
-  border-bottom: 1px solid var(--color-borde);
-}
-
-.participation-icon-badge {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background-color: var(--color-arena);
-  color: var(--color-carbon);
-  display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  flex-shrink: 0;
-  transition: all 0.25s ease;
+  z-index: 2;
 }
 
-.participation-card:hover .participation-icon-badge {
-  background-color: var(--color-carbon);
-  color: #FFFFFF;
-  transform: scale(1.05);
-}
-
-.participation-icon-badge svg {
-  width: 22px;
-  height: 22px;
-}
-
-.participation-tag {
-  font-size: 0.72rem;
+.part-brand-tag {
+  font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--color-terracota-text);
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.25rem;
   display: block;
 }
 
-.participation-title {
+.part-brand-title {
   font-family: var(--font-display);
-  font-size: 1.55rem;
+  font-size: 1.35rem;
   font-weight: 600;
   color: var(--color-carbon);
   margin: 0;
   letter-spacing: -0.015em;
+  white-space: nowrap;
 }
 
-/* Slider horizontal para CASACOR y EXPODECO */
-.part-slider {
-  display: flex;
-  flex-direction: column;
+.part-ticker-wrapper {
   flex: 1;
-}
-
-.part-slides-track {
-  position: relative;
-  min-height: 165px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
-  border-radius: var(--radius-sm);
-  background-color: #FAF8F5;
-  border: 1px solid var(--color-borde);
-  padding: 1.25rem;
+  position: relative;
+  padding: 1.25rem 1.5rem;
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
 }
 
-.part-slide {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateX(25px);
-  transition: opacity 0.32s ease, transform 0.32s ease, visibility 0.32s ease;
-  padding: 1rem;
-}
-
-.part-slide.is-active {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(0);
-}
-
-.part-slide-logo-box {
-  height: 65px;
+.part-ticker-track {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 0.75rem;
+  gap: 3.5rem;
+  width: max-content;
 }
 
-.part-slide-logo {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.06));
+.part-ticker-animated {
+  animation: partMarqueeLoop 24s linear infinite;
+  will-change: transform;
 }
 
-.part-slide-year {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--color-carbon);
-  margin: 0;
-  letter-spacing: -0.01em;
+.part-horizontal-card:hover .part-ticker-animated {
+  animation-play-state: paused;
 }
 
-.part-slider-controls {
-  display: flex;
+@keyframes partMarqueeLoop {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.part-ticker-item {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  margin-top: 1.15rem;
-  padding-top: 0.85rem;
-}
-
-.part-nav-btn {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 1px solid var(--color-borde);
-  background-color: #FFFFFF;
-  color: var(--color-carbon);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.22s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-}
-
-.part-nav-btn:hover {
-  background-color: var(--color-carbon);
-  color: #FFFFFF;
-  border-color: var(--color-carbon);
-  transform: scale(1.08);
-}
-
-.part-dots {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-}
-
-.part-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: #D6D0C5;
-  border: 0;
-  cursor: pointer;
-  padding: 0;
-  transition: all 0.25s ease;
-}
-
-.part-dot.is-active {
-  width: 22px;
-  border-radius: 999px;
-  background-color: var(--color-carbon);
-}
-
-/* Tarjeta IT PROJECT (Estática) */
-.it-project-body {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  justify-content: center;
-}
-
-.it-project-logo-box {
-  min-height: 75px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.15rem;
-  padding: 0.75rem;
-  background-color: #FAF8F5;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--color-borde);
-}
-
-.it-project-logo-img {
-  max-width: 100%;
-  max-height: 52px;
-  object-fit: contain;
-}
-
-.it-project-events-list {
-  display: grid;
-  gap: 0.75rem;
-}
-
-.it-project-event-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 0.95rem;
-  background-color: #FAF8F5;
-  border: 1px solid var(--color-borde);
-  border-radius: var(--radius-sm);
-  transition: border-color 0.2s ease, transform 0.2s ease;
-}
-
-.it-project-event-item:hover {
-  border-color: var(--color-borde-oro);
-  transform: translateX(3px);
-}
-
-.it-event-pill {
-  font-size: 0.74rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  background-color: var(--color-carbon);
-  padding: 0.22rem 0.6rem;
-  border-radius: 999px;
+  gap: 0.95rem;
   flex-shrink: 0;
+  padding: 0.5rem 0;
+  background: transparent;
+  border: none;
 }
 
-.it-event-name {
-  font-size: 0.88rem;
+.part-ticker-logo {
+  height: 32px;
+  width: auto;
+  max-width: 95px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.05));
+}
+
+.part-ticker-title {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
   font-weight: 600;
   color: var(--color-carbon);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+/* IT PROJECT estático */
+.part-static-wrapper {
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
+.part-static-track {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4rem;
+}
+
+/* Responsive mobile */
+@media (max-width: 860px) {
+  .part-horizontal-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .part-card-brand {
+    flex: none;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(61, 25, 14, 0.05);
+    padding: 1.15rem 1.25rem 0.85rem;
+  }
+  .part-ticker-wrapper {
+    width: 100%;
+    padding: 1rem 1.25rem;
+  }
+  .part-static-track {
+    gap: 1.5rem;
+  }
 }
 
 /* ==========================================================================
@@ -3212,9 +3099,6 @@ textarea {
   .metrics-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  .participations-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .products-cards-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -3272,9 +3156,6 @@ textarea {
     grid-template-columns: 1fr 1.15fr;
     align-items: center;
     gap: 4rem;
-  }
-  .participations-grid {
-    grid-template-columns: repeat(3, 1fr);
   }
   .granulometry-workbench {
     grid-template-columns: 1.2fr 1fr;
@@ -3397,9 +3278,9 @@ textarea {
 .metrics-grid .metric-card:nth-child(2) { transition-delay: 0.22s; }
 .metrics-grid .metric-card:nth-child(3) { transition-delay: 0.36s; }
 
-.participations-grid .participation-card:nth-child(1) { transition-delay: 0.08s; }
-.participations-grid .participation-card:nth-child(2) { transition-delay: 0.22s; }
-.participations-grid .participation-card:nth-child(3) { transition-delay: 0.36s; }
+.participations-horizontal-list .part-horizontal-card:nth-child(1) { transition-delay: 0.08s; }
+.participations-horizontal-list .part-horizontal-card:nth-child(2) { transition-delay: 0.22s; }
+.participations-horizontal-list .part-horizontal-card:nth-child(3) { transition-delay: 0.36s; }
 
 .versatilidad-container .versatilidad-block:nth-child(1) { transition-delay: 0.06s; }
 .versatilidad-container .versatilidad-block:nth-child(2) { transition-delay: 0.20s; }
@@ -3443,5 +3324,8 @@ textarea {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+  .part-ticker-animated {
+    animation: none !important;
   }
 }
