@@ -2433,65 +2433,199 @@ textarea {
   max-width: 320px;
 }
 
-/* Bloque oscuro de trazabilidad operativa para contraste editorial */
-.process-block {
-  background-color: var(--color-carbon);
-  color: var(--color-crema);
-  border: 1px solid rgba(229, 193, 88, 0.25);
-  border-radius: var(--radius-lg);
-  padding: 2.5rem 1.85rem;
-  box-shadow: var(--shadow-elevated);
+/* ==========================================================================
+   Trazabilidad Operativa - Línea de Tiempo (Full-Width sin espacios laterales)
+   ========================================================================== */
+.section-proceso {
+  position: relative;
+  width: 100%;
+  background-color: #171513;
+  background-image: radial-gradient(circle at 50% 12%, rgba(195, 83, 15, 0.16) 0%, rgba(23, 21, 19, 0.98) 70%);
+  color: #FFFFFF;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-block: clamp(4rem, 7vw, 6rem);
+  overflow: hidden;
 }
 
-.process-header {
-  margin-bottom: 2rem;
+.section-proceso .section-header {
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
-.process-block .eyebrow {
+.section-proceso .eyebrow {
   color: var(--color-oro-mineral);
 }
 
-.process-block .eyebrow::before {
+.section-proceso .eyebrow::before {
   background-color: var(--color-oro-mineral);
 }
 
-.process-main-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.7rem, 3vw, 2.3rem);
-  font-weight: 600;
+.section-proceso .section-title {
   color: #FFFFFF;
-}
-
-.process-steps {
-  display: grid;
-  gap: 1.65rem;
-}
-
-.process-step {
-  border-top: 1.5px solid rgba(229, 193, 88, 0.28);
-  padding-top: 1.15rem;
-}
-
-.process-step-num {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-size: 2rem;
   font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+/* Envoltura y riel de la línea de tiempo */
+.process-timeline-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.process-timeline-rail {
+  display: none;
+}
+
+.process-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  padding-left: 4.25rem;
+}
+
+/* Riel vertical en móviles */
+.process-timeline::before {
+  content: '';
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  left: 23px;
+  width: 2px;
+  background: linear-gradient(180deg, #E5C158, #C3530F, #E5C158);
+  z-index: 1;
+}
+
+.process-timeline-step {
+  position: relative;
+}
+
+.process-timeline-marker {
+  position: absolute;
+  left: -4.25rem;
+  top: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #1E1B18;
+  border: 2px solid var(--color-oro-mineral);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 16px rgba(229, 193, 88, 0.25), 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.process-timeline-num {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
   color: var(--color-oro-mineral);
   line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.process-timeline-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius-md);
+  padding: 1.35rem 1.25rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.process-timeline-step:hover .process-timeline-card {
+  background: rgba(255, 255, 255, 0.065);
+  border-color: rgba(229, 193, 88, 0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.45);
+}
+
+.process-timeline-step:hover .process-timeline-marker {
+  background-color: var(--color-oro-mineral);
+  transform: scale(1.08);
+  box-shadow: 0 0 24px rgba(229, 193, 88, 0.55);
+}
+
+.process-timeline-step:hover .process-timeline-marker .process-timeline-num {
+  color: #171513;
+}
+
+.process-timeline-tag {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-oro-mineral);
   margin-bottom: 0.45rem;
 }
 
-.process-step-title {
+.process-timeline-title {
   font-size: 1.05rem;
   font-weight: 700;
   color: #FFFFFF;
-  margin-bottom: 0.35rem;
+  line-height: 1.35;
+  margin-bottom: 0.5rem;
 }
 
-.process-step-desc {
-  font-size: 0.92rem;
+.process-timeline-desc {
+  font-size: 0.9rem;
   color: rgba(250, 247, 242, 0.78);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Diseño de Línea de Tiempo Horizontal para Desktop */
+@media (min-width: 992px) {
+  .process-timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.75rem;
+    padding-left: 0;
+  }
+
+  .process-timeline::before {
+    display: none;
+  }
+
+  .process-timeline-rail {
+    display: block;
+    position: absolute;
+    top: 26px;
+    left: calc(12.5% + 15px);
+    right: calc(12.5% + 15px);
+    height: 2px;
+    background: linear-gradient(90deg, rgba(229, 193, 88, 0.45), rgba(195, 83, 15, 0.7), rgba(229, 193, 88, 0.45));
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .process-timeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .process-timeline-marker {
+    position: static;
+    width: 54px;
+    height: 54px;
+    margin-bottom: 1.75rem;
+  }
+
+  .process-timeline-card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1.6rem 1.35rem;
+  }
 }
 
 /* ==========================================================================
@@ -3058,7 +3192,6 @@ textarea {
   .product-tier-card,
   .participation-card,
   .mv-card,
-  .process-block,
   .contact-form-card,
   .contact-details-card,
   .map-card {
@@ -3156,9 +3289,6 @@ textarea {
   .mission-vision-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .process-steps {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .form-row {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -3213,9 +3343,6 @@ textarea {
   .about-layout {
     grid-template-columns: 1.05fr 1fr;
     align-items: center;
-  }
-  .process-steps {
-    grid-template-columns: repeat(4, 1fr);
   }
   .contact-layout {
     grid-template-columns: 1.25fr 0.95fr;
