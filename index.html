@@ -596,61 +596,91 @@
       </div>
     </section>
 
-    <!-- 7. EXPLORADOR INTERACTIVO DE GRANULOMETRÍA (BANNER COMPLETO FONDODEYESO + RELIEVE TERRACOTA) -->
+    <!-- 7. EXPLORADOR INTERACTIVO DE GRANULOMETRÍA (BANNER COMPLETO FONDODEYESO) -->
     <section class="section section-granulometria" id="granulometria" aria-labelledby="selector-granulometria-titulo">
+      <!-- Pila de conchuela decorativa en esquina según diseño -->
+      <img src="assets/img/granulometria/1.png" alt="" class="granulometria-corner-pile" aria-hidden="true" loading="lazy">
+
       <div class="container">
         <div class="granulometry-workbench reveal-up" aria-labelledby="selector-granulometria-titulo">
           <div class="workbench-controls">
-            <span class="workbench-eyebrow">Guía Visual de Calibres</span>
-            <h3 class="workbench-title" id="selector-granulometria-titulo">Explorador Interactivo de Granulometría</h3>
-            <p class="workbench-instructions">Compara en escala real las tres presentaciones de conchuela natural y descubre la adecuada para tu proyecto:</p>
+            <div class="workbench-head">
+              <span class="workbench-eyebrow">Guía Visual de Calibres</span>
+              <h3 class="workbench-title" id="selector-granulometria-titulo">Explorador Interactivo <span class="title-underline">de Granulometría</span></h3>
+              <p class="workbench-instructions">Compara en escala real las tres presentaciones de conchuela natural y descubre la adecuada para tu proyecto.</p>
+            </div>
 
+            <!-- Selector de calibres con montículos 1.png, 2.png y 3.png -->
             <div class="grain-tabs" role="tablist" aria-label="Seleccionar calibre de conchuela">
               <button type="button" class="grain-tab is-active" role="tab" aria-selected="true" aria-controls="grain-panel" id="tab-gruesa" data-grain="gruesa">
-                <span class="grain-tab-caliber">3 a 4 mm</span>
-                <span class="grain-tab-name">Conchuela Gruesa</span>
+                <img src="assets/img/granulometria/1.png" alt="" class="grain-tab-icon" aria-hidden="true">
+                <div class="grain-tab-texts">
+                  <span class="grain-tab-caliber">3 a 4 mm</span>
+                  <span class="grain-tab-name">Conchuela Gruesa</span>
+                </div>
               </button>
               <button type="button" class="grain-tab" role="tab" aria-selected="false" aria-controls="grain-panel" id="tab-mediana" data-grain="mediana">
-                <span class="grain-tab-caliber">Hasta 2 mm</span>
-                <span class="grain-tab-name">Conchuela Mediana</span>
+                <img src="assets/img/granulometria/2.png" alt="" class="grain-tab-icon" aria-hidden="true">
+                <div class="grain-tab-texts">
+                  <span class="grain-tab-caliber">Hasta 2 mm</span>
+                  <span class="grain-tab-name">Conchuela Mediana</span>
+                </div>
               </button>
               <button type="button" class="grain-tab" role="tab" aria-selected="false" aria-controls="grain-panel" id="tab-fina" data-grain="fina">
-                <span class="grain-tab-caliber">Hasta 1 mm</span>
-                <span class="grain-tab-name">Conchuela Fina</span>
+                <img src="assets/img/granulometria/3.png" alt="" class="grain-tab-icon" aria-hidden="true">
+                <div class="grain-tab-texts">
+                  <span class="grain-tab-caliber">Hasta 1 mm</span>
+                  <span class="grain-tab-name">Conchuela Fina</span>
+                </div>
               </button>
             </div>
 
             <div class="grain-panel" id="grain-panel" role="tabpanel" aria-labelledby="tab-gruesa" aria-live="polite">
-              <div class="grain-specs-head">
-                <span class="grain-active-badge" id="grain-active-badge">3 a 4 mm</span>
+              <div class="grain-active-header">
                 <h4 class="grain-active-title" id="grain-active-title">Conchuela Gruesa (3 a 4 mm)</h4>
-              </div>
-              <p class="grain-active-summary" id="grain-active-summary">Partículas laminares de alta resistencia mecánica y drenaje superior. Mantiene la estructura visual del nácar y carbonato natural.</p>
-
-              <div class="grain-uses-box">
-                <h5 class="grain-uses-heading">Aplicaciones recomendadas:</h5>
-                <ul class="grain-uses-list" id="grain-uses-list">
-                  <li>Inmobiliario y construcción: estacionamientos, caminos de tránsito vehicular ligero y cubresuelos drenantes.</li>
-                  <li>Paisajismo: cobertura ornamental en parques, jardines de bajo consumo hídrico y alcorques.</li>
-                  <li>Avicultura: gallinas ponedoras en postura (retención prolongada en molleja y máxima dureza de cáscara).</li>
-                </ul>
+                <p class="grain-active-summary" id="grain-active-summary">Partículas laminares de alta resistencia mecánica y drenaje superior. Mantiene la estructura visual del nácar y carbonato natural.</p>
               </div>
 
+              <!-- Tarjeta de aplicaciones recomendadas en 3 columnas con inm.png, paisajis.png y avic.png -->
+              <div class="grain-apps-card">
+                <h5 class="grain-apps-heading">Aplicaciones recomendadas</h5>
+                <div class="grain-apps-grid">
+                  <div class="grain-app-col">
+                    <img src="assets/img/granulometria/INM.png" alt="" class="grain-app-icon" aria-hidden="true">
+                    <h6 class="grain-app-title">Inmobiliario y construcción</h6>
+                    <p class="grain-app-desc" id="grain-app-desc-inm">Estacionamientos, caminos de tránsito ligero y cubresuelos drenantes.</p>
+                  </div>
+                  <div class="grain-app-col">
+                    <img src="assets/img/granulometria/PAISAJIS.png" alt="" class="grain-app-icon" aria-hidden="true">
+                    <h6 class="grain-app-title">Paisajismo</h6>
+                    <p class="grain-app-desc" id="grain-app-desc-pais">Cobertura ornamental en parques, jardines y alcorques.</p>
+                  </div>
+                  <div class="grain-app-col">
+                    <img src="assets/img/granulometria/AVIC.png" alt="" class="grain-app-icon" aria-hidden="true">
+                    <h6 class="grain-app-title">Avicultura</h6>
+                    <p class="grain-app-desc" id="grain-app-desc-avic">Gallinas ponedoras en postura (retención prolongada en molleja y máxima dureza de cáscara).</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Botón tipo píldora blanca idéntico al diseño -->
               <div class="grain-cta-row">
-                <a href="#contacto" class="btn btn-primary" id="grain-cta-link" data-grain-cta="Conchuela Gruesa (3 a 4 mm)">Solicitar cotización de este calibre</a>
+                <a href="#contacto" class="btn btn-grain-pill" id="grain-cta-link" data-grain-cta="Conchuela Gruesa (3 a 4 mm)">
+                  Solicitar cotización de este calibre <span aria-hidden="true">&rarr;</span>
+                </a>
               </div>
             </div>
           </div>
 
-          <!-- Visualizador amigable y elegante -->
+          <!-- Visualizador en tarjeta flotante idéntico al diseño -->
           <div class="workbench-visualizer" aria-label="Fotografía real y escala granulométrica">
             <div class="scale-card">
               <div class="scale-card-header">
                 <span class="scale-card-title">Muestra fotográfica real</span>
-                <span class="scale-card-measure" id="scale-measure-Readout">Diámetro: 3.0 – 4.0 mm</span>
+                <span class="scale-card-measure" id="scale-measure-readout">Diámetro: 3.0 – 4.0 mm</span>
               </div>
 
-              <!-- Contenedor de fotografía real del producto -->
+              <!-- Contenedor con botón zoom y etiqueta del calibre -->
               <div class="grain-photo-display">
                 <img
                   src="assets/img/productos/conchuela-gruesa.webp"
@@ -660,10 +690,18 @@
                   width="800"
                   height="800"
                   loading="lazy">
-                <span class="grain-photo-badge" id="grain-photo-badge">Fotografía real · Conchuela Gruesa</span>
+                <button type="button" class="grain-zoom-btn" id="grain-zoom-btn" aria-label="Ampliar muestra fotográfica">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    <line x1="11" y1="8" x2="11" y2="14"></line>
+                    <line x1="8" y1="11" x2="14" y2="11"></line>
+                  </svg>
+                </button>
+                <span class="grain-photo-badge" id="grain-photo-badge">Conchuela Gruesa</span>
               </div>
 
-              <!-- Indicador de escala visual limpio y amigable -->
+              <!-- Escala con labels y deslizador interactivo con thumb circular -->
               <div class="grain-friendly-scale">
                 <div class="scale-track-labels">
                   <span>Fina (1 mm)</span>
@@ -671,19 +709,26 @@
                   <span>Gruesa (4 mm)</span>
                 </div>
                 <div class="scale-track-rail">
-                  <div class="scale-track-fill" id="scale-track-fill" style="width: 85%;"></div>
-                  <span class="scale-point p1"></span>
-                  <span class="scale-point p2"></span>
-                  <span class="scale-point p3"></span>
+                  <div class="scale-track-fill" id="scale-track-fill" style="width: 100%;">
+                    <span class="scale-track-thumb"></span>
+                  </div>
                 </div>
               </div>
 
-              <!-- SVG ruler preservado oculto para compatibilidad total con main.js -->
+              <!-- SVG ruler preservado oculto para compatibilidad con main.js -->
               <svg class="grain-scale-svg visually-hidden" id="grain-scale-svg" viewBox="0 0 420 70" aria-hidden="true">
                 <rect id="svg-ruler-highlight" x="96" y="-8" width="32" height="8" rx="2"/>
               </svg>
 
-              <p class="scale-caption">Extracción propia en cantera con tamizado continuo y control de pureza biogénica.</p>
+              <!-- Pie de la tarjeta con icono de cantera -->
+              <div class="scale-card-footer">
+                <svg class="scale-footer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polygon points="12 2 2 22 22 22 12 2"></polygon>
+                  <line x1="12" y1="8" x2="12" y2="14"></line>
+                  <line x1="8" y1="18" x2="16" y2="18"></line>
+                </svg>
+                <p class="scale-caption">Extracción propia en cantera con tamizado continuo y control de pureza biogénica.</p>
+              </div>
             </div>
           </div>
         </div>

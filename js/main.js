@@ -84,14 +84,17 @@
       measure: 'Diámetro: 3.0 – 4.0 mm',
       photoSrc: 'assets/img/productos/conchuela-gruesa.webp',
       photoAlt: 'Fotografía de Conchuela Gruesa (3 a 4 mm) en estado natural',
-      photoBadge: 'Fotografía real · Conchuela Gruesa',
+      photoBadge: 'Conchuela Gruesa',
       summary: 'Partículas laminares de alta resistencia mecánica y drenaje superior. Mantiene la estructura visual del nácar y carbonato natural.',
+      descInm: 'Estacionamientos, caminos de tránsito ligero y cubresuelos drenantes.',
+      descPais: 'Cobertura ornamental en parques, jardines y alcorques.',
+      descAvic: 'Gallinas ponedoras en postura (retención prolongada en molleja y máxima dureza de cáscara).',
       uses: [
         'Inmobiliario y construcción: estacionamientos, caminos de tránsito vehicular ligero y cubresuelos drenantes.',
         'Paisajismo: cobertura ornamental en parques, jardines de bajo consumo hídrico y alcorques.',
         'Avicultura: gallinas ponedoras en postura (retención prolongada en molleja y máxima dureza de cáscara).'
       ],
-      scalePercent: '85%',
+      scalePercent: '100%',
       rulerX: 96,
       rulerWidth: 32
     },
@@ -101,8 +104,11 @@
       measure: 'Diámetro: 1.2 – 2.0 mm',
       photoSrc: 'assets/img/productos/conchuela-mediana.webp',
       photoAlt: 'Fotografía de Conchuela Mediana (hasta 2 mm) en estado natural',
-      photoBadge: 'Fotografía real · Conchuela Mediana',
+      photoBadge: 'Conchuela Mediana',
       summary: 'Granulometría intermedia versátil que equilibra cobertura uniforme, rápida incorporación en mezclas y textura antideslizante.',
+      descInm: 'Senderos peatonales, terrazas, patios y prefabricados de concreto.',
+      descPais: 'Jardines secos xerófitos, delimitación de senderos y cubresuelos minerales.',
+      descAvic: 'Alimento balanceado para aves en etapa de crecimiento y engorde (32 a 36% de calcio).',
       uses: [
         'Inmobiliario y construcción: senderos peatonales, terrazas, patios y prefabricados de concreto.',
         'Industrial y arquitectura: sustituto de granalla de mármol para terrazo lavado y revestimientos.',
@@ -118,14 +124,17 @@
       measure: 'Diámetro: 0.3 – 1.0 mm',
       photoSrc: 'assets/img/productos/conchuela-fina.webp',
       photoAlt: 'Fotografía de Conchuela Fina (hasta 1 mm) en estado natural',
-      photoBadge: 'Fotografía real · Conchuela Fina',
+      photoBadge: 'Conchuela Fina',
       summary: 'Grano fino tamizado de tacto sedoso y alta superficie específica, ideal para acabados arquitectónicos continuos y raciones iniciales.',
+      descInm: 'Bordes de piscinas, estucos minerales, enchapes verticales y mezcla con pigmentos.',
+      descPais: 'Playas artificiales en hoteles y condominios, jardines interiores y sustrato de acuarios.',
+      descAvic: 'Raciones de inicio para pollitos y premezclas minerales de rápida biodisponibilidad.',
       uses: [
         'Industrial y arquitectura: bordes de piscinas, estucos minerales, enchapes verticales y mezcla con pigmentos.',
         'Paisajismo: playas artificiales en hoteles y condominios, jardines interiores y sustrato de acuarios.',
         'Avicultura: raciones de inicio para pollitos y premezclas minerales de rápida biodisponibilidad.'
       ],
-      scalePercent: '25%',
+      scalePercent: '18%',
       rulerX: 6,
       rulerWidth: 26
     }
@@ -515,11 +524,15 @@
     var badgeEl = document.getElementById('grain-active-badge');
     var titleEl = document.getElementById('grain-active-title');
     var summaryEl = document.getElementById('grain-active-summary');
+    var descInmEl = document.getElementById('grain-app-desc-inm');
+    var descPaisEl = document.getElementById('grain-app-desc-pais');
+    var descAvicEl = document.getElementById('grain-app-desc-avic');
     var usesListEl = document.getElementById('grain-uses-list');
     var ctaLinkEl = document.getElementById('grain-cta-link');
-    var measureReadout = document.getElementById('scale-measure-Readout');
+    var measureReadout = document.getElementById('scale-measure-readout') || document.getElementById('scale-measure-Readout');
     var photoImg = document.getElementById('grain-photo-img');
     var photoBadge = document.getElementById('grain-photo-badge');
+    var zoomBtn = document.getElementById('grain-zoom-btn');
     var svgRulerHighlight = document.getElementById('svg-ruler-highlight');
 
     if (!tabs.length || !panel) return;
@@ -540,6 +553,9 @@
       if (badgeEl) badgeEl.textContent = data.badge;
       if (titleEl) titleEl.textContent = data.title;
       if (summaryEl) summaryEl.textContent = data.summary;
+      if (descInmEl && data.descInm) descInmEl.textContent = data.descInm;
+      if (descPaisEl && data.descPais) descPaisEl.textContent = data.descPais;
+      if (descAvicEl && data.descAvic) descAvicEl.textContent = data.descAvic;
       if (measureReadout) measureReadout.textContent = data.measure;
 
       if (photoImg) {
@@ -608,6 +624,12 @@
         if (msgInput && selectedGrain && !msgInput.value.trim()) {
           msgInput.value = 'Solicito cotización de ' + selectedGrain + '. ';
         }
+      });
+    }
+
+    if (zoomBtn && photoImg) {
+      zoomBtn.addEventListener('click', function () {
+        photoImg.classList.toggle('is-zoomed');
       });
     }
 

@@ -1294,7 +1294,7 @@ textarea {
 }
 
 /* ==========================================================================
-   Sección Granulometría Full-Bleed (Fondo Yeso + Relieve Terracota sin bordes)
+   Sección Granulometría Full-Bleed (Fondo Yeso + Relieve Terracota)
    ========================================================================== */
 .section-granulometria {
   position: relative;
@@ -1308,7 +1308,7 @@ textarea {
   border-top: 1px solid rgba(255, 255, 255, 0.15);
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   overflow: hidden;
-  padding-block: clamp(3.5rem, 6vw, 5.5rem);
+  padding-block: clamp(4rem, 6.5vw, 6rem);
 }
 
 .section-granulometria::before {
@@ -1329,6 +1329,19 @@ textarea {
   z-index: 2;
 }
 
+/* Pila de conchuela decorativa en la esquina inferior derecha */
+.granulometria-corner-pile {
+  position: absolute;
+  right: -30px;
+  bottom: -40px;
+  width: 320px;
+  max-width: 34vw;
+  height: auto;
+  pointer-events: none;
+  z-index: 1;
+  filter: drop-shadow(0 -10px 30px rgba(40, 15, 0, 0.35));
+}
+
 .granulometry-workbench {
   position: relative;
   background: transparent;
@@ -1338,17 +1351,12 @@ textarea {
   display: grid;
   gap: 2.5rem;
   margin-top: 0;
-  overflow: visible;
   color: #FFFFFF;
-}
-
-.granulometry-workbench::before {
-  display: none;
 }
 
 @media (min-width: 992px) {
   .granulometry-workbench {
-    grid-template-columns: 1.3fr 0.9fr;
+    grid-template-columns: 1.25fr 0.85fr;
     gap: 3.5rem;
     align-items: center;
   }
@@ -1360,109 +1368,147 @@ textarea {
   z-index: 2;
 }
 
+.workbench-head {
+  margin-bottom: 1.5rem;
+}
+
 .workbench-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
   font-size: 0.74rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: #FFE6CC;
-  display: block;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.workbench-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 22px;
+  height: 2px;
+  background-color: #FFE6CC;
 }
 
 .workbench-title {
   font-family: var(--font-display);
-  font-size: clamp(1.85rem, 3.2vw, 2.4rem);
+  font-size: clamp(2rem, 3.4vw, 2.75rem);
   font-weight: 600;
   color: #FFFFFF;
-  margin-bottom: 0.55rem;
+  line-height: 1.15;
   letter-spacing: -0.02em;
-  line-height: 1.18;
+  margin-bottom: 0.75rem;
+}
+
+.title-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.title-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  width: 100%;
+  height: 3px;
+  background-color: #FFE6CC;
+  border-radius: 2px;
 }
 
 .workbench-instructions {
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.92);
-  margin-bottom: 1.6rem;
   line-height: 1.55;
+  margin: 0;
+  max-width: 52ch;
 }
 
+/* Selector en cápsula con iconos de montículos 1.png, 2.png y 3.png */
 .grain-tabs {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.4rem;
-  margin-bottom: 1.6rem;
-  background-color: rgba(0, 0, 0, 0.22);
-  padding: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  max-width: 520px;
+  padding: 0.35rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  max-width: 580px;
+  margin-bottom: 1.75rem;
 }
 
 .grain-tab {
+  flex: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 0.65rem 0.5rem;
+  gap: 0.65rem;
+  padding: 0.45rem 0.85rem;
   border-radius: 999px;
-  border: 0;
-  background-color: transparent;
+  border: none;
+  background: transparent;
   cursor: pointer;
-  transition: all 0.22s ease;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.82);
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  text-align: left;
 }
 
 .grain-tab:hover {
-  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .grain-tab.is-active {
-  background-color: #FFFFFF;
-  color: #8A3300;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
-  font-weight: 700;
+  background: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+}
+
+.grain-tab-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.grain-tab-texts {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.grain-tab-caliber {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #FFE6CC;
+  margin-bottom: 0.15rem;
+  transition: color 0.2s ease;
 }
 
 .grain-tab.is-active .grain-tab-caliber {
   color: #C3530F;
 }
 
-.grain-tab-caliber {
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #FFE6CC;
-  margin-bottom: 0.15rem;
-}
-
 .grain-tab-name {
   font-size: 0.82rem;
   font-weight: 600;
-}
-
-.grain-specs-head {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.65rem;
-  flex-wrap: wrap;
-}
-
-.grain-active-badge {
-  font-size: 0.74rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  background-color: rgba(255, 255, 255, 0.18);
   color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  padding: 0.25rem 0.65rem;
-  border-radius: 999px;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.grain-tab.is-active .grain-tab-name {
+  color: #171513;
+  font-weight: 700;
+}
+
+/* Título de calibre activo con barra vertical naranja */
+.grain-active-header {
+  border-left: 4px solid #E5C158;
+  padding-left: 1rem;
+  margin-bottom: 1.35rem;
 }
 
 .grain-active-title {
@@ -1470,82 +1516,113 @@ textarea {
   font-size: 1.45rem;
   font-weight: 700;
   color: #FFFFFF;
-  margin: 0;
+  margin-bottom: 0.35rem;
+  line-height: 1.25;
 }
 
 .grain-active-summary {
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 0.92rem;
   color: rgba(255, 255, 255, 0.94);
-  margin-bottom: 1.35rem;
-}
-
-.grain-uses-box {
-  background-color: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-left: 3px solid #FFE6CC;
-  padding: 1rem 1.25rem;
-  border-radius: var(--radius-sm);
-  margin-bottom: 1.5rem;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.grain-uses-heading {
-  font-size: 0.82rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #FFFFFF;
-  margin-bottom: 0.5rem;
-}
-
-.grain-uses-list {
-  display: grid;
-  gap: 0.45rem;
-  list-style: none;
-  padding: 0;
+  line-height: 1.5;
   margin: 0;
 }
 
-.grain-uses-list li {
-  font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.94);
-  line-height: 1.45;
-  position: relative;
-  padding-left: 1.25rem;
+/* Caja de Aplicaciones Recomendadas con 3 columnas e iconos inm, paisajis, avic */
+.grain-apps-card {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.45rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  margin-bottom: 1.75rem;
 }
 
-.grain-uses-list li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
+.grain-apps-heading {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   color: #FFE6CC;
-  font-weight: bold;
+  margin-bottom: 0.95rem;
 }
 
-.grain-cta-row .btn-primary {
+.grain-apps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.grain-app-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.grain-app-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  margin-bottom: 0.45rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+.grain-app-title {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.25;
+  margin-bottom: 0.35rem;
+}
+
+.grain-app-desc {
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.42;
+  margin: 0;
+}
+
+/* Botón píldora blanca CTA idéntico al diseño */
+.btn-grain-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
   background-color: #FFFFFF;
   color: #8A3300;
-  border: 1px solid #FFFFFF;
+  border-radius: 999px;
+  padding: 0.82rem 1.85rem;
+  font-size: 0.92rem;
   font-weight: 700;
+  border: 1px solid #FFFFFF;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s ease;
 }
 
-.grain-cta-row .btn-primary:hover {
-  background-color: #241812;
+.btn-grain-pill:hover {
+  background-color: #171513;
   color: #FFFFFF;
-  border-color: #241812;
+  border-color: #171513;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
 }
 
-/* Tarjeta visualizadora compacta y minimalista */
+.btn-grain-pill span {
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.btn-grain-pill:hover span {
+  transform: translateX(4px);
+}
+
+/* Tarjeta flotante visualizadora */
 .scale-card {
-  background-color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: var(--radius-md);
-  padding: 1.25rem;
-  box-shadow: 0 16px 36px -10px rgba(60, 20, 0, 0.28);
+  background-color: #FAF7F2;
+  border-radius: 24px;
+  padding: 1.65rem;
+  box-shadow: 0 20px 48px -12px rgba(40, 15, 0, 0.38);
   color: var(--color-carbon);
-  max-width: 390px;
+  max-width: 440px;
   margin-inline: auto;
 }
 
@@ -1554,37 +1631,33 @@ textarea {
   justify-content: space-between;
   align-items: baseline;
   flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 0.85rem;
-  padding-bottom: 0.55rem;
-  border-bottom: 1px solid var(--color-borde);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .scale-card-title {
-  font-size: 0.78rem;
-  font-weight: 700;
+  font-size: 0.76rem;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--color-texto-secundario);
+  color: #8A5311;
 }
 
 .scale-card-measure {
-  font-size: 0.84rem;
+  font-size: 0.88rem;
   font-weight: 700;
-  color: var(--color-carbon);
+  color: #171513;
 }
 
 .grain-photo-display {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 11;
-  max-height: 210px;
-  border-radius: var(--radius-sm);
+  aspect-ratio: 16 / 10;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  border: 1px solid var(--color-borde);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
   background-color: #FFFFFF;
-  margin-bottom: 0.95rem;
+  margin-bottom: 1.25rem;
 }
 
 .grain-photo-img {
@@ -1595,27 +1668,55 @@ textarea {
   transition: transform 0.4s ease;
 }
 
-.grain-photo-display:hover .grain-photo-img {
-  transform: scale(1.04);
+.grain-photo-img.is-zoomed {
+  transform: scale(1.35);
+}
+
+.grain-zoom-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #171513;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.grain-zoom-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.grain-zoom-btn:hover {
+  background: #FFFFFF;
+  transform: scale(1.1);
 }
 
 .grain-photo-badge {
   position: absolute;
   bottom: 0.75rem;
   right: 0.75rem;
-  background-color: rgba(24, 24, 27, 0.85);
+  background-color: rgba(24, 24, 27, 0.88);
   color: #FFFFFF;
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  padding: 0.3rem 0.7rem;
+  padding: 0.3rem 0.75rem;
   border-radius: 999px;
   backdrop-filter: blur(8px);
 }
 
-/* Indicador de escala visual limpio y amigable */
 .grain-friendly-scale {
-  margin-top: 0.85rem;
-  padding: 0.5rem 0.25rem 0.25rem;
+  margin-bottom: 1.25rem;
 }
 
 .scale-track-labels {
@@ -1623,7 +1724,7 @@ textarea {
   justify-content: space-between;
   font-size: 0.76rem;
   font-weight: 600;
-  color: var(--color-texto-secundario);
+  color: #5E5954;
   margin-bottom: 0.5rem;
 }
 
@@ -1631,24 +1732,65 @@ textarea {
   position: relative;
   width: 100%;
   height: 8px;
-  background-color: #E6E1D7;
+  background-color: #E8E2D6;
   border-radius: 999px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .scale-track-fill {
+  position: relative;
   height: 100%;
   background: linear-gradient(90deg, #E5C158, #C8842E);
   border-radius: 999px;
   transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.scale-track-thumb {
+  position: absolute;
+  right: -5px;
+  top: -3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #C3530F;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.scale-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.scale-footer-icon {
+  width: 22px;
+  height: 22px;
+  color: #C3530F;
+  flex-shrink: 0;
+}
+
 .scale-caption {
-  font-size: 0.76rem;
-  font-style: italic;
-  color: var(--color-texto-secundario);
-  text-align: center;
-  margin-top: 1rem;
+  font-size: 0.78rem;
+  color: #5E5954;
+  line-height: 1.45;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .grain-tabs {
+    flex-direction: column;
+    border-radius: var(--radius-md);
+  }
+  .grain-tab {
+    width: 100%;
+  }
+  .grain-apps-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 /* ==========================================================================
