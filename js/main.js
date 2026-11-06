@@ -91,6 +91,7 @@
         'Inmobiliario y construcción: estacionamientos, caminos de tránsito vehicular ligero y cubresuelos drenantes.',
         'Paisajismo: cobertura ornamental en parques, jardines de bajo consumo hídrico y alcorques.'
       ],
+      scalePercent: '85%',
       rulerX: 96,
       rulerWidth: 32
     },
@@ -107,6 +108,7 @@
         'Inmobiliario y construcción: senderos peatonales, terrazas, patios y prefabricados de concreto.',
         'Industrial y arquitectura: sustituto de granalla de mármol para terrazo lavado y revestimientos.'
       ],
+      scalePercent: '55%',
       rulerX: 38,
       rulerWidth: 26
     },
@@ -123,6 +125,7 @@
         'Industrial y arquitectura: bordes de piscinas, estucos minerales, enchapes verticales y mezcla con pigmentos.',
         'Paisajismo: playas artificiales en hoteles y condominios, jardines interiores y sustrato de acuarios.'
       ],
+      scalePercent: '25%',
       rulerX: 6,
       rulerWidth: 26
     }
@@ -539,6 +542,11 @@
         svgRulerHighlight.setAttribute('x', String(data.rulerX));
         svgRulerHighlight.setAttribute('width', String(data.rulerWidth));
       }
+
+      var scaleTrackFill = document.getElementById('scale-track-fill');
+      if (scaleTrackFill && data.scalePercent) {
+        scaleTrackFill.style.width = data.scalePercent;
+      }
     }
 
     tabs.forEach(function (tab, idx) {
@@ -846,7 +854,80 @@
     updateNavUI(0);
   }
 
-  /* 7. Modal accesible de Política de Privacidad y Seguridad de la Información */
+  /* 7. Sliders horizontales de Participaciones Destacadas (CASACOR y EXPODECO) */
+  function initParticipationSliders() {
+    var sliders = document.querySelectorAll('.part-slider');
+    sliders.forEach(function (slider) {
+      var slides = Array.prototype.slice.call(slider.querySelectorAll('.part-slide'));
+      var dots = Array.prototype.slice.call(slider.querySelectorAll('.part-dot'));
+      var prevBtn = slider.querySelector('.part-nav-btn.prev');
+      var nextBtn = slider.querySelector('.part-nav-btn.next');
+
+      if (!slides.length) return;
+
+      var currentIndex = 0;
+      var total = slides.length;
+
+      function goToSlide(index) {
+        currentIndex = (index + total) % total;
+        slides.forEach(function (slide, i) {
+          slide.classList.toggle('is-active', i === currentIndex);
+        });
+        dots.forEach(function (dot, i) {
+          dot.classList.toggle('is-active', i === currentIndex);
+          dot.setAttribute('aria-selected', i === currentIndex ? 'true' : 'false');
+        });
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', function () {
+          goToSlide(currentIndex - 1);
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', function () {
+          goToSlide(currentIndex + 1);
+        });
+      }
+
+      dots.forEach(function (dot, idx) {
+        dot.addEventListener('click', function () {
+          goToSlide(idx);
+        });
+      });
+
+      /* Soporte de deslizamiento táctil */
+      var startX = 0;
+      var isSwiping = false;
+
+      slider.addEventListener(
+        'touchstart',
+        function (e) {
+          if (e.touches.length === 1) {
+            startX = e.touches[0].clientX;
+            isSwiping = true;
+          }
+        },
+        { passive: true }
+      );
+
+      slider.addEventListener(
+        'touchend',
+        function (e) {
+          if (!isSwiping || !e.changedTouches.length) return;
+          var diffX = e.changedTouches[0].clientX - startX;
+          if (Math.abs(diffX) > 40) {
+            goToSlide(diffX < 0 ? currentIndex + 1 : currentIndex - 1);
+          }
+          isSwiping = false;
+        },
+        { passive: true }
+      );
+    });
+  }
+
+  /* 8. Modal accesible de Política de Privacidad y Seguridad de la Información */
   function initPrivacyModal() {
     var modal = document.getElementById('privacy-modal');
     var backdrop = document.getElementById('privacy-modal-backdrop');
@@ -1077,6 +1158,7 @@
     initLightbox();
     initMapEmbed();
     initProfessionalsSlider();
+    initParticipationSliders();
     initPrivacyModal();
     initContactForm();
   }

@@ -114,17 +114,51 @@
       }
     }
 
-    window.ScrollTrigger.create({
+    var heroTrigger = window.ScrollTrigger.create({
       trigger: heroSection,
       start: 'top top',
       end: '+=210%',
       pin: heroViewport,
+      pinSpacing: true,
+      invalidateOnRefresh: true,
       scrub: 0.35,
       anticipatePin: 1,
       onUpdate: function (self) {
         updateHeroByProgress(self.progress);
       }
     });
+
+    /* Resincronización robusta ante cambio de pestaña, inactividad prolongada o regreso al viewport */
+    function handleVisibilityOrFocus() {
+      if (!document.hidden) {
+        try {
+          if (window.ScrollTrigger) {
+            window.ScrollTrigger.refresh();
+          }
+        } catch (e) {}
+        primeVideoDecoder();
+        if (heroTrigger) {
+          updateHeroByProgress(heroTrigger.progress);
+        } else if (window.scrollY <= 15) {
+          updateHeroByProgress(0);
+        }
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityOrFocus);
+    window.addEventListener('pageshow', handleVisibilityOrFocus);
+    window.addEventListener('focus', handleVisibilityOrFocus);
+
+    /* Garantía de cuadro cero si se retorna al tope del scroll */
+    window.addEventListener(
+      'scroll',
+      function () {
+        if (window.scrollY <= 5 && heroTrigger && heroTrigger.progress !== 0) {
+          updateHeroByProgress(0);
+        }
+      },
+      { passive: true }
+    );
 
     updateHeroByProgress(0);
   }

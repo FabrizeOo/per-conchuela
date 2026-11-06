@@ -133,6 +133,7 @@
           <li><a href="#productos" class="nav-link">Productos</a></li>
           <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
           <li><a href="#clientes" class="nav-link">Clientes</a></li>
+          <li><a href="avicola.html" target="_blank" rel="noopener noreferrer" class="nav-link nav-link-special">Avícola ↗</a></li>
         </ul>
         <a href="#contacto" class="btn btn-primary nav-cta">Contacto</a>
       </nav>
@@ -422,7 +423,7 @@
               <!-- Imagen / Editorial Visual Esculturas -->
               <div class="esculturas-media-col">
                 <div class="esculturas-artwork-frame">
-                  <img src="assets/img/versatilidad/esculturas-travertino-hd.webp" alt="Colección de esculturas en travertino y piedra conchuela fósil - Diseña con naturaleza, diseña con conchuela" width="714" height="894" loading="lazy">
+                  <img src="assets/img/versatilidad/travertino.webp" alt="Colección de esculturas en travertino y piedra conchuela fósil - Diseña con naturaleza, diseña con conchuela" width="1120" height="1404" loading="lazy">
                   <div class="artwork-overlay-caption">
                     <span class="artwork-caption-pre">Diseña con naturaleza,</span>
                     <span class="artwork-caption-main">diseña con conchuela.</span>
@@ -501,10 +502,10 @@
           <p class="section-subtitle">Perú Conchuela como insumo noble y patrocinador referente en las exhibiciones y ferias más importantes del país.</p>
         </div>
 
-        <!-- Participaciones destacadas: CASACOR y EXPODECO -->
+        <!-- Participaciones destacadas: CASACOR, EXPODECO e IT PROJECT -->
         <div class="participations-grid reveal-up">
-          <!-- Tarjeta CASACOR -->
-          <article class="participation-card">
+          <!-- Tarjeta 1: CASACOR Perú (Slide Horizontal) -->
+          <article class="participation-card participation-slider-card" id="part-casacor-card">
             <div class="participation-header">
               <div class="participation-icon-badge" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -517,52 +518,67 @@
                 <h3 class="participation-title">CASACOR Perú</h3>
               </div>
             </div>
-            <ul class="participation-list">
-              <li class="participation-item">
-                <div class="participation-logo-wrap">
-                  <img src="assets/img/participaciones/casacor-2022.webp" alt="Logo oficial CASACOR 2022" class="participation-year-logo" loading="lazy" width="120" height="42" />
+
+            <!-- Slider CASACOR -->
+            <div class="part-slider" id="slider-casacor" data-total-slides="5">
+              <div class="part-slides-track">
+                <div class="part-slide is-active">
+                  <div class="part-slide-logo-box">
+                    <img src="assets/img/participaciones/casacor-2022.webp" alt="CASACOR 2022" class="part-slide-logo" width="130" height="46" loading="lazy">
+                  </div>
+                  <h4 class="part-slide-year">CASACOR 2022</h4>
                 </div>
-                <div class="participation-content">
-                  <strong>CASACOR 2022:</strong> Proveedor oficial de materiales naturales para revestimientos de senderos y propuestas de paisajismo exterior en sedes emblemáticas.
+
+                <div class="part-slide">
+                  <div class="part-slide-logo-box">
+                    <img src="assets/img/participaciones/casacor-2023.webp" alt="CASACOR 2023" class="part-slide-logo" width="130" height="46" loading="lazy">
+                  </div>
+                  <h4 class="part-slide-year">CASACOR 2023</h4>
                 </div>
-              </li>
-              <li class="participation-item">
-                <div class="participation-logo-wrap">
-                  <img src="assets/img/participaciones/casacor-2023.webp" alt="Logo oficial CASACOR 2023" class="participation-year-logo" loading="lazy" width="120" height="42" />
+
+                <div class="part-slide">
+                  <div class="part-slide-logo-box">
+                    <img src="assets/img/participaciones/casacor-2024.webp" alt="CASACOR 2024" class="part-slide-logo" width="130" height="46" loading="lazy">
+                  </div>
+                  <h4 class="part-slide-year">CASACOR 2024</h4>
                 </div>
-                <div class="participation-content">
-                  <strong>CASACOR 2023:</strong> Auspiciador y proveedor en proyectos de arquitectura sostenible como "El Guadual" (IVUC - USMP), terrazas y senderos orgánicos.
+
+                <div class="part-slide">
+                  <div class="part-slide-logo-box">
+                    <img src="assets/img/participaciones/casacor-2025.webp" alt="CASACOR 2025" class="part-slide-logo" width="130" height="46" loading="lazy">
+                  </div>
+                  <h4 class="part-slide-year">CASACOR 2025</h4>
                 </div>
-              </li>
-              <li class="participation-item">
-                <div class="participation-logo-wrap">
-                  <img src="assets/img/participaciones/casacor-2024.webp" alt="Logo oficial CASACOR 2024" class="participation-year-logo" loading="lazy" width="120" height="42" />
+
+                <div class="part-slide">
+                  <div class="part-slide-logo-box">
+                    <img src="assets/img/participaciones/casacor-2026.webp" alt="CASACOR 2026" class="part-slide-logo" width="130" height="46" loading="lazy">
+                  </div>
+                  <h4 class="part-slide-year">CASACOR 2026</h4>
                 </div>
-                <div class="participation-content">
-                  <strong>CASACOR 2024:</strong> Presencia en espacios conceptuales y áreas de paisajismo con cubresuelos y terrazos ecológicos bajo el lema "El ahora es un regalo".
+              </div>
+
+              <!-- Controles del Slider CASACOR -->
+              <div class="part-slider-controls">
+                <button type="button" class="part-nav-btn prev" data-dir="-1" aria-label="Año anterior en CASACOR">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <div class="part-dots" role="tablist" aria-label="Años de participación en CASACOR">
+                  <button type="button" class="part-dot is-active" aria-label="Ir a CASACOR 2022" data-index="0"></button>
+                  <button type="button" class="part-dot" aria-label="Ir a CASACOR 2023" data-index="1"></button>
+                  <button type="button" class="part-dot" aria-label="Ir a CASACOR 2024" data-index="2"></button>
+                  <button type="button" class="part-dot" aria-label="Ir a CASACOR 2025" data-index="3"></button>
+                  <button type="button" class="part-dot" aria-label="Ir a CASACOR 2026" data-index="4"></button>
                 </div>
-              </li>
-              <li class="participation-item">
-                <div class="participation-logo-wrap">
-                  <img src="assets/img/participaciones/casacor-2025.webp" alt="Logo oficial CASACOR 2025" class="participation-year-logo" loading="lazy" width="120" height="42" />
-                </div>
-                <div class="participation-content">
-                  <strong>CASACOR 2025:</strong> Participación destacada en la edición 30 años con aplicaciones biofílicas en lofts, jardines y áreas de bienestar.
-                </div>
-              </li>
-              <li class="participation-item">
-                <div class="participation-logo-wrap">
-                  <img src="assets/img/participaciones/casacor-2026.webp" alt="Logo oficial CASACOR 2026" class="participation-year-logo" loading="lazy" width="120" height="42" />
-                </div>
-                <div class="participation-content">
-                  <strong>CASACOR 2026:</strong> Presencia protagónica en espacios como "Alma Wellness Club" (Camila Gos) y el "Sendero para los Sentidos" (Natura / Vicca Verde).
-                </div>
-              </li>
-            </ul>
+                <button type="button" class="part-nav-btn next" data-dir="1" aria-label="Siguiente año en CASACOR">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+              </div>
+            </div>
           </article>
 
-          <!-- Tarjeta EXPODECO -->
-          <article class="participation-card">
+          <!-- Tarjeta 2: EXPODECO (Slide Horizontal) -->
+          <article class="participation-card participation-slider-card" id="part-expodeco-card">
             <div class="participation-header">
               <div class="participation-icon-badge" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -575,61 +591,108 @@
                 <h3 class="participation-title">EXPODECO</h3>
               </div>
             </div>
-            <ul class="participation-list">
-              <li class="participation-item">
-                <div class="participation-logo-wrap">
-                  <img src="assets/img/participaciones/expodeco-2023.webp" alt="Logo oficial EXPODECO 2023" class="participation-year-logo" loading="lazy" width="120" height="64" />
+
+            <!-- Slider EXPODECO -->
+            <div class="part-slider" id="slider-expodeco" data-total-slides="4">
+              <div class="part-slides-track">
+                <div class="part-slide is-active">
+                  <div class="part-slide-logo-box">
+                    <img src="assets/img/participaciones/expodeco-2023.webp" alt="EXPODECO 2023" class="part-slide-logo" width="130" height="68" loading="lazy">
+                  </div>
+                  <h4 class="part-slide-year">EXPODECO 2023</h4>
                 </div>
-                <div class="participation-content">
-                  <strong>EXPODECO 2023:</strong> Participó como Patrocinador Gold.
+
+                <div class="part-slide">
+                  <div class="part-slide-logo-box">
+                    <img src="assets/img/participaciones/expodeco-2024.webp" alt="EXPODECO 2024" class="part-slide-logo" width="130" height="68" loading="lazy">
+                  </div>
+                  <h4 class="part-slide-year">EXPODECO 2024</h4>
                 </div>
-              </li>
-              <li class="participation-item">
-                <div class="participation-logo-wrap">
-                  <img src="assets/img/participaciones/expodeco-2024.webp" alt="Logo oficial EXPODECO 2024" class="participation-year-logo" loading="lazy" width="120" height="64" />
+
+                <div class="part-slide">
+                  <div class="part-slide-logo-box">
+                    <img src="assets/img/participaciones/expodeco-2025.webp" alt="EXPODECO 2025" class="part-slide-logo" width="130" height="62" loading="lazy">
+                  </div>
+                  <h4 class="part-slide-year">EXPODECO 2025</h4>
                 </div>
-                <div class="participation-content">
-                  <strong>EXPODECO 2024:</strong> Fue galardonada en la categoría de Producto Innovador.
+
+                <div class="part-slide">
+                  <div class="part-slide-logo-box">
+                    <img src="assets/img/participaciones/expodeco-2026.webp" alt="EXPODECO 2026" class="part-slide-logo" width="130" height="62" loading="lazy">
+                  </div>
+                  <h4 class="part-slide-year">EXPODECO 2026</h4>
                 </div>
-              </li>
-              <li class="participation-item">
-                <div class="participation-logo-wrap">
-                  <img src="assets/img/participaciones/expodeco-2025.webp" alt="Logo oficial EXPODECO 2025" class="participation-year-logo" loading="lazy" width="120" height="57" />
+              </div>
+
+              <!-- Controles del Slider EXPODECO -->
+              <div class="part-slider-controls">
+                <button type="button" class="part-nav-btn prev" data-dir="-1" aria-label="Año anterior en EXPODECO">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <div class="part-dots" role="tablist" aria-label="Años de participación en EXPODECO">
+                  <button type="button" class="part-dot is-active" aria-label="Ir a EXPODECO 2023" data-index="0"></button>
+                  <button type="button" class="part-dot" aria-label="Ir a EXPODECO 2024" data-index="1"></button>
+                  <button type="button" class="part-dot" aria-label="Ir a EXPODECO 2025" data-index="2"></button>
+                  <button type="button" class="part-dot" aria-label="Ir a EXPODECO 2026" data-index="3"></button>
                 </div>
-                <div class="participation-content">
-                  <strong>EXPODECO 2025:</strong> Participó nuevamente como Patrocinador Gold y con el espacio "Conchuela Concept 360".
-                </div>
-              </li>
-              <li class="participation-item">
-                <div class="participation-logo-wrap">
-                  <img src="assets/img/participaciones/expodeco-2026.webp" alt="Logo oficial EXPODECO 2026" class="participation-year-logo" loading="lazy" width="120" height="57" />
-                </div>
-                <div class="participation-content">
-                  <strong>EXPODECO 2026:</strong> Estuvo presente como Patrocinador Gold con presencia en 9 espacios/stands y conferencias especializadas.
-                </div>
-              </li>
-            </ul>
+                <button type="button" class="part-nav-btn next" data-dir="1" aria-label="Siguiente año en EXPODECO">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tarjeta 3: IT PROJECT (Estático) -->
+          <article class="participation-card participation-static-card" id="part-itproject-card">
+            <div class="participation-header">
+              <div class="participation-icon-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+              </div>
+              <div class="participation-brand">
+                <span class="participation-tag">Pasarela &amp; Arquitectura Sostenible</span>
+                <h3 class="participation-title">IT PROJECT</h3>
+              </div>
+            </div>
+
+            <div class="it-project-body">
+              <div class="it-project-logo-box">
+                <img src="assets/img/participaciones/it-project.webp" alt="Logo oficial IT PROJECT" class="it-project-logo-img" width="160" height="80" loading="lazy">
+              </div>
+              <ul class="it-project-events-list">
+                <li class="it-project-event-item">
+                  <span class="it-event-pill">2025</span>
+                  <span class="it-event-name">Lima Ethical Fashion Show 2025</span>
+                </li>
+                <li class="it-project-event-item">
+                  <span class="it-event-pill">2026</span>
+                  <span class="it-event-name">Lima Ethical Fashion Show 2026</span>
+                </li>
+              </ul>
+            </div>
           </article>
         </div>
 
-        <!-- Selector interactivo de granulometría con ilustración de escala -->
+        <!-- Explorador interactivo de granulometría amigable y moderno -->
         <div class="granulometry-workbench reveal-up" aria-labelledby="selector-granulometria-titulo">
           <div class="workbench-controls">
-            <h3 class="workbench-title" id="selector-granulometria-titulo">Explorador interactivo de granulometría</h3>
-            <p class="workbench-instructions">Selecciona una presentación para comparar su escala real en milímetros y conocer los usos recomendados por nuestro equipo técnico:</p>
+            <span class="workbench-eyebrow">Guía Visual de Calibres</span>
+            <h3 class="workbench-title" id="selector-granulometria-titulo">Explorador Interactivo de Granulometría</h3>
+            <p class="workbench-instructions">Compara en escala real las tres presentaciones de conchuela natural y descubre la adecuada para tu proyecto:</p>
 
             <div class="grain-tabs" role="tablist" aria-label="Seleccionar calibre de conchuela">
               <button type="button" class="grain-tab is-active" role="tab" aria-selected="true" aria-controls="grain-panel" id="tab-gruesa" data-grain="gruesa">
+                <span class="grain-tab-caliber">3 a 4 mm</span>
                 <span class="grain-tab-name">Conchuela Gruesa</span>
-                <span class="grain-tab-mm">3 a 4 mm</span>
               </button>
               <button type="button" class="grain-tab" role="tab" aria-selected="false" aria-controls="grain-panel" id="tab-mediana" data-grain="mediana">
+                <span class="grain-tab-caliber">Hasta 2 mm</span>
                 <span class="grain-tab-name">Conchuela Mediana</span>
-                <span class="grain-tab-mm">Hasta 2 mm</span>
               </button>
               <button type="button" class="grain-tab" role="tab" aria-selected="false" aria-controls="grain-panel" id="tab-fina" data-grain="fina">
+                <span class="grain-tab-caliber">Hasta 1 mm</span>
                 <span class="grain-tab-name">Conchuela Fina</span>
-                <span class="grain-tab-mm">Hasta 1 mm</span>
               </button>
             </div>
 
@@ -639,23 +702,27 @@
                 <h4 class="grain-active-title" id="grain-active-title">Conchuela Gruesa (3 a 4 mm)</h4>
               </div>
               <p class="grain-active-summary" id="grain-active-summary">Partículas laminares de alta resistencia mecánica y drenaje superior. Mantiene la estructura visual del nácar y carbonato natural.</p>
-              <h5 class="grain-uses-heading">Usos recomendados:</h5>
-              <ul class="grain-uses-list" id="grain-uses-list">
-                <li>Avicultura: gallinas ponedoras en postura (retención prolongada en molleja y máxima dureza de cáscara).</li>
-                <li>Inmobiliario y construcción: estacionamientos, caminos de tránsito vehicular ligero y cubresuelos drenantes.</li>
-                <li>Paisajismo: cobertura ornamental en parques, jardines de bajo consumo hídrico y alcorques.</li>
-              </ul>
+
+              <div class="grain-uses-box">
+                <h5 class="grain-uses-heading">Aplicaciones recomendadas:</h5>
+                <ul class="grain-uses-list" id="grain-uses-list">
+                  <li>Avicultura: gallinas ponedoras en postura (retención prolongada en molleja y máxima dureza de cáscara).</li>
+                  <li>Inmobiliario y construcción: estacionamientos, caminos de tránsito vehicular ligero y cubresuelos drenantes.</li>
+                  <li>Paisajismo: cobertura ornamental en parques, jardines de bajo consumo hídrico y alcorques.</li>
+                </ul>
+              </div>
+
               <div class="grain-cta-row">
                 <a href="#contacto" class="btn btn-primary" id="grain-cta-link" data-grain-cta="Conchuela Gruesa (3 a 4 mm)">Solicitar cotización de este calibre</a>
               </div>
             </div>
           </div>
 
-          <!-- Visualizador con fotografía real y escala milimétrica -->
+          <!-- Visualizador amigable y elegante -->
           <div class="workbench-visualizer" aria-label="Fotografía real y escala granulométrica">
             <div class="scale-card">
               <div class="scale-card-header">
-                <span class="scale-card-title">Muestra real de conchuela</span>
+                <span class="scale-card-title">Muestra fotográfica real</span>
                 <span class="scale-card-measure" id="scale-measure-Readout">Diámetro: 3.0 – 4.0 mm</span>
               </div>
 
@@ -672,36 +739,27 @@
                 <span class="grain-photo-badge" id="grain-photo-badge">Fotografía real · Conchuela Gruesa</span>
               </div>
 
-              <!-- Regla milimétrica interactiva inferior (0 a 10 mm) -->
-              <svg class="grain-scale-svg" id="grain-scale-svg" viewBox="0 0 420 70" role="img" aria-label="Escala sobre regla milimétrica">
-                <g transform="translate(50, 20)">
-                  <line x1="0" y1="0" x2="320" y2="0" stroke="#1C1410" stroke-width="2"/>
-                  <!-- Marcas cada 1 mm (32px = 1 mm en escala ampliada 10x) -->
-                  <line x1="0" y1="0" x2="0" y2="14" stroke="#1C1410" stroke-width="2"/>
-                  <text x="0" y="28" text-anchor="middle" fill="#1C1410" font-size="11" font-family="Manrope, sans-serif">0 mm</text>
-                  <line x1="32" y1="0" x2="32" y2="9" stroke="#1C1410" stroke-width="1.5"/>
-                  <text x="32" y="28" text-anchor="middle" fill="#1C1410" font-size="11" font-family="Manrope, sans-serif">1</text>
-                  <line x1="64" y1="0" x2="64" y2="9" stroke="#1C1410" stroke-width="1.5"/>
-                  <text x="64" y="28" text-anchor="middle" fill="#1C1410" font-size="11" font-family="Manrope, sans-serif">2</text>
-                  <line x1="96" y1="0" x2="96" y2="9" stroke="#1C1410" stroke-width="1.5"/>
-                  <text x="96" y="28" text-anchor="middle" fill="#1C1410" font-size="11" font-family="Manrope, sans-serif">3</text>
-                  <line x1="128" y1="0" x2="128" y2="9" stroke="#1C1410" stroke-width="1.5"/>
-                  <text x="128" y="28" text-anchor="middle" fill="#1C1410" font-size="11" font-family="Manrope, sans-serif">4</text>
-                  <line x1="160" y1="0" x2="160" y2="14" stroke="#1C1410" stroke-width="2"/>
-                  <text x="160" y="28" text-anchor="middle" fill="#1C1410" font-size="11" font-family="Manrope, sans-serif">5 mm</text>
-                  <line x1="192" y1="0" x2="192" y2="9" stroke="#1C1410" stroke-width="1.5"/>
-                  <line x1="224" y1="0" x2="224" y2="9" stroke="#1C1410" stroke-width="1.5"/>
-                  <line x1="256" y1="0" x2="256" y2="9" stroke="#1C1410" stroke-width="1.5"/>
-                  <line x1="288" y1="0" x2="288" y2="9" stroke="#1C1410" stroke-width="1.5"/>
-                  <line x1="320" y1="0" x2="320" y2="14" stroke="#1C1410" stroke-width="2"/>
-                  <text x="320" y="28" text-anchor="middle" fill="#1C1410" font-size="11" font-family="Manrope, sans-serif">10 mm</text>
+              <!-- Indicador de escala visual limpio y amigable -->
+              <div class="grain-friendly-scale">
+                <div class="scale-track-labels">
+                  <span>Fina (1 mm)</span>
+                  <span>Mediana (2 mm)</span>
+                  <span>Gruesa (4 mm)</span>
+                </div>
+                <div class="scale-track-rail">
+                  <div class="scale-track-fill" id="scale-track-fill" style="width: 85%;"></div>
+                  <span class="scale-point p1"></span>
+                  <span class="scale-point p2"></span>
+                  <span class="scale-point p3"></span>
+                </div>
+              </div>
 
-                  <!-- Indicador de calibre activo sobre la regla -->
-                  <rect id="svg-ruler-highlight" x="96" y="-8" width="32" height="8" rx="2" fill="#C8842E"/>
-                </g>
+              <!-- SVG ruler preservado oculto para compatibilidad total con main.js -->
+              <svg class="grain-scale-svg visually-hidden" id="grain-scale-svg" viewBox="0 0 420 70" aria-hidden="true">
+                <rect id="svg-ruler-highlight" x="96" y="-8" width="32" height="8" rx="2"/>
               </svg>
 
-              <p class="scale-caption">Vista fotográfica de muestra extraída en cantera y escala comparativa de tamiz.</p>
+              <p class="scale-caption">Extracción propia en cantera con tamizado continuo y control de pureza biogénica.</p>
             </div>
           </div>
         </div>

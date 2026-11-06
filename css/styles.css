@@ -1155,64 +1155,71 @@ textarea {
 }
 
 /* ==========================================================================
-   6. PRODUCTOS, PARTICIPACIONES Y SELECTOR DE GRANULOMETRÍA
+   6. PRODUCTOS, PARTICIPACIONES (SLIDERS) Y SELECTOR DE GRANULOMETRÍA
    ========================================================================== */
 .participations-grid {
   display: grid;
-  gap: 1.6rem;
-  margin-bottom: 3.25rem;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  margin-bottom: 3.5rem;
+}
+
+@media (min-width: 992px) {
+  .participations-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .participation-card {
-  background-color: var(--color-hueso);
+  background-color: #FFFFFF;
   border: 1px solid var(--color-borde);
-  border-radius: var(--radius-md);
-  padding: 2.2rem 1.85rem;
-  box-shadow: var(--shadow-soft);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.65rem;
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-fast);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  position: relative;
+  overflow: hidden;
 }
 
 .participation-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.1);
   border-color: var(--color-borde-oro);
 }
 
 .participation-header {
   display: flex;
   align-items: center;
-  gap: 1.15rem;
-  padding-bottom: 1.25rem;
-  margin-bottom: 1.35rem;
+  gap: 1rem;
+  padding-bottom: 1.15rem;
+  margin-bottom: 1.25rem;
   border-bottom: 1px solid var(--color-borde);
 }
 
 .participation-icon-badge {
-  width: 54px;
-  height: 54px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background-color: #ffffff;
-  border: 1.5px solid var(--color-borde-fuerte);
-  color: var(--color-terracota-text);
+  background-color: var(--color-arena);
+  color: var(--color-carbon);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04);
-  transition: border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+  transition: all 0.25s ease;
 }
 
 .participation-card:hover .participation-icon-badge {
-  border-color: var(--color-terracota);
-  color: var(--color-terracota);
-  transform: scale(1.06);
+  background-color: var(--color-carbon);
+  color: #FFFFFF;
+  transform: scale(1.05);
 }
 
 .participation-icon-badge svg {
-  width: 26px;
-  height: 26px;
+  width: 22px;
+  height: 22px;
 }
 
 .participation-tag {
@@ -1221,293 +1228,420 @@ textarea {
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--color-terracota-text);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
   display: block;
 }
 
 .participation-title {
   font-family: var(--font-display);
-  font-size: 1.7rem;
+  font-size: 1.55rem;
   font-weight: 600;
   color: var(--color-carbon);
   margin: 0;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
 }
 
-.participation-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* Slider horizontal para CASACOR y EXPODECO */
+.part-slider {
   display: flex;
   flex-direction: column;
-  gap: 1.15rem;
-}
-
-.participation-item {
-  display: flex;
-  align-items: center;
-  gap: 1.15rem;
-  padding-bottom: 1.15rem;
-  border-bottom: 1px solid var(--color-borde);
-}
-
-.participation-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.participation-logo-wrap {
-  width: 116px;
-  height: 52px;
-  background-color: #ffffff;
-  border: 1px solid var(--color-borde);
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.35rem 0.55rem;
-  flex-shrink: 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.participation-item:hover .participation-logo-wrap {
-  border-color: var(--color-terracota);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(74, 31, 18, 0.09);
-}
-
-.participation-year-logo {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
-.participation-year-badge {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--color-terracota-text);
-  background-color: rgba(200, 132, 46, 0.12);
-  border: 1px solid rgba(200, 132, 46, 0.35);
-  border-radius: var(--radius-sm);
-  padding: 0.22rem 0.6rem;
-  white-space: nowrap;
-  letter-spacing: 0.04em;
-  flex-shrink: 0;
-  margin-top: 0.1rem;
-}
-
-.participation-content {
-  font-size: 0.94rem;
-  line-height: 1.55;
-  color: var(--color-texto-secundario);
   flex: 1;
 }
 
-.participation-content strong {
-  color: var(--color-carbon);
-  font-weight: 700;
-}
-
-.products-cards-grid {
-  display: grid;
-  gap: 1.35rem;
-  margin-bottom: 2.75rem;
-}
-
-.product-tier-card {
-  background-color: var(--color-hueso);
+.part-slides-track {
+  position: relative;
+  min-height: 165px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background-color: #FAF8F5;
   border: 1px solid var(--color-borde);
-  border-top: 3px solid var(--color-terracota);
-  border-radius: var(--radius-md);
-  padding: 1.65rem;
-  box-shadow: var(--shadow-soft);
+  padding: 1.25rem;
 }
 
-.product-tier-header {
+.part-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(25px);
+  transition: opacity 0.32s ease, transform 0.32s ease, visibility 0.32s ease;
+  padding: 1rem;
+}
+
+.part-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.part-slide-logo-box {
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.part-slide-logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.06));
+}
+
+.part-slide-year {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-carbon);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.part-slider-controls {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.7rem;
+  gap: 0.75rem;
+  margin-top: 1.15rem;
+  padding-top: 0.85rem;
 }
 
-.product-code {
+.part-nav-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--color-borde);
+  background-color: #FFFFFF;
+  color: var(--color-carbon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.part-nav-btn:hover {
+  background-color: var(--color-carbon);
+  color: #FFFFFF;
+  border-color: var(--color-carbon);
+  transform: scale(1.08);
+}
+
+.part-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.part-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #D6D0C5;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.25s ease;
+}
+
+.part-dot.is-active {
+  width: 22px;
+  border-radius: 999px;
+  background-color: var(--color-carbon);
+}
+
+/* Tarjeta IT PROJECT (Estática) */
+.it-project-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+}
+
+.it-project-logo-box {
+  min-height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.15rem;
+  padding: 0.75rem;
+  background-color: #FAF8F5;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-borde);
+}
+
+.it-project-logo-img {
+  max-width: 100%;
+  max-height: 52px;
+  object-fit: contain;
+}
+
+.it-project-events-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.it-project-event-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0.95rem;
+  background-color: #FAF8F5;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.it-project-event-item:hover {
+  border-color: var(--color-borde-oro);
+  transform: translateX(3px);
+}
+
+.it-event-pill {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  background-color: var(--color-carbon);
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.it-event-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-carbon);
+}
+
+/* ==========================================================================
+   Explorador Interactivo de Granulometría (Diseño Moderno, Limpio y No Marrón)
+   ========================================================================== */
+.granulometry-workbench {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.75rem, 3.5vw, 3rem);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.06);
+  display: grid;
+  gap: 2.5rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 992px) {
+  .granulometry-workbench {
+    grid-template-columns: 1.15fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+}
+
+.workbench-eyebrow {
   font-size: 0.74rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--color-terracota-text);
-}
-
-.product-size-badge {
-  background-color: var(--color-arena);
-  border: 1px solid var(--color-borde-oro);
-  color: var(--color-mar);
-  padding: 0.22rem 0.7rem;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-
-.product-tier-title {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: var(--color-carbon);
+  letter-spacing: 0.14em;
+  color: var(--color-oro-mineral);
+  display: block;
   margin-bottom: 0.4rem;
-}
-
-.product-tier-desc {
-  font-size: 0.93rem;
-  color: var(--color-texto-secundario);
-}
-
-/* Workbench interactivo */
-.granulometry-workbench {
-  background-color: var(--color-hueso);
-  border: 1px solid var(--color-borde-fuerte);
-  border-radius: var(--radius-lg);
-  padding: 1.85rem;
-  box-shadow: var(--shadow-soft);
-  display: grid;
-  gap: 2rem;
 }
 
 .workbench-title {
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: clamp(1.85rem, 3.2vw, 2.4rem);
   font-weight: 600;
   color: var(--color-carbon);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.55rem;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
 }
 
 .workbench-instructions {
-  font-size: 0.94rem;
+  font-size: 0.95rem;
   color: var(--color-texto-secundario);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.6rem;
+  line-height: 1.55;
 }
 
 .grain-tabs {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.65rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
+  background-color: #F8F6F2;
+  padding: 0.4rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-borde);
 }
 
 .grain-tab {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.9rem 1.15rem;
-  background-color: var(--color-arena);
-  border: 1px solid var(--color-borde);
+  justify-content: center;
+  padding: 0.85rem 0.5rem;
   border-radius: var(--radius-sm);
+  border: 0;
+  background-color: transparent;
   cursor: pointer;
-  text-align: left;
-  transition: all var(--transition-base);
+  transition: all 0.22s ease;
+  text-align: center;
+  color: var(--color-texto-secundario);
 }
 
 .grain-tab:hover {
-  border-color: var(--color-terracota);
+  color: var(--color-carbon);
 }
 
 .grain-tab.is-active {
-  background-color: var(--color-mar);
-  color: var(--color-crema);
-  border-color: var(--color-mar);
-  box-shadow: 0 8px 20px -6px rgba(74, 31, 18, 0.35);
+  background-color: #FFFFFF;
+  color: var(--color-carbon);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  font-weight: 700;
+}
+
+.grain-tab-caliber {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-oro-mineral);
+  margin-bottom: 0.2rem;
 }
 
 .grain-tab-name {
-  font-weight: 700;
-  font-size: 0.94rem;
-}
-
-.grain-tab-mm {
-  font-size: 0.8rem;
-  opacity: 0.88;
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
 .grain-specs-head {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 0.65rem;
-  margin-bottom: 0.6rem;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+  flex-wrap: wrap;
 }
 
 .grain-active-badge {
-  background-color: rgba(200, 132, 46, 0.16);
-  color: var(--color-terracota-text);
+  font-size: 0.74rem;
   font-weight: 700;
-  font-size: 0.8rem;
-  padding: 0.22rem 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background-color: rgba(200, 155, 60, 0.14);
+  color: var(--color-oro-mineral);
+  border: 1px solid rgba(200, 155, 60, 0.35);
+  padding: 0.25rem 0.65rem;
   border-radius: 999px;
 }
 
 .grain-active-title {
   font-family: var(--font-display);
-  font-size: 1.55rem;
-  font-weight: 600;
-  color: var(--color-mar);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--color-carbon);
+  margin: 0;
 }
 
 .grain-active-summary {
   font-size: 0.95rem;
+  line-height: 1.6;
   color: var(--color-texto-secundario);
-  margin-bottom: 1rem;
+  margin-bottom: 1.35rem;
+}
+
+.grain-uses-box {
+  background-color: #FAF8F5;
+  border-left: 3px solid var(--color-oro-mineral);
+  padding: 1.1rem 1.35rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom: 1.65rem;
 }
 
 .grain-uses-heading {
   font-size: 0.82rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: var(--color-carbon);
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
 }
 
 .grain-uses-list {
   display: grid;
   gap: 0.45rem;
-  margin-bottom: 1.45rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .grain-uses-list li {
+  font-size: 0.88rem;
+  color: var(--color-texto-secundario);
+  line-height: 1.45;
   position: relative;
-  padding-left: 1.2rem;
-  font-size: 0.92rem;
+  padding-left: 1.25rem;
 }
 
 .grain-uses-list li::before {
-  content: "•";
+  content: "✓";
   position: absolute;
   left: 0;
-  color: var(--color-terracota);
-  font-weight: 700;
+  color: var(--color-oro-mineral);
+  font-weight: bold;
 }
 
+.grain-cta-row .btn-primary {
+  background-color: var(--color-carbon);
+  color: #FFFFFF;
+  border: 1px solid var(--color-carbon);
+}
+
+.grain-cta-row .btn-primary:hover {
+  background-color: #27272A;
+  color: #FFFFFF;
+}
+
+/* Tarjeta visualizadora */
 .scale-card {
-  background-color: var(--color-arena);
+  background-color: #FAF8F5;
   border: 1px solid var(--color-borde);
   border-radius: var(--radius-md);
-  padding: 1.35rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
 }
 
 .scale-card-header {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 0.85rem;
-  font-size: 0.84rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.scale-card-title {
+  font-size: 0.82rem;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-texto-secundario);
 }
 
 .scale-card-measure {
-  color: var(--color-mar);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-carbon);
 }
 
 .grain-photo-display {
@@ -1515,29 +1649,306 @@ textarea {
   width: 100%;
   aspect-ratio: 1 / 1;
   max-height: 340px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   overflow: hidden;
-  box-shadow: 0 10px 24px -6px rgba(28, 20, 16, 0.16);
-  border: 1px solid var(--color-borde-oro);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-borde);
   background-color: #FFFFFF;
-  margin-bottom: 1.15rem;
+  margin-bottom: 1.25rem;
 }
 
 .grain-photo-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: opacity 0.35s ease, transform 0.45s ease;
+  display: block;
+  transition: transform 0.4s ease;
 }
 
-.grain-photo-img:hover {
-  transform: scale(1.05);
+.grain-photo-display:hover .grain-photo-img {
+  transform: scale(1.04);
 }
 
 .grain-photo-badge {
   position: absolute;
   bottom: 0.75rem;
-  left: 0.75rem;
+  right: 0.75rem;
+  background-color: rgba(24, 24, 27, 0.85);
+  color: #FFFFFF;
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+}
+
+/* Indicador de escala visual limpio y amigable */
+.grain-friendly-scale {
+  margin-top: 0.85rem;
+  padding: 0.5rem 0.25rem 0.25rem;
+}
+
+.scale-track-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--color-texto-secundario);
+  margin-bottom: 0.5rem;
+}
+
+.scale-track-rail {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  background-color: #E6E1D7;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.scale-track-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #E5C158, #C8842E);
+  border-radius: 999px;
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scale-caption {
+  font-size: 0.76rem;
+  font-style: italic;
+  color: var(--color-texto-secundario);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* ==========================================================================
+   Estilos dedicados para la página Sector Avícola (avicola.html)
+   ========================================================================== */
+.page-avicola {
+  background-color: var(--color-crema);
+}
+
+.avicola-hero-section {
+  padding-top: calc(var(--header-height) + 3.5rem);
+  padding-bottom: 3.5rem;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.avicola-hero-box {
+  max-width: 860px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.avicola-eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-terracota-text);
+  display: block;
+  margin-bottom: 0.65rem;
+}
+
+.avicola-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--color-carbon);
+  margin-bottom: 1rem;
+  line-height: 1.12;
+}
+
+.avicola-hero-subtitle {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--color-texto-secundario);
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.avicola-diet-callout {
+  background-color: rgba(200, 155, 60, 0.1);
+  border-left: 3px solid var(--color-oro-mineral);
+  padding: 1.1rem 1.35rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.95rem;
+  color: var(--color-carbon);
+  margin-top: 1.75rem;
+  line-height: 1.55;
+}
+
+.avicola-gallery-col {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.avicola-card-image-wrap {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 10px 28px -6px rgba(0, 0, 0, 0.08);
+}
+
+.avicola-feature-img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+.avicola-img-caption {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-texto-secundario);
+  padding: 0.75rem 1rem;
+  background-color: #FAF8F5;
+  border-top: 1px solid var(--color-borde);
+}
+
+.avicola-risks-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .avicola-risks-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.risk-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radius-md);
+  padding: 2rem 1.6rem;
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.05);
+}
+
+.risk-icon {
+  font-size: 2rem;
+  margin-bottom: 0.85rem;
+}
+
+.risk-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-carbon);
+  margin-bottom: 0.65rem;
+}
+
+.risk-desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--color-texto-secundario);
+}
+
+.avicola-calibers-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .avicola-calibers-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.caliber-box {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-borde);
+  border-top: 3px solid var(--color-oro-mineral);
+  border-radius: var(--radius-md);
+  padding: 2rem 1.65rem;
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.05);
+}
+
+.caliber-tag {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-terracota-text);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.caliber-name {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-carbon);
+  margin-bottom: 0.65rem;
+}
+
+.caliber-desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--color-texto-secundario);
+}
+
+.avicola-cta-banner {
+  background: linear-gradient(135deg, #18181B 0%, #27272A 100%);
+  border-radius: var(--radius-lg);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  color: #FFFFFF;
+  text-align: center;
+  box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.25);
+}
+
+.avicola-cta-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 2.75rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  margin-bottom: 0.75rem;
+}
+
+.avicola-cta-desc {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 680px;
+  margin-inline: auto;
+  margin-bottom: 1.85rem;
+}
+
+.avicola-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.avicola-cta-actions .btn-outline {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #FFFFFF;
+}
+
+.avicola-cta-actions .btn-outline:hover {
+  background-color: #FFFFFF;
+  color: var(--color-carbon);
+}
+
+.avicola-cta-actions .btn-ghost {
+  color: #FFE6CC;
+}
+
+.nav-link-special {
+  color: var(--color-terracota-text);
+  font-weight: 700;
+}
   background-color: rgba(28, 20, 16, 0.78);
   color: var(--color-oro-mineral);
   backdrop-filter: blur(8px);
@@ -2861,6 +3272,9 @@ textarea {
     grid-template-columns: 1fr 1.15fr;
     align-items: center;
     gap: 4rem;
+  }
+  .participations-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
   .granulometry-workbench {
     grid-template-columns: 1.2fr 1fr;
