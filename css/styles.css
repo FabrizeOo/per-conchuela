@@ -748,9 +748,9 @@ textarea {
 #cifras {
   position: relative;
   background-color: #C3530F;
-  background-image: linear-gradient(135deg, rgba(200, 80, 10, 0.55) 0%, rgba(140, 45, 8, 0.75) 100%), url('../assets/img/fondo-cifras-palmera.webp');
+  background-image: url('../assets/img/bannernaranja.png');
   background-size: cover;
-  background-position: center right;
+  background-position: center center;
   background-repeat: no-repeat;
   color: #FFFFFF;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
@@ -758,11 +758,7 @@ textarea {
 }
 
 #cifras::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 18% 45%, rgba(255, 125, 40, 0.3) 0%, transparent 60%);
-  pointer-events: none;
+  display: none;
 }
 
 #cifras .container {
