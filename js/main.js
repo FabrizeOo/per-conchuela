@@ -426,10 +426,46 @@
     }
   }
 
-  /* 2. Animaciones de entrada y contadores interactivos */
+  /* 2. Animaciones de entrada escalonadas por scroll (Reveal Up) y contadores interactivos */
   function initAnimationsAndCounters() {
     var reducedMotion =
       window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* A. Desplazamiento vertical progresivo de componentes y textos al hacer scroll */
+    var revealElements = Array.prototype.slice.call(
+      document.querySelectorAll('.reveal-up, .clients-grid')
+    );
+
+    if (revealElements.length) {
+      if (reducedMotion || typeof window.IntersectionObserver === 'undefined') {
+        revealElements.forEach(function (el) {
+          el.classList.add('is-revealed');
+        });
+      } else {
+        var revealObserver = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed');
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -40px 0px', threshold: 0.08 }
+        );
+
+        revealElements.forEach(function (el) {
+          var rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            el.classList.add('is-revealed');
+          } else {
+            revealObserver.observe(el);
+          }
+        });
+      }
+    }
+
+    /* B. Contadores numéricos interactivos */
     var counterEls = document.querySelectorAll('[data-counter-target]');
 
     counterEls.forEach(function (el) {

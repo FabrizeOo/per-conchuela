@@ -3306,16 +3306,142 @@ textarea {
   }
 }
 
+/* ==========================================================================
+   ANIMACIONES DE ENTRADA SCROLL ELEGANTE (REVEAL UP & WORDS FLOAT)
+   ========================================================================== */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-up.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Transición donde las palabras y títulos suben progresivamente */
+.section-header.reveal-up .eyebrow,
+.section-header-compact.reveal-up .eyebrow {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.05s,
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
+}
+
+.section-header.reveal-up .section-title,
+.section-header-compact.reveal-up .section-title {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+}
+
+.section-header.reveal-up .section-subtitle,
+.section-header-compact.reveal-up .section-subtitle {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.25s,
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
+}
+
+.section-header.reveal-up.is-revealed .eyebrow,
+.section-header-compact.reveal-up.is-revealed .eyebrow,
+.section-header.reveal-up.is-revealed .section-title,
+.section-header-compact.reveal-up.is-revealed .section-title,
+.section-header.reveal-up.is-revealed .section-subtitle,
+.section-header-compact.reveal-up.is-revealed .section-subtitle {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Transición en editorial lead (Un legado marino...) */
+.editorial-lead.reveal-up .eyebrow {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.05s,
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
+}
+.editorial-lead.reveal-up .section-title {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.14s,
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.14s;
+}
+.editorial-lead.reveal-up .lead-paragraph {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.22s,
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.22s;
+}
+.editorial-lead.reveal-up .body-paragraph {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.30s,
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.30s;
+}
+
+.editorial-lead.reveal-up.is-revealed .eyebrow,
+.editorial-lead.reveal-up.is-revealed .section-title,
+.editorial-lead.reveal-up.is-revealed .lead-paragraph,
+.editorial-lead.reveal-up.is-revealed .body-paragraph {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Escalonamiento uno por uno en cuadrículas de tarjetas */
+.metrics-grid .metric-card:nth-child(1) { transition-delay: 0.08s; }
+.metrics-grid .metric-card:nth-child(2) { transition-delay: 0.22s; }
+.metrics-grid .metric-card:nth-child(3) { transition-delay: 0.36s; }
+
+.participations-grid .participation-card:nth-child(1) { transition-delay: 0.08s; }
+.participations-grid .participation-card:nth-child(2) { transition-delay: 0.22s; }
+.participations-grid .participation-card:nth-child(3) { transition-delay: 0.36s; }
+
+.versatilidad-container .versatilidad-block:nth-child(1) { transition-delay: 0.06s; }
+.versatilidad-container .versatilidad-block:nth-child(2) { transition-delay: 0.20s; }
+
+.editorial-grid .editorial-lead { transition-delay: 0.05s; }
+.editorial-grid .origin-instagram-card { transition-delay: 0.22s; }
+
+.mission-vision-grid .mv-card:nth-child(1) { transition-delay: 0.08s; }
+.mission-vision-grid .mv-card:nth-child(2) { transition-delay: 0.22s; }
+
+.clients-grid .client-logo-card {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.clients-grid.is-revealed .client-logo-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+.clients-grid.is-revealed .client-logo-card:nth-child(1) { transition-delay: 0.04s; }
+.clients-grid.is-revealed .client-logo-card:nth-child(2) { transition-delay: 0.08s; }
+.clients-grid.is-revealed .client-logo-card:nth-child(3) { transition-delay: 0.12s; }
+.clients-grid.is-revealed .client-logo-card:nth-child(4) { transition-delay: 0.16s; }
+.clients-grid.is-revealed .client-logo-card:nth-child(5) { transition-delay: 0.20s; }
+.clients-grid.is-revealed .client-logo-card:nth-child(6) { transition-delay: 0.24s; }
+.clients-grid.is-revealed .client-logo-card:nth-child(7) { transition-delay: 0.28s; }
+.clients-grid.is-revealed .client-logo-card:nth-child(8) { transition-delay: 0.32s; }
+
 /* Respeto estricto a prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  .reveal-up,
+  .section-header.reveal-up .eyebrow,
+  .section-header.reveal-up .section-title,
+  .section-header.reveal-up .section-subtitle,
+  .editorial-lead.reveal-up .eyebrow,
+  .editorial-lead.reveal-up .section-title,
+  .editorial-lead.reveal-up .lead-paragraph,
+  .editorial-lead.reveal-up .body-paragraph,
+  .clients-grid .client-logo-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
