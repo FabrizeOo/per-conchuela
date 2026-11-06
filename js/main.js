@@ -87,9 +87,9 @@
       photoBadge: 'Fotografía real · Conchuela Gruesa',
       summary: 'Partículas laminares de alta resistencia mecánica y drenaje superior. Mantiene la estructura visual del nácar y carbonato natural.',
       uses: [
-        'Avicultura: gallinas ponedoras en postura (retención prolongada en molleja y máxima dureza de cáscara).',
         'Inmobiliario y construcción: estacionamientos, caminos de tránsito vehicular ligero y cubresuelos drenantes.',
-        'Paisajismo: cobertura ornamental en parques, jardines de bajo consumo hídrico y alcorques.'
+        'Paisajismo: cobertura ornamental en parques, jardines de bajo consumo hídrico y alcorques.',
+        'Avicultura: gallinas ponedoras en postura (retención prolongada en molleja y máxima dureza de cáscara).'
       ],
       scalePercent: '85%',
       rulerX: 96,
@@ -104,9 +104,9 @@
       photoBadge: 'Fotografía real · Conchuela Mediana',
       summary: 'Granulometría intermedia versátil que equilibra cobertura uniforme, rápida incorporación en mezclas y textura antideslizante.',
       uses: [
-        'Avicultura: alimento balanceado para aves en etapa de crecimiento y engorde (32 a 36% de calcio).',
         'Inmobiliario y construcción: senderos peatonales, terrazas, patios y prefabricados de concreto.',
-        'Industrial y arquitectura: sustituto de granalla de mármol para terrazo lavado y revestimientos.'
+        'Industrial y arquitectura: sustituto de granalla de mármol para terrazo lavado y revestimientos.',
+        'Avicultura: alimento balanceado para aves en etapa de crecimiento y engorde (32 a 36% de calcio).'
       ],
       scalePercent: '55%',
       rulerX: 38,
@@ -121,9 +121,9 @@
       photoBadge: 'Fotografía real · Conchuela Fina',
       summary: 'Grano fino tamizado de tacto sedoso y alta superficie específica, ideal para acabados arquitectónicos continuos y raciones iniciales.',
       uses: [
-        'Avicultura: raciones de inicio para pollitos y premezclas minerales de rápida biodisponibilidad.',
         'Industrial y arquitectura: bordes de piscinas, estucos minerales, enchapes verticales y mezcla con pigmentos.',
-        'Paisajismo: playas artificiales en hoteles y condominios, jardines interiores y sustrato de acuarios.'
+        'Paisajismo: playas artificiales en hoteles y condominios, jardines interiores y sustrato de acuarios.',
+        'Avicultura: raciones de inicio para pollitos y premezclas minerales de rápida biodisponibilidad.'
       ],
       scalePercent: '25%',
       rulerX: 6,

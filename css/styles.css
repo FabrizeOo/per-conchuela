@@ -1294,27 +1294,24 @@ textarea {
 }
 
 /* ==========================================================================
-   Explorador Interactivo de Granulometría (Fondo Yeso + Relieve Terracota)
+   Sección Granulometría Full-Bleed (Fondo Yeso + Relieve Terracota sin bordes)
    ========================================================================== */
-.granulometry-workbench {
+.section-granulometria {
   position: relative;
+  width: 100%;
   background-color: #C3530F;
   background-image: url('../assets/img/fondodeyeso.png');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: var(--radius-lg);
-  padding: clamp(1.75rem, 3.5vw, 3rem);
-  box-shadow: 0 20px 48px -10px rgba(61, 25, 14, 0.28);
-  display: grid;
-  gap: 2.5rem;
-  margin-top: 1rem;
-  overflow: hidden;
   color: #FFFFFF;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  padding-block: clamp(3.5rem, 6vw, 5.5rem);
 }
 
-.granulometry-workbench::before {
+.section-granulometria::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -1327,9 +1324,31 @@ textarea {
   opacity: 0.94;
 }
 
+.section-granulometria .container {
+  position: relative;
+  z-index: 2;
+}
+
+.granulometry-workbench {
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  display: grid;
+  gap: 2.5rem;
+  margin-top: 0;
+  overflow: visible;
+  color: #FFFFFF;
+}
+
+.granulometry-workbench::before {
+  display: none;
+}
+
 @media (min-width: 992px) {
   .granulometry-workbench {
-    grid-template-columns: 1.15fr 1fr;
+    grid-template-columns: 1.3fr 0.9fr;
     gap: 3.5rem;
     align-items: center;
   }
@@ -1371,14 +1390,15 @@ textarea {
 .grain-tabs {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.65rem;
-  margin-bottom: 1.75rem;
+  gap: 0.4rem;
+  margin-bottom: 1.6rem;
   background-color: rgba(0, 0, 0, 0.22);
-  padding: 0.4rem;
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  padding: 0.35rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  max-width: 520px;
 }
 
 .grain-tab {
@@ -1386,14 +1406,14 @@ textarea {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0.85rem 0.5rem;
-  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.5rem;
+  border-radius: 999px;
   border: 0;
   background-color: transparent;
   cursor: pointer;
   transition: all 0.22s ease;
   text-align: center;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .grain-tab:hover {
@@ -1402,7 +1422,7 @@ textarea {
 
 .grain-tab.is-active {
   background-color: #FFFFFF;
-  color: var(--color-carbon);
+  color: #8A3300;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
   font-weight: 700;
 }
@@ -1412,16 +1432,16 @@ textarea {
 }
 
 .grain-tab-caliber {
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #FFE6CC;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.15rem;
 }
 
 .grain-tab-name {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
 }
 
@@ -1461,11 +1481,12 @@ textarea {
 }
 
 .grain-uses-box {
-  background-color: rgba(255, 255, 255, 0.14);
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-left: 3px solid #FFE6CC;
-  padding: 1.1rem 1.35rem;
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  margin-bottom: 1.65rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.5rem;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -1516,14 +1537,16 @@ textarea {
   border-color: #241812;
 }
 
-/* Tarjeta visualizadora */
+/* Tarjeta visualizadora compacta y minimalista */
 .scale-card {
   background-color: #FFFFFF;
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: var(--radius-md);
-  padding: 1.5rem;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  padding: 1.25rem;
+  box-shadow: 0 16px 36px -10px rgba(60, 20, 0, 0.28);
   color: var(--color-carbon);
+  max-width: 390px;
+  margin-inline: auto;
 }
 
 .scale-card-header {
@@ -1531,14 +1554,14 @@ textarea {
   justify-content: space-between;
   align-items: baseline;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.65rem;
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.55rem;
   border-bottom: 1px solid var(--color-borde);
 }
 
 .scale-card-title {
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -1546,7 +1569,7 @@ textarea {
 }
 
 .scale-card-measure {
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   font-weight: 700;
   color: var(--color-carbon);
 }
@@ -1554,14 +1577,14 @@ textarea {
 .grain-photo-display {
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1;
-  max-height: 340px;
+  aspect-ratio: 16 / 11;
+  max-height: 210px;
   border-radius: var(--radius-sm);
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   border: 1px solid var(--color-borde);
   background-color: #FFFFFF;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.95rem;
 }
 
 .grain-photo-img {
@@ -3034,7 +3057,6 @@ textarea {
   .app-card-body,
   .product-tier-card,
   .participation-card,
-  .granulometry-workbench,
   .mv-card,
   .process-block,
   .contact-form-card,
@@ -3178,9 +3200,9 @@ textarea {
     gap: 4rem;
   }
   .granulometry-workbench {
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1.3fr 0.9fr;
     align-items: center;
-    padding: 2.5rem;
+    padding: 0;
   }
   .masonry-gallery {
     columns: 3;
