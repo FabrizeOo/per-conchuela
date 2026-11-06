@@ -10,11 +10,11 @@
   --color-arena: #F7F7F5;            /* Gris piedra galería ultra sutil (Secciones alternas ordenadas) */
   --color-hueso: #FFFFFF;            /* Blanco puro (Tarjetas y superficies elevadas) */
   --color-carbon: #151413;           /* Carbón arquitectónico (Texto principal nítido) */
-  --color-mar: #3D190E;              /* Espresso profundo del logo (Acento principal y CTA) */
+  --color-mar: #C3530F;              /* Naranja terracota cálido de marca (Acento principal y botones CTA) */
   --color-terracota: #C5832B;        /* Bronce mineral del logo (Acento secundario) */
 
   /* Variantes de soporte */
-  --color-mar-hover: #260E07;
+  --color-mar-hover: #A74208;
   --color-oro-mineral: #E5C158;
   --color-terracota-text: #8A5311;
   --color-texto-secundario: #5E5954;
@@ -22,7 +22,7 @@
   --color-borde-fuerte: rgba(21, 20, 19, 0.15);
   --color-borde-oro: rgba(197, 131, 43, 0.26);
   --color-error: #9E2A2B;
-  --color-exito: #3D190E;
+  --color-exito: #166534;
 
   /* Tipografía Minimalista Elegante */
   --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -316,14 +316,14 @@ textarea {
   background-color: var(--color-mar);
   color: #FFFFFF;
   border-color: var(--color-mar);
-  box-shadow: 0 8px 20px -6px rgba(61, 25, 14, 0.28);
+  box-shadow: 0 8px 20px -6px rgba(195, 83, 15, 0.35);
 }
 
 .btn-primary:hover {
   background-color: var(--color-mar-hover);
   border-color: var(--color-mar-hover);
   color: #FFFFFF;
-  box-shadow: 0 12px 26px -6px rgba(61, 25, 14, 0.38);
+  box-shadow: 0 12px 26px -6px rgba(195, 83, 15, 0.45);
 }
 
 .btn-secondary {
@@ -2871,8 +2871,9 @@ textarea {
 
 .map-tab.is-active {
   background-color: var(--color-mar);
-  color: var(--color-crema);
+  color: #FFFFFF;
   border-color: var(--color-mar);
+  box-shadow: 0 4px 12px rgba(195, 83, 15, 0.28);
 }
 
 .map-embed-stage {
@@ -2917,18 +2918,18 @@ textarea {
    12. FOOTER Y 13. BOTÓN FLOTANTE WHATSAPP
    ========================================================================== */
 .site-footer {
-  background-color: var(--color-carbon);
-  color: var(--color-crema);
+  background-color: #EFECE6;
+  color: #2D2824;
   padding-top: 4.25rem;
   padding-bottom: 2.5rem;
-  border-top: 2px solid var(--color-terracota);
+  border-top: 3px solid var(--color-mar);
 }
 
 .footer-grid {
   display: grid;
   gap: 2.5rem;
   padding-bottom: 2.5rem;
-  border-bottom: 1px solid rgba(250, 247, 242, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .footer-logo-link img {
@@ -2936,19 +2937,22 @@ textarea {
   width: auto;
   object-fit: contain;
   margin-bottom: 1rem;
+  mix-blend-mode: multiply;
 }
 
 .footer-description {
   font-size: 0.92rem;
-  color: rgba(250, 247, 242, 0.78);
+  color: #4A443E;
   max-width: 44ch;
+  line-height: 1.6;
 }
 
 .footer-heading {
   font-family: var(--font-display);
-  font-size: 1.4rem;
-  color: var(--color-oro-mineral);
+  font-size: 1.35rem;
+  color: var(--color-mar);
   margin-bottom: 0.85rem;
+  font-weight: 700;
 }
 
 .footer-links,
@@ -2956,13 +2960,23 @@ textarea {
   display: grid;
   gap: 0.5rem;
   font-size: 0.92rem;
-  color: rgba(250, 247, 242, 0.84);
+  color: #38322C;
+}
+
+.footer-links a,
+.footer-contact-list a {
+  color: #2D2824;
+  transition: color 0.2s ease;
 }
 
 .footer-links a:hover,
 .footer-contact-list a:hover,
 .footer-socials a:hover {
-  color: var(--color-oro-mineral);
+  color: var(--color-mar);
+}
+
+.footer-contact-list strong {
+  color: #171513;
 }
 
 .footer-socials {
@@ -2973,10 +2987,14 @@ textarea {
   font-size: 0.9rem;
 }
 
+.footer-socials a {
+  color: var(--color-mar);
+}
+
 .footer-bottom {
   padding-top: 1.75rem;
   font-size: 0.85rem;
-  color: rgba(250, 247, 242, 0.68);
+  color: #6B635B;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -2998,7 +3016,7 @@ textarea {
   padding: 0;
   font: inherit;
   font-size: 0.83rem;
-  color: rgba(250, 247, 242, 0.78);
+  color: #554D45;
   text-decoration: underline;
   text-underline-offset: 3px;
   cursor: pointer;
@@ -3007,7 +3025,7 @@ textarea {
 
 .footer-legal-btn:hover,
 .footer-legal-link:hover {
-  color: var(--color-oro-mineral);
+  color: var(--color-mar);
 }
 
 /* Modal de Política de Privacidad y Seguridad de la Información */

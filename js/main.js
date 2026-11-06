@@ -66,13 +66,13 @@
   var ALLOWED_SECTORS = deepFreeze(['Fósila', 'Esculturas', 'Avícola', 'Inmobiliario', 'Paisajismo', 'Industrial', 'Otro']);
 
   var ALLOWED_MAP_OFFICES = deepFreeze({
-    'el-agustino': {
-      query: 'Av. Jose Carlos Mariategui 2587 El Agustino Lima Peru',
-      label: 'Oficina Principal · Av. José Carlos Mariátegui 2587, El Agustino'
-    },
     'la-molina': {
       query: 'Las Fresias 263 Camacho La Molina Lima Peru',
-      label: 'Oficina Administrativa · Las Fresias 263, Camacho, La Molina'
+      label: 'Oficina Principal · Las Fresias 263, Camacho, La Molina'
+    },
+    'el-agustino': {
+      query: 'Av. Jose Carlos Mariategui 2587 El Agustino Lima Peru',
+      label: 'Sede Operativa · Av. José Carlos Mariátegui 2587, El Agustino'
     }
   });
 
