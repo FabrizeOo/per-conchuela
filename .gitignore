@@ -29,9 +29,12 @@ Desktop.ini
 *.tmp
 *.swp
 
-# Archivos fuente crudos locales en la raíz (ya optimizados dentro de assets/)
+# Archivos multimedia crudos o documentos fuera de assets/
 /*.png
-!/bannernaranja.png
+/*.jpg
 /*.jpeg
-/SCROLLVIDEO.mp4
+/*.webp
+/*.mp4
+/*.docx
+/*.pdf
 
