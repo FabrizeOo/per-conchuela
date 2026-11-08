@@ -9,7 +9,7 @@
   <meta name="robots" content="index, follow">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; frame-src https://www.instagram.com https://www.google.com https://maps.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; media-src 'self'; frame-src https://www.instagram.com https://www.google.com https://maps.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="theme-color" content="#FFFFFF">
   <link rel="canonical" href="https://peruconchuela.com/">
 
@@ -36,10 +36,9 @@
   <meta name="twitter:description" content="Solución natural, efectiva y asequible de conchuela marina milenaria para avicultura, construcción, paisajismo y arquitectura.">
   <meta name="twitter:image" content="https://peruconchuela.com/assets/img/og-peru-conchuela.webp">
 
-  <!-- Google Fonts con font-display: swap (Outfit + Plus Jakarta Sans: minimalismo arquitectónico elegante) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Tipografías locales de alta fidelidad precargadas (Zero-CDN: RGPD / LG München 3 O 17493/20) -->
+  <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Hoja de estilos principal -->
   <link rel="stylesheet" href="css/styles.css">

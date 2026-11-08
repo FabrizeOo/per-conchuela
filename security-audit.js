@@ -72,6 +72,12 @@ check(
   'Cero dependencias de scripts hacia CDNs externos en index.html'
 );
 
+check(
+  !/fonts\.googleapis\.com/i.test(html) && !/fonts\.gstatic\.com/i.test(html),
+  'RGPD / ISO-27071',
+  'Cero dependencias de fuentes hacia Google Fonts en index.html (tipografías locales autoalojadas)'
+);
+
 // Verificar que ningún <script> sea inline ejecutable (solo src="..." o type="application/ld+json")
 const scriptTags = html.match(/<script\b[^>]*>/gi) || [];
 const unsafeInlineScripts = scriptTags.filter((tag) => {
