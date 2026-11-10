@@ -137,6 +137,25 @@
       scalePercent: '18%',
       rulerX: 6,
       rulerWidth: 26
+    },
+    phuket: {
+      badge: 'Especial',
+      title: 'Conchuela Phuket (Selección Arquitectónica)',
+      measure: 'Diámetro: 1.0 – 3.0 mm (Grano Decorativo)',
+      photoSrc: 'assets/img/productos/conchuela-phuket.webp',
+      photoAlt: 'Fotografía de Conchuela Phuket selección arquitectónica en alta pureza',
+      photoBadge: 'Conchuela Phuket',
+      summary: 'Variedad seleccionada de alta pureza estética con tonos nácar y arena clara. Diseñada para acabados continuos de lujo, terrazos premium y paisajismo exclusivo.',
+      descInm: 'Terrazos lavados, pavimentos continuos, revestimientos pulidos y muros decorativos.',
+      descPais: 'Paisajismo de lujo, jardines zen, alcorques destacados y áreas de relajación.',
+      descAvic: 'Selección mineral biogénica de máxima pureza.',
+      uses: [
+        'Arquitectura e interiorismo: terrazos continuos, pisos biofílicos y estucos minerales.',
+        'Paisajismo de alto nivel: cubresuelos claros de alto impacto visual y jardines secos contemporáneos.'
+      ],
+      scalePercent: '75%',
+      rulerX: 68,
+      rulerWidth: 30
     }
   });
 
