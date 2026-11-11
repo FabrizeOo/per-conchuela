@@ -114,7 +114,7 @@
         'Industrial y arquitectura: sustituto de granalla de mármol para terrazo lavado y revestimientos.',
         'Avicultura: alimento balanceado para aves en etapa de crecimiento y engorde (32 a 36% de calcio).'
       ],
-      scalePercent: '55%',
+      scalePercent: '36%',
       rulerX: 38,
       rulerWidth: 26
     },
@@ -134,15 +134,15 @@
         'Paisajismo: playas artificiales en hoteles y condominios, jardines interiores y sustrato de acuarios.',
         'Avicultura: raciones de inicio para pollitos y premezclas minerales de rápida biodisponibilidad.'
       ],
-      scalePercent: '18%',
+      scalePercent: '10%',
       rulerX: 6,
       rulerWidth: 26
     },
     phuket: {
       badge: 'Especial',
       title: 'Conchuela Phuket (Selección Arquitectónica)',
-      measure: 'Diámetro: 1.0 – 3.0 mm (Grano Decorativo)',
-      photoSrc: 'assets/img/productos/conchuela-phuket.webp',
+      measure: 'Diámetro: 2.0 – 3.0 mm (Grano Decorativo)',
+      photoSrc: 'assets/img/granulometria/Conchuela_Phuket.jpeg',
       photoAlt: 'Fotografía de Conchuela Phuket selección arquitectónica en alta pureza',
       photoBadge: 'Conchuela Phuket',
       summary: 'Variedad seleccionada de alta pureza estética con tonos nácar y arena clara. Diseñada para acabados continuos de lujo, terrazos premium y paisajismo exclusivo.',
@@ -153,7 +153,7 @@
         'Arquitectura e interiorismo: terrazos continuos, pisos biofílicos y estucos minerales.',
         'Paisajismo de alto nivel: cubresuelos claros de alto impacto visual y jardines secos contemporáneos.'
       ],
-      scalePercent: '75%',
+      scalePercent: '68%',
       rulerX: 68,
       rulerWidth: 30
     }
@@ -1167,6 +1167,218 @@
     });
   }
 
+  /* 8. Libro de Reclamaciones Virtual (Ley N° 29571 / D.S. 011-2011-PCM) */
+  function initClaimsBookForm() {
+    var form = document.getElementById('claims-form');
+    if (!form) return;
+
+    var currentDateEl = document.getElementById('claims-current-date');
+    var nowInit = new Date();
+    if (currentDateEl) {
+      currentDateEl.textContent = 'Fecha: ' + nowInit.toLocaleDateString('es-PE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    }
+
+    var honeypot = document.getElementById('claims_website_hp');
+
+    var rules = {
+      docNum: {
+        input: document.getElementById('lr-doc-num'),
+        error: document.getElementById('error-lr-doc-num'),
+        validate: function (val) {
+          var v = sanitizePlainText(val, 20, false);
+          if (!v || v.length < 8) return 'Ingresa un número de documento válido (mínimo 8 caracteres).';
+          return '';
+        }
+      },
+      nombre: {
+        input: document.getElementById('lr-nombre'),
+        error: document.getElementById('error-lr-nombre'),
+        validate: function (val) {
+          var v = sanitizePlainText(val, 150, false);
+          if (!v || v.length < 3) return 'Ingresa tu nombre completo o razón social.';
+          return '';
+        }
+      },
+      domicilio: {
+        input: document.getElementById('lr-domicilio'),
+        error: document.getElementById('error-lr-domicilio'),
+        validate: function (val) {
+          var v = sanitizePlainText(val, 200, false);
+          if (!v || v.length < 5) return 'Ingresa un domicilio completo válido.';
+          return '';
+        }
+      },
+      telefono: {
+        input: document.getElementById('lr-telefono'),
+        error: document.getElementById('error-lr-telefono'),
+        validate: function (val) {
+          var v = sanitizePlainText(val, 25, false);
+          if (!v || v.replace(/\D/g, '').length < 7) return 'Ingresa un número telefónico válido.';
+          return '';
+        }
+      },
+      email: {
+        input: document.getElementById('lr-email'),
+        error: document.getElementById('error-lr-email'),
+        validate: function (val) {
+          var v = sanitizePlainText(val, 120, false);
+          if (!v || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return 'Ingresa un correo electrónico válido.';
+          return '';
+        }
+      },
+      bienDesc: {
+        input: document.getElementById('lr-bien-desc'),
+        error: document.getElementById('error-lr-bien-desc'),
+        validate: function (val) {
+          var v = sanitizePlainText(val, 250, false);
+          if (!v || v.length < 4) return 'Describe brevemente el producto o servicio.';
+          return '';
+        }
+      },
+      detalle: {
+        input: document.getElementById('lr-detalle'),
+        error: document.getElementById('error-lr-detalle'),
+        validate: function (val) {
+          var v = sanitizePlainText(val, 2000, true);
+          if (!v || v.length < 10) return 'Por favor detalla los hechos ocurridos (mínimo 10 caracteres).';
+          return '';
+        }
+      },
+      pedido: {
+        input: document.getElementById('lr-pedido'),
+        error: document.getElementById('error-lr-pedido'),
+        validate: function (val) {
+          var v = sanitizePlainText(val, 1000, true);
+          if (!v || v.length < 5) return 'Indica el pedido concreto o solución solicitada.';
+          return '';
+        }
+      },
+      declaracion: {
+        input: document.getElementById('lr-declaracion'),
+        error: document.getElementById('error-lr-declaracion'),
+        validate: function () {
+          if (!rules.declaracion.input.checked) return 'Debes aceptar la declaración jurada y autorización de respuesta.';
+          return '';
+        }
+      }
+    };
+
+    function validateField(key) {
+      var item = rules[key];
+      if (!item || !item.input) return true;
+      var msg = item.validate(item.input.value);
+      item.input.classList.toggle('is-invalid', Boolean(msg));
+      item.input.setAttribute('aria-invalid', String(Boolean(msg)));
+      if (item.error) item.error.textContent = msg;
+      return !msg;
+    }
+
+    Object.keys(rules).forEach(function (key) {
+      var item = rules[key];
+      if (!item.input) return;
+      var evt = item.input.type === 'checkbox' ? 'change' : 'input';
+      item.input.addEventListener(evt, function () { validateField(key); });
+      item.input.addEventListener('blur', function () { validateField(key); });
+    });
+
+    var printBtn = document.getElementById('claims-print-btn');
+    if (printBtn) {
+      printBtn.addEventListener('click', function () {
+        window.print();
+      });
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (honeypot && honeypot.value.trim() !== '') return;
+
+      var allOk = true;
+      var firstErr = null;
+      Object.keys(rules).forEach(function (key) {
+        var ok = validateField(key);
+        if (!ok && allOk) {
+          allOk = false;
+          firstErr = rules[key].input;
+        }
+      });
+
+      if (!allOk) {
+        if (firstErr) firstErr.focus();
+        return;
+      }
+
+      var now = new Date();
+      var code = 'LR-' + now.getFullYear() + '-' + String(now.getTime()).slice(-6);
+      var dateStr = now.toLocaleDateString('es-PE', { day: '2-digit', month: '2-digit', year: 'numeric' }) +
+        ' ' + now.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit' });
+
+      var docTipoEl = document.getElementById('lr-doc-tipo');
+      var apoderadoEl = document.getElementById('lr-apoderado');
+      var montoEl = document.getElementById('lr-monto');
+      var bienChecked = form.querySelector('input[name="bien_tipo"]:checked');
+      var incChecked = form.querySelector('input[name="incidencia_tipo"]:checked');
+
+      var docTipo = docTipoEl ? docTipoEl.value : 'DNI';
+      var docNum = sanitizePlainText(rules.docNum.input.value, 20, false);
+      var nombre = sanitizePlainText(rules.nombre.input.value, 150, false);
+      var domicilio = sanitizePlainText(rules.domicilio.input.value, 200, false);
+      var telefono = sanitizePlainText(rules.telefono.input.value, 25, false);
+      var email = sanitizePlainText(rules.email.input.value, 120, false);
+      var apoderado = apoderadoEl ? sanitizePlainText(apoderadoEl.value, 150, false) : '';
+      var bienTipo = bienChecked ? bienChecked.value : 'Producto';
+      var monto = montoEl && montoEl.value ? 'S/ ' + parseFloat(montoEl.value).toFixed(2) : 'No especificado';
+      var bienDesc = sanitizePlainText(rules.bienDesc.input.value, 250, false);
+      var incTipo = incChecked ? incChecked.value : 'Reclamo';
+      var detalle = sanitizePlainText(rules.detalle.input.value, 2000, true);
+      var pedido = sanitizePlainText(rules.pedido.input.value, 1000, true);
+
+      var summaryLines = [
+        'HOJA DE RECLAMACIÓN VIRTUAL - PERÚ CONCHUELA',
+        'Código: ' + code + ' | Fecha: ' + dateStr,
+        '--------------------------------------------------',
+        '1. CONSUMIDOR:',
+        'Documento: ' + docTipo + ' ' + docNum,
+        'Nombre/Razón Social: ' + nombre,
+        'Domicilio: ' + domicilio,
+        'Teléfono: ' + telefono + ' | Email: ' + email,
+        apoderado ? 'Padre/Apoderado: ' + apoderado : null,
+        '--------------------------------------------------',
+        '2. BIEN CONTRATADO:',
+        'Tipo: ' + bienTipo + ' | Monto: ' + monto,
+        'Descripción: ' + bienDesc,
+        '--------------------------------------------------',
+        '3. DETALLE DE LA ' + incTipo.toUpperCase() + ':',
+        'Hechos: ' + detalle,
+        'Pedido concreto: ' + pedido,
+        '--------------------------------------------------',
+        'Plazo máximo de atención: 15 días hábiles improrrogables (Ley N° 31435).'
+      ].filter(Boolean).join('\n');
+
+      var receiptBox = document.getElementById('claims-receipt-box');
+      var codeEl = document.getElementById('claims-receipt-code');
+      var summaryEl = document.getElementById('claims-receipt-summary');
+      var mailtoEl = document.getElementById('claims-mailto-link');
+      var waEl = document.getElementById('claims-whatsapp-link');
+
+      if (codeEl) codeEl.textContent = code;
+      if (summaryEl) summaryEl.textContent = summaryLines;
+
+      var subject = sanitizePlainText('Libro de Reclamaciones ' + code + ' - ' + incTipo + ' - ' + nombre, 160, false);
+      if (mailtoEl) {
+        mailtoEl.href = 'mailto:contactos@peruconchuela.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(summaryLines);
+      }
+      if (waEl) {
+        waEl.href = 'https://wa.me/51935373326?text=' + encodeURIComponent(summaryLines);
+      }
+
+      if (receiptBox) {
+        receiptBox.hidden = false;
+        receiptBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+  }
+
   function initAll() {
     enforceExternalLinkSafety();
     initInteractivePreloader();
@@ -1179,6 +1391,7 @@
     initParticipationSliders();
     initPrivacyModal();
     initContactForm();
+    initClaimsBookForm();
   }
 
   if (document.readyState === 'loading') {

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Libro de Reclamaciones Virtual | Perú Conchuela</title>
+  <meta name="description" content="Libro de Reclamaciones Virtual de Perú Conchuela conforme al Código de Protección y Defensa del Consumidor (Ley N° 29571) y D.S. N° 011-2011-PCM.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; media-src 'self'; frame-src https://www.google.com https://maps.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="canonical" href="https://peruconchuela.com/libro-reclamaciones.html">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+  <!-- Tipografías locales precargadas (Zero-CDN: RGPD / LG München 3 O 17493/20) -->
+  <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Hoja de estilos -->
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/reset-scroll.js"></script>
+</head>
+<body class="page-claims">
+  <!-- Enlace accesible para salto directo al contenido -->
+  <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+  <!-- HEADER FIJO -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html#inicio" class="brand-logo" aria-label="Perú Conchuela - Ir al inicio">
+        <img src="assets/img/logo.webp" alt="Logotipo de Perú Conchuela, concesión minera no metálica" width="240" height="111">
+      </a>
+
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Abrir menú de navegación">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav class="primary-nav" id="primary-nav" aria-label="Navegación principal">
+        <ul class="nav-list">
+          <li><a href="index.html#inicio" class="nav-link">Inicio</a></li>
+          <li><a href="index.html#quienes-somos" class="nav-link">Quiénes somos</a></li>
+          <li><a href="index.html#versatilidad" class="nav-link">Versatilidad</a></li>
+          <li><a href="index.html#productos" class="nav-link">Productos</a></li>
+          <li><a href="index.html#proyectos" class="nav-link">Proyectos</a></li>
+          <li><a href="index.html#clientes" class="nav-link">Clientes</a></li>
+          <li><a href="prensa.html" class="nav-link">Prensa</a></li>
+          <li><a href="avicola.html" target="_blank" rel="noopener noreferrer" class="nav-link nav-link-special">Avícola ↗</a></li>
+        </ul>
+        <a href="index.html#contacto" class="btn btn-primary nav-cta">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido-principal">
+    <section class="claims-hero-section" aria-labelledby="claims-hero-title">
+      <div class="container">
+        <div class="claims-hero-box">
+          <span class="claims-eyebrow">Atención al Consumidor · Ley N° 29571</span>
+          <h1 class="claims-hero-title" id="claims-hero-title">Libro de Reclamaciones Virtual</h1>
+          <p class="claims-hero-subtitle">Conforme a lo establecido en el Código de Protección y Defensa del Consumidor y el Reglamento del Libro de Reclamaciones (D.S. N° 011-2011-PCM y modificatorias).</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-claims-body" aria-label="Formulario oficial del Libro de Reclamaciones">
+      <div class="container">
+        <div class="claims-wrapper">
+          <!-- Cabecera Institucional de la Hoja de Reclamación -->
+          <div class="claims-provider-header">
+            <div class="claims-provider-info">
+              <h2>PERÚ CONCHUELA</h2>
+              <p><strong>Sede Administrativa:</strong> Las Fresias 263, Camacho, La Molina, Lima - Perú</p>
+              <p><strong>Sede Operativa:</strong> Av. José Carlos Mariátegui 2587, El Agustino, Lima - Perú</p>
+            </div>
+            <div class="claims-sheet-meta">
+              <span class="claims-sheet-badge">Hoja de Reclamación Virtual</span>
+              <span class="claims-sheet-date" id="claims-current-date">Fecha de registro: Automática al enviar</span>
+            </div>
+          </div>
+
+          <form class="claims-form" id="claims-form" novalidate>
+            <!-- Campo anti-bot honeypot oculto -->
+            <div class="form-honeypot" aria-hidden="true">
+              <label for="claims_website_hp">Dejar vacío</label>
+              <input type="text" id="claims_website_hp" name="claims_website_hp" tabindex="-1" autocomplete="off">
+            </div>
+
+            <!-- SECCIÓN 1: IDENTIFICACIÓN DEL CONSUMIDOR -->
+            <fieldset class="claims-fieldset">
+              <legend class="claims-legend">1. Identificación del Consumidor Reclamante</legend>
+
+              <div class="claims-grid-2">
+                <div class="form-group">
+                  <label for="lr-doc-tipo" class="form-label">Tipo de documento <span class="req">*</span></label>
+                  <select id="lr-doc-tipo" name="doc_tipo" class="form-control" required>
+                    <option value="DNI">DNI</option>
+                    <option value="RUC">RUC</option>
+                    <option value="CE">Carné de Extranjería</option>
+                    <option value="Pasaporte">Pasaporte</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="lr-doc-num" class="form-label">Número de documento <span class="req">*</span></label>
+                  <input type="text" id="lr-doc-num" name="doc_num" class="form-control" required minlength="8" maxlength="15" placeholder="Ej. 45891234" aria-describedby="error-lr-doc-num">
+                  <span class="form-error" id="error-lr-doc-num" role="alert"></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="lr-nombre" class="form-label">Nombres y apellidos / Razón social <span class="req">*</span></label>
+                <input type="text" id="lr-nombre" name="nombre" class="form-control" required minlength="3" maxlength="150" placeholder="Ej. Juan Carlos Pérez Gómez / Constructora Andes S.A.C." aria-describedby="error-lr-nombre">
+                <span class="form-error" id="error-lr-nombre" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="lr-domicilio" class="form-label">Domicilio <span class="req">*</span></label>
+                <input type="text" id="lr-domicilio" name="domicilio" class="form-control" required minlength="5" maxlength="200" placeholder="Av. / Jr. / Calle, Distrito, Ciudad" aria-describedby="error-lr-domicilio">
+                <span class="form-error" id="error-lr-domicilio" role="alert"></span>
+              </div>
+
+              <div class="claims-grid-2">
+                <div class="form-group">
+                  <label for="lr-telefono" class="form-label">Teléfono / Celular <span class="req">*</span></label>
+                  <input type="tel" id="lr-telefono" name="telefono" class="form-control" required minlength="7" maxlength="20" placeholder="Ej. 999 888 777" aria-describedby="error-lr-telefono">
+                  <span class="form-error" id="error-lr-telefono" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="lr-email" class="form-label">Correo electrónico <span class="req">*</span></label>
+                  <input type="email" id="lr-email" name="email" class="form-control" required maxlength="120" placeholder="ejemplo@correo.com" aria-describedby="error-lr-email">
+                  <span class="form-error" id="error-lr-email" role="alert"></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="lr-apoderado" class="form-label">Padre o madre (en caso de ser menor de edad - opcional)</label>
+                <input type="text" id="lr-apoderado" name="apoderado" class="form-control" maxlength="150" placeholder="Nombres completos del padre, madre o apoderado">
+              </div>
+            </fieldset>
+
+            <!-- SECCIÓN 2: IDENTIFICACIÓN DEL BIEN CONTRATADO -->
+            <fieldset class="claims-fieldset">
+              <legend class="claims-legend">2. Identificación del Bien Contratado</legend>
+
+              <div class="claims-grid-2">
+                <div class="form-group">
+                  <span class="form-label">Tipo de bien contratado <span class="req">*</span></span>
+                  <div class="claims-radio-group">
+                    <label class="claims-radio-label">
+                      <input type="radio" name="bien_tipo" value="Producto" checked>
+                      <span>Producto (Conchuela / Fósila / Travertino)</span>
+                    </label>
+                    <label class="claims-radio-label">
+                      <input type="radio" name="bien_tipo" value="Servicio">
+                      <span>Servicio (Transporte / Asesoría / Atención)</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="lr-monto" class="form-label">Monto reclamado (S/ - opcional)</label>
+                  <input type="number" id="lr-monto" name="monto" class="form-control" min="0" step="0.01" placeholder="Ej. 1500.00">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="lr-bien-desc" class="form-label">Descripción del producto o servicio contratado <span class="req">*</span></label>
+                <input type="text" id="lr-bien-desc" name="bien_desc" class="form-control" required minlength="4" maxlength="250" placeholder="Ej. Conchuela gruesa 20 TM / Pedido guía N° 001-..." aria-describedby="error-lr-bien-desc">
+                <span class="form-error" id="error-lr-bien-desc" role="alert"></span>
+              </div>
+            </fieldset>
+
+            <!-- SECCIÓN 3: DETALLE DE LA RECLAMACIÓN Y PEDIDO -->
+            <fieldset class="claims-fieldset">
+              <legend class="claims-legend">3. Detalle de la Reclamación y Pedido del Consumidor</legend>
+
+              <div class="form-group">
+                <span class="form-label">Tipo de incidencia <span class="req">*</span></span>
+                <div class="claims-type-cards">
+                  <label class="claims-type-card">
+                    <input type="radio" name="incidencia_tipo" value="Reclamo" checked>
+                    <div>
+                      <strong>Reclamo</strong>
+                      <p>Disconformidad relacionada a los productos o servicios.</p>
+                    </div>
+                  </label>
+                  <label class="claims-type-card">
+                    <input type="radio" name="incidencia_tipo" value="Queja">
+                    <div>
+                      <strong>Queja</strong>
+                      <p>Disconformidad no relacionada a los productos o servicios; o, malestar o descontento respecto a la atención al público.</p>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="lr-detalle" class="form-label">Detalle de los hechos <span class="req">*</span></label>
+                <textarea id="lr-detalle" name="detalle" class="form-control form-textarea" required minlength="10" maxlength="2000" rows="4" placeholder="Describe detalladamente el motivo de tu reclamo o queja, incluyendo fecha de compra o incidente..." aria-describedby="error-lr-detalle"></textarea>
+                <span class="form-error" id="error-lr-detalle" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="lr-pedido" class="form-label">Pedido concreto del consumidor <span class="req">*</span></label>
+                <textarea id="lr-pedido" name="pedido" class="form-control form-textarea" required minlength="5" maxlength="1000" rows="3" placeholder="Indica claramente la solución que solicitas..." aria-describedby="error-lr-pedido"></textarea>
+                <span class="form-error" id="error-lr-pedido" role="alert"></span>
+              </div>
+            </fieldset>
+
+            <!-- SECCIÓN 4: AVISO LEGAL Y DECLARACIÓN -->
+            <div class="claims-legal-notice">
+              <p><strong>Nota Legal INDECOPI:</strong> La formulación del reclamo no impide acudir a otras vías de solución de controversias ni es requisito previo para interponer una denuncia ante el INDECOPI. El proveedor deberá dar respuesta al reclamo o queja en un plazo no mayor a <strong>quince (15) días hábiles improrrogables</strong> (Ley N° 31435).</p>
+            </div>
+
+            <div class="form-group form-group-consent">
+              <label class="form-consent-label" for="lr-declaracion">
+                <input type="checkbox" id="lr-declaracion" name="declaracion" class="form-consent-checkbox" required aria-describedby="error-lr-declaracion">
+                <span>Declaro bajo juramento que los datos consignados son verídicos y autorizo recibir la respuesta oficial en el correo electrónico señalado conforme a la Ley N° 29733. <span class="req">*</span></span>
+              </label>
+              <span class="form-error" id="error-lr-declaracion" role="alert"></span>
+            </div>
+
+            <div class="claims-submit-row">
+              <button type="submit" class="btn btn-primary btn-full">Generar y Enviar Hoja de Reclamación</button>
+            </div>
+
+            <!-- CONSTANCIA / COMPROBANTE GENERADO -->
+            <div class="claims-receipt-box" id="claims-receipt-box" role="status" aria-live="polite" hidden>
+              <div class="claims-receipt-header">
+                <h3>Hoja de Reclamación Generada</h3>
+                <span class="claims-receipt-code" id="claims-receipt-code">LR-2026-0000</span>
+              </div>
+              <p class="claims-receipt-intro">Tu constancia ha sido generada correctamente. Para completar la recepción formal por parte de nuestra área de atención al consumidor, envía la constancia por uno de los canales oficiales:</p>
+              <pre class="claims-receipt-summary" id="claims-receipt-summary"></pre>
+              <div class="claims-receipt-actions">
+                <a href="mailto:contactos@peruconchuela.com" id="claims-mailto-link" class="btn btn-primary">Enviar por Correo Oficial ↗</a>
+                <a href="https://wa.me/51935373326" id="claims-whatsapp-link" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Enviar copia por WhatsApp ↗</a>
+                <button type="button" id="claims-print-btn" class="btn btn-ghost">Imprimir / Guardar PDF</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER IDÉNTICO -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand-col">
+          <a href="index.html#inicio" class="footer-logo-link" aria-label="Perú Conchuela - Volver al inicio">
+            <img src="assets/img/logo-footer.jpg" alt="Logotipo oficial de Perú Conchuela" width="220" height="101" loading="lazy">
+          </a>
+          <p class="footer-description">Concesión minera no metálica peruana líder en la extracción y comercialización de conchuela en estado natural, a granel e industrializada. Más de 23 años de experiencia.</p>
+        </div>
+
+        <nav class="footer-nav-col" aria-label="Enlaces del pie de página">
+          <h2 class="footer-heading">Navegación</h2>
+          <ul class="footer-links">
+            <li><a href="index.html#inicio">Inicio</a></li>
+            <li><a href="index.html#que-es">Qué es la conchuela</a></li>
+            <li><a href="index.html#versatilidad">Versatilidad</a></li>
+            <li><a href="index.html#productos">Productos y granulometría</a></li>
+            <li><a href="index.html#proyectos">Proyectos</a></li>
+            <li><a href="index.html#clientes">Clientes</a></li>
+            <li><a href="index.html#quienes-somos">Quiénes somos</a></li>
+            <li><a href="prensa.html">Prensa y noticias</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-contact-col">
+          <h2 class="footer-heading">Contacto y Sedes</h2>
+          <ul class="footer-contact-list">
+            <li><strong>WhatsApp / Teléfono:</strong> <a href="https://wa.me/51935373326" target="_blank" rel="noopener noreferrer">935 373 326</a></li>
+            <li><strong>Email:</strong> <a href="mailto:contactos@peruconchuela.com">contactos@peruconchuela.com</a></li>
+            <li><strong>Oficina principal:</strong> Las Fresias 263, Camacho, La Molina</li>
+            <li><strong>Sede operativa:</strong> Av. José Carlos Mariátegui 2587, El Agustino</li>
+          </ul>
+          <div class="footer-socials">
+            <a href="https://instagram.com/conchuelaperu" target="_blank" rel="noopener noreferrer" aria-label="Visitar Instagram de Perú Conchuela">Instagram</a>
+            <span aria-hidden="true">·</span>
+            <a href="https://facebook.com/peruconchuela" target="_blank" rel="noopener noreferrer" aria-label="Visitar Facebook de Perú Conchuela">Facebook</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">© 2026 Perú Conchuela. Todos los derechos reservados.</p>
+        <div class="footer-legal-links">
+          <a href="libro-reclamaciones.html" class="footer-legal-link footer-reclamos-link" aria-label="Acceder al Libro de Reclamaciones Virtual">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            Libro de Reclamaciones
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+  <a href="https://wa.me/51935373326?text=Hola%20Per%C3%BA%20Conchuela%2C%20deseo%20solicitar%20informaci%C3%B3n%20sobre%20conchuela%20natural." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar a Perú Conchuela por WhatsApp al 935 373 326">
+    <svg width="34" height="34" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <path d="M16.02 4.2C9.6 4.2 4.4 9.36 4.4 15.73c0 2.18.61 4.3 1.77 6.13L4.2 27.8l6.14-1.92a11.66 11.66 0 0 0 5.68 1.46c6.42 0 11.62-5.16 11.62-11.53 0-6.37-5.2-11.61-11.62-11.61Z" stroke="#FFFFFF" stroke-width="2.35" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12.35 10.65c-.28-.62-.58-.63-.85-.64-.22-.01-.47-.01-.72-.01-.25 0-.66.09-1 .47-.35.38-1.32 1.29-1.32 3.14 0 1.85 1.35 3.64 1.54 3.89.19.25 2.61 4.16 6.44 5.66 3.18 1.25 3.83 1 4.52.94.69-.06 2.23-.91 2.54-1.79.31-.88.31-1.63.22-1.79-.09-.16-.34-.25-.72-.44-.38-.19-2.23-1.1-2.57-1.22-.35-.13-.6-.19-.85.19-.25.38-.97 1.22-1.19 1.47-.22.25-.44.28-.82.09-.38-.19-1.59-.58-3.03-1.86-1.12-1-1.88-2.23-2.1-2.61-.22-.38-.02-.58.17-.77.17-.17.38-.44.57-.66.19-.22.25-.38.38-.63.12-.25.06-.47-.03-.66-.09-.19-.83-2.04-1.14-2.79Z" fill="#FFFFFF"/>
+    </svg>
+  </a>
+
+  <!-- GSAP y ScrollTrigger alojados localmente -->
+  <script src="js/vendor/gsap.min.js" defer></script>
+  <script src="js/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
