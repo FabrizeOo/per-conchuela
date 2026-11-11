@@ -1872,10 +1872,45 @@ textarea {
 }
 
 .avicola-hero-section {
-  padding-top: calc(var(--header-height) + 3.5rem);
-  padding-bottom: 3.5rem;
+  position: relative;
+  padding-top: calc(var(--header-height) + 4.5rem);
+  padding-bottom: 5rem;
   background-color: #FFFFFF;
-  border-bottom: 1px solid var(--color-borde);
+  overflow: hidden;
+}
+
+.avicola-hero-crescent {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 118%;
+  min-width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.68) 55%, rgba(255, 255, 255, 1) 96%),
+    radial-gradient(ellipse 58% 72% at 50% 48%, rgba(255, 255, 255, 0.68) 0%, rgba(255, 255, 255, 0.14) 100%),
+    url('../assets/img/avicola/pollitos.jpeg');
+  background-size: cover;
+  background-position: center 36%;
+  background-repeat: no-repeat;
+  border-radius: 0 0 50% 50% / 0 0 65% 65%;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 12%, rgba(0, 0, 0, 0.78) 55%, rgba(0, 0, 0, 0) 98%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 12%, rgba(0, 0, 0, 0.78) 55%, rgba(0, 0, 0, 0) 98%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 767px) {
+  .avicola-hero-crescent {
+    width: 145%;
+    border-radius: 0 0 50% 50% / 0 0 42% 42%;
+  }
+}
+
+.avicola-hero-section .container {
+  position: relative;
+  z-index: 2;
 }
 
 .avicola-hero-box {
@@ -1902,12 +1937,14 @@ textarea {
   color: var(--color-carbon);
   margin-bottom: 1rem;
   line-height: 1.12;
+  text-shadow: 0 2px 18px rgba(255, 255, 255, 0.85);
 }
 
 .avicola-hero-subtitle {
   font-size: 1.15rem;
+  font-weight: 500;
   line-height: 1.6;
-  color: var(--color-texto-secundario);
+  color: #2D2824;
   max-width: 720px;
   margin-inline: auto;
 }
@@ -1951,6 +1988,49 @@ textarea {
   padding: 0.75rem 1rem;
   background-color: #FAF8F5;
   border-top: 1px solid var(--color-borde);
+}
+
+/* Banner naranja idéntico al del Home (#cifras / bannernaranja.png) para #desventajas */
+.section-banner-naranja,
+#desventajas {
+  position: relative;
+  background-color: #C3530F;
+  background-image: url('../assets/img/bannernaranja.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: #FFFFFF;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+
+#desventajas .eyebrow {
+  color: #FFE6CC;
+}
+
+#desventajas .eyebrow::before {
+  background-color: #FFE6CC;
+}
+
+#desventajas .section-title {
+  color: #FFFFFF;
+}
+
+#desventajas .section-subtitle {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+#desventajas .risk-card {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 20px 44px -12px rgba(60, 20, 0, 0.36);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+#desventajas .risk-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 52px -12px rgba(50, 15, 0, 0.45);
 }
 
 .avicola-risks-grid {
