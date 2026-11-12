@@ -1,5 +1,15 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    { "source": "/", "destination": "/html/index.html" },
+    { "source": "/index.html", "destination": "/html/index.html" },
+    { "source": "/avicola.html", "destination": "/html/avicola.html" },
+    { "source": "/avicola", "destination": "/html/avicola.html" },
+    { "source": "/prensa.html", "destination": "/html/prensa.html" },
+    { "source": "/prensa", "destination": "/html/prensa.html" },
+    { "source": "/libro-reclamaciones.html", "destination": "/html/libro-reclamaciones.html" },
+    { "source": "/libro-reclamaciones", "destination": "/html/libro-reclamaciones.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",

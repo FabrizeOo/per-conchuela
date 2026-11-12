@@ -54,8 +54,9 @@ for (const [relPath, expectedHash] of Object.entries(EXPECTED_VENDOR_HASHES)) {
   }
 }
 
-// 2. Inspección de index.html (CSP, iframes sandbox, enlaces externos, cero scripts inline ejecutables)
-const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+// 2. Inspección de index.html / html/index.html (CSP, iframes sandbox, enlaces externos, cero scripts inline ejecutables)
+const indexRelPath = fs.existsSync(path.join(ROOT, 'html/index.html')) ? 'html/index.html' : 'index.html';
+const html = fs.readFileSync(path.join(ROOT, indexRelPath), 'utf8');
 
 check(
   /http-equiv="Content-Security-Policy"/i.test(html) &&
@@ -199,7 +200,7 @@ const SECRET_PATTERNS = [
   /sk_live_[0-9a-zA-Z]{24,}/
 ];
 
-const filesToScan = ['index.html', 'css/styles.css', 'js/main.js', 'js/scroll-video.js'];
+const filesToScan = [indexRelPath, 'css/styles.css', 'js/main.js', 'js/scroll-video.js'];
 let secretsFound = false;
 for (const f of filesToScan) {
   const content = fs.readFileSync(path.join(ROOT, f), 'utf8');

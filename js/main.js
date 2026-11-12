@@ -76,6 +76,15 @@
     }
   });
 
+  /* Detecta prefijo de ruta del tema cuando se ejecuta dentro de WordPress (wp-content/themes/.../) */
+  var THEME_BASE_PREFIX = (function () {
+    var scriptEl = document.querySelector('script[src*="js/main.js"]');
+    if (!scriptEl) return '';
+    var src = scriptEl.getAttribute('src') || '';
+    var idx = src.indexOf('js/main.js');
+    return idx > 0 ? src.slice(0, idx) : '';
+  })();
+
   /* CAMBIAR ESPECIFICACIONES DE GRANULOMETRÍA Y USOS RECOMENDADOS AQUÍ */
   var GRAIN_DATA = deepFreeze({
     gruesa: {
@@ -581,7 +590,7 @@
         photoImg.style.opacity = '0.3';
         photoImg.style.transform = 'scale(0.98)';
         setTimeout(function () {
-          photoImg.src = data.photoSrc;
+          photoImg.src = THEME_BASE_PREFIX + data.photoSrc;
           photoImg.alt = data.photoAlt;
           photoImg.style.opacity = '1';
           photoImg.style.transform = 'scale(1)';
