@@ -835,148 +835,107 @@
       </div>
     </section>
 
-    <!-- 9. PROFESIONALES QUE NOS RECOMIENDAN -->
+    <!-- 9. PROFESIONALES QUE NOS RECOMIENDAN (EDITORIAL SPOTLIGHT) -->
     <section class="section section-crema" id="clientes" aria-labelledby="titulo-clientes">
       <div class="container">
-        <div class="section-header reveal-up">
-          <p class="eyebrow">Respaldo en arquitectura, diseño y paisajismo</p>
-          <h2 class="section-title" id="titulo-clientes">Profesionales que nos recomiendan</h2>
-          <p class="section-subtitle">Reconocidos arquitectos, diseñadores y paisajistas eligen e integran nuestra conchuela natural en sus proyectos residenciales, comerciales y muestras de diseño en el Perú.</p>
-        </div>
-
-        <div class="professionals-showcase">
-          <!-- Carrusel de deslizamiento (Slider) de profesionales -->
-          <div class="prof-slider-wrapper reveal-up" id="prof-slider-wrapper">
-            <div class="prof-slider-header">
-              <div class="prof-slider-counter" id="prof-slider-counter" aria-live="polite">
-                <span class="prof-counter-current" id="prof-counter-current">01</span>
-                <span class="prof-counter-sep">/</span>
-                <span class="prof-counter-total" id="prof-counter-total">09</span>
-              </div>
-              <div class="prof-slider-nav" role="toolbar" aria-label="Controles del carrusel de profesionales">
-                <button type="button" class="prof-slider-btn prof-slider-prev" id="prof-slider-prev" aria-label="Deslizar al profesional anterior">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                  </svg>
-                </button>
-                <button type="button" class="prof-slider-btn prof-slider-next" id="prof-slider-next" aria-label="Deslizar al siguiente profesional">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg>
-                </button>
-              </div>
+        <div class="prof-editorial-showcase reveal-up" id="prof-editorial-showcase">
+          <div class="prof-spotlight-stage">
+            <!-- Columna izquierda: cita editorial y autor -->
+            <div class="prof-spotlight-content" aria-live="polite">
+              <p class="prof-spotlight-eyebrow" id="titulo-clientes">Respaldo profesional</p>
+              <blockquote class="prof-spotlight-quote" id="prof-spotlight-quote">
+                «La conchuela es un material que forma parte de la identidad arquitectónica de Lima. Su textura, tonalidad natural y carácter artesanal aportan calidez y autenticidad a los espacios. Desde Lee Arquitectos, valoramos su capacidad de conectar la arquitectura contemporánea con la tradición constructiva local, reinterpretándola en acabados que transmiten historia, materialidad y una estética atemporal.»
+              </blockquote>
+              <span class="prof-spotlight-divider" aria-hidden="true"></span>
+              <h3 class="prof-spotlight-name" id="prof-spotlight-name">César Lee</h3>
+              <p class="prof-spotlight-role" id="prof-spotlight-role">Arquitecto</p>
             </div>
 
-            <div class="prof-slider-track-wrap" id="prof-slider-track-wrap" tabindex="0" role="region" aria-label="Carrusel de profesionales">
-              <div class="prof-slider-track" id="prof-slider-track">
-                <!-- Profesional 1 -->
-                <article class="prof-card prof-slide">
-                  <div class="prof-card-avatar">
-                    <img src="assets/img/profesionales/mateo-peschiera.webp" alt="Arquitecto Mateo Peschiera" width="500" height="500" loading="lazy">
-                  </div>
-                  <div class="prof-card-info">
-                    <span class="prof-card-role">Arquitecto</span>
-                    <h3 class="prof-card-name">Mateo Peschiera</h3>
-                  </div>
-                </article>
+            <!-- Columna derecha: retrato sobre fondo naranja con espiral Nautilus -->
+            <div class="prof-spotlight-visual">
+              <svg class="prof-nautilus-svg" viewBox="0 0 300 300" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+                <path d="M210 155 C210 148, 218 144, 224 148 C232 153, 230 166, 220 171 C206 178, 190 166, 188 150 C185 126, 206 105, 230 108 C262 112, 282 146, 274 178 C263 222, 214 246, 170 232 C110 212, 80 144, 104 84 C135 6, 228 -24, 302 12" />
+                <path d="M216 146 C222 136, 234 132, 244 136" />
+                <path d="M201 136 C204 120, 218 109, 234 109" />
+                <path d="M188 154 C172 146, 162 128, 165 108" />
+                <path d="M196 168 C178 176, 154 168, 142 148" />
+                <path d="M214 172 C208 194, 184 208, 158 202" />
+                <path d="M228 166 C236 192, 220 220, 192 230" />
+                <path d="M188 130 C160 112, 148 76, 164 44" />
+                <path d="M168 152 C132 144, 108 108, 116 68" />
+                <path d="M182 184 C144 192, 106 166, 98 124" />
+                <path d="M212 198 C184 224, 138 220, 112 186" />
+              </svg>
+              <img
+                id="prof-spotlight-img"
+                class="prof-spotlight-img"
+                src="assets/img/profesionales/cesar-lee.webp"
+                alt="Retrato de César Lee"
+                width="600"
+                height="600"
+                loading="lazy"
+              >
+            </div>
+          </div>
 
-                <!-- Profesional 2 -->
-                <article class="prof-card prof-slide">
-                  <div class="prof-card-avatar">
-                    <img src="assets/img/profesionales/ricardo-martin-de-rossi.webp" alt="Arquitecto Ricardo Martín de Rossi" width="500" height="500" loading="lazy">
-                  </div>
-                  <div class="prof-card-info">
-                    <span class="prof-card-role">Arquitecto</span>
-                    <h3 class="prof-card-name">Ricardo Martín de Rossi</h3>
-                  </div>
-                </article>
+          <!-- Barra inferior de selección de profesionales y flechas -->
+          <div class="prof-selector-bar">
+            <div class="prof-tabs-list" id="prof-tabs-list" role="tablist" aria-label="Seleccionar profesional">
+              <button type="button" class="prof-tab-btn is-active" role="tab" aria-selected="true" data-prof-index="0">
+                <span class="prof-tab-thumb">
+                  <img src="assets/img/profesionales/cesar-lee.webp" alt="" width="56" height="56" loading="lazy">
+                </span>
+                <span class="prof-tab-name">César Lee</span>
+              </button>
 
-                <!-- Profesional 3 -->
-                <article class="prof-card prof-slide">
-                  <div class="prof-card-avatar">
-                    <img src="assets/img/profesionales/barbara-biglieri.webp" alt="Arquitecta Bárbara Biglieri" width="500" height="500" loading="lazy">
-                  </div>
-                  <div class="prof-card-info">
-                    <span class="prof-card-role">Arquitecta</span>
-                    <h3 class="prof-card-name">Bárbara Biglieri</h3>
-                  </div>
-                </article>
+              <button type="button" class="prof-tab-btn" role="tab" aria-selected="false" data-prof-index="1">
+                <span class="prof-tab-thumb">
+                  <img src="assets/img/profesionales/diego-oliveira.webp" alt="" width="56" height="56" loading="lazy">
+                </span>
+                <span class="prof-tab-name">Diego Olivera</span>
+              </button>
 
-                <!-- Profesional 4 -->
-                <article class="prof-card prof-slide">
-                  <div class="prof-card-avatar">
-                    <img src="assets/img/profesionales/cesar-lee.webp" alt="Arquitecto César Lee" width="500" height="500" loading="lazy">
-                  </div>
-                  <div class="prof-card-info">
-                    <span class="prof-card-role">Arquitecto</span>
-                    <h3 class="prof-card-name">César Lee</h3>
-                    <p class="prof-card-quote">“La conchuela es un material que forma parte de la identidad arquitectónica de Lima. Su textura, tonalidad natural y carácter artesanal aportan calidez y autenticidad a los espacios. Desde Lee Arquitectos, valoramos su capacidad de conectar la arquitectura contemporánea con la tradición constructiva local, reinterpretándola en acabados que transmiten historia, materialidad y una estética atemporal.”</p>
-                  </div>
-                </article>
+              <button type="button" class="prof-tab-btn" role="tab" aria-selected="false" data-prof-index="2">
+                <span class="prof-tab-thumb">
+                  <img src="assets/img/profesionales/Vivi-Modonese.png" alt="" width="56" height="56" loading="lazy">
+                </span>
+                <span class="prof-tab-name">Vivi Modonese</span>
+              </button>
 
-                <!-- Profesional 5 -->
-                <article class="prof-card prof-slide">
-                  <div class="prof-card-avatar">
-                    <img src="assets/img/profesionales/karim-chaman.webp" alt="Arquitecta Karim Chamán" width="500" height="500" loading="lazy">
-                  </div>
-                  <div class="prof-card-info">
-                    <span class="prof-card-role">Arquitecta</span>
-                    <h3 class="prof-card-name">Karim Chamán</h3>
-                  </div>
-                </article>
+              <button type="button" class="prof-tab-btn" role="tab" aria-selected="false" data-prof-index="3">
+                <span class="prof-tab-thumb">
+                  <img src="assets/img/profesionales/marcia-lenz.webp" alt="" width="56" height="56" loading="lazy">
+                </span>
+                <span class="prof-tab-name">Marcia Lenz</span>
+              </button>
 
-                <!-- Profesional 6 -->
-                <article class="prof-card prof-slide">
-                  <div class="prof-card-avatar">
-                    <img src="assets/img/profesionales/diego-oliveira.webp" alt="Diseñador Diego Olivera" width="500" height="500" loading="lazy">
-                  </div>
-                  <div class="prof-card-info">
-                    <span class="prof-card-role">Diseñador</span>
-                    <h3 class="prof-card-name">Diego Olivera</h3>
-                    <p class="prof-card-quote">“Me gusta utilizar la conchuela porque es un material natural que aporta textura, luminosidad y carácter a los espacios. Además de su valor estético, destaca por su composición mineral y su versatilidad en el paisajismo, permitiéndome crear ambientes que integran diseño, naturaleza y sostenibilidad.”</p>
-                  </div>
-                </article>
+              <button type="button" class="prof-tab-btn" role="tab" aria-selected="false" data-prof-index="4">
+                <span class="prof-tab-thumb">
+                  <img src="assets/img/profesionales/nashwa-salazar.png" alt="" width="56" height="56" loading="lazy">
+                </span>
+                <span class="prof-tab-name">Nashwa Salazar</span>
+              </button>
 
-                <!-- Profesional 7 -->
-                <article class="prof-card prof-slide">
-                  <div class="prof-card-avatar">
-                    <img src="assets/img/profesionales/marcia-lenz.webp" alt="Paisajista Marcia Lenz" width="500" height="500" loading="lazy">
-                  </div>
-                  <div class="prof-card-info">
-                    <span class="prof-card-role">Paisajista</span>
-                    <h3 class="prof-card-name">Marcia Lenz</h3>
-                    <p class="prof-card-quote">“La Conchuela es un elemento decorativo que utilizamos en el Paisajismo para crear cambio de textura y color, nos ayuda para trazar caminos y tener una experiencia más natural.”</p>
-                  </div>
-                </article>
-
-                <!-- Profesional 8 -->
-                <article class="prof-card prof-slide">
-                  <div class="prof-card-avatar">
-                    <img src="assets/img/profesionales/lizette-miro-quesada.png" alt="Paisajista Lizette Miro Quesada" width="800" height="800" loading="lazy">
-                  </div>
-                  <div class="prof-card-info">
-                    <span class="prof-card-role">Paisajista</span>
-                    <h3 class="prof-card-name">Lizette Miro Quesada</h3>
-                    <p class="prof-card-quote">“La Conchuela es un elemento decorativo que utilizamos en el Paisajismo para crear cambio de textura y color, nos ayuda para trazar caminos y tener una experiencia más natural.”</p>
-                  </div>
-                </article>
-
-                <!-- Profesional 9 -->
-                <article class="prof-card prof-slide">
-                  <div class="prof-card-avatar">
-                    <img src="assets/img/profesionales/nashwa-salazar.png" alt="Paisajista Nashwa Salazar" width="800" height="800" loading="lazy">
-                  </div>
-                  <div class="prof-card-info">
-                    <span class="prof-card-role">Paisajista</span>
-                    <h3 class="prof-card-name">Nashwa Salazar</h3>
-                    <p class="prof-card-quote">“Utilizo la conchuela porque me ayuda a crear esa atmósfera de calma y esa sensación de naturaleza que me gusta reflejar en mis espacios. Es un material noble, de fácil mantenimiento, que genera un buen contraste visual con otros materiales y me gusta por la variedad de usos que le puedo dar en diversos espacios, donde nuestra creatividad es el límite.”</p>
-                  </div>
-                </article>
-              </div>
+              <button type="button" class="prof-tab-btn" role="tab" aria-selected="false" data-prof-index="5">
+                <span class="prof-tab-thumb">
+                  <img src="assets/img/profesionales/ricardo-martin-de-rossi.webp" alt="" width="56" height="56" loading="lazy">
+                </span>
+                <span class="prof-tab-name">Martín de Rossi</span>
+              </button>
             </div>
 
-            <!-- Paginación con puntos (Dots) interactivos -->
-            <div class="prof-slider-dots" id="prof-slider-dots" role="tablist" aria-label="Indicadores de diapositivas"></div>
+            <div class="prof-nav-controls" role="group" aria-label="Anterior y siguiente profesional">
+              <button type="button" class="prof-nav-arrow prof-nav-prev" id="prof-slider-prev" aria-label="Profesional anterior">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+              <button type="button" class="prof-nav-arrow prof-nav-next" id="prof-slider-next" aria-label="Siguiente profesional">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
