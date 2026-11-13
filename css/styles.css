@@ -2506,19 +2506,19 @@ textarea {
 
 .prof-card.prof-slide {
   flex: 0 0 calc(100vw - 3rem);
-  max-width: 320px;
+  max-width: 340px;
   scroll-snap-align: start;
 }
 
 @media (min-width: 640px) {
   .prof-card.prof-slide {
-    flex: 0 0 290px;
+    flex: 0 0 310px;
   }
 }
 
 @media (min-width: 1024px) {
   .prof-card.prof-slide {
-    flex: 0 0 320px;
+    flex: 0 0 340px;
   }
 }
 
@@ -2630,6 +2630,7 @@ textarea {
   padding: 1.15rem 1.25rem 1.35rem;
   display: flex;
   flex-direction: column;
+  flex: 1;
   gap: 0.25rem;
   background-color: var(--color-hueso);
   border-top: 1px solid var(--color-borde);
@@ -2649,6 +2650,16 @@ textarea {
   font-weight: 600;
   line-height: 1.2;
   color: var(--color-carbon);
+}
+
+.prof-card-quote {
+  margin-top: 0.65rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(195, 83, 15, 0.16);
+  font-size: 0.86rem;
+  line-height: 1.58;
+  color: var(--color-piedra);
+  font-style: italic;
 }
 
 /* ==========================================================================
