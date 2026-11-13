@@ -848,7 +848,7 @@
     var total = PROFESSIONALS_DATA.length;
     if (total === 0 || tabBtns.length === 0) return;
 
-    var AUTO_INTERVAL_MS = 2500;
+    var AUTO_INTERVAL_MS = 10000;
     var currentIndex = 0;
     var autoTimer = null;
     var switchTimeout = null;

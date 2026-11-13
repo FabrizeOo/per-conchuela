@@ -2606,7 +2606,7 @@ textarea {
 }
 
 .prof-tab-btn.is-active::after {
-  animation: profTabProgress 2.5s linear forwards;
+  animation: profTabProgress 10s linear forwards;
 }
 
 .prof-tab-thumb {
