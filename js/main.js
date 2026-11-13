@@ -831,7 +831,7 @@
     }
   ]);
 
-  /* 6. Selector / Spotlight Editorial de Profesionales (Tabs, botones y teclado) */
+  /* 6. Selector / Spotlight Editorial de Profesionales (Auto-avance continuo, tabs, botones y teclado) */
   function initProfessionalsSlider() {
     var showcase = document.getElementById('prof-editorial-showcase');
     var quoteEl = document.getElementById('prof-spotlight-quote');
@@ -848,15 +848,12 @@
     var total = PROFESSIONALS_DATA.length;
     if (total === 0 || tabBtns.length === 0) return;
 
+    var AUTO_INTERVAL_MS = 2500;
     var currentIndex = 0;
+    var autoTimer = null;
+    var switchTimeout = null;
 
-    function selectProfessional(idx, shouldScrollTab) {
-      var targetIdx = ((idx % total) + total) % total;
-      var item = PROFESSIONALS_DATA[targetIdx];
-      if (!item) return;
-
-      currentIndex = targetIdx;
-
+    function applyProfessionalContent(item) {
       if (quoteEl) {
         if (item.quote) {
           quoteEl.textContent = item.quote;
@@ -866,47 +863,86 @@
           quoteEl.hidden = true;
         }
       }
-
       nameEl.textContent = item.name;
       roleEl.textContent = item.role;
       imgEl.setAttribute('src', THEME_BASE_PREFIX + item.photoSrc);
       imgEl.setAttribute('alt', item.photoAlt);
+    }
+
+    function restartAutoPlay() {
+      if (autoTimer) {
+        clearInterval(autoTimer);
+      }
+      autoTimer = setInterval(function () {
+        selectProfessional(currentIndex + 1, true, true);
+      }, AUTO_INTERVAL_MS);
+    }
+
+    function selectProfessional(idx, shouldScrollTab, animateTransition) {
+      var targetIdx = ((idx % total) + total) % total;
+      var item = PROFESSIONALS_DATA[targetIdx];
+      if (!item) return;
+
+      currentIndex = targetIdx;
 
       tabBtns.forEach(function (btn, i) {
         var isActive = i === targetIdx;
-        btn.classList.toggle('is-active', isActive);
+        btn.classList.remove('is-active');
         btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
-        if (isActive && shouldScrollTab) {
-          var btnLeft = btn.offsetLeft;
-          var btnWidth = btn.offsetWidth;
-          var listWidth = tabsList.clientWidth;
-          var targetScroll = Math.max(0, btnLeft - (listWidth / 2) + (btnWidth / 2));
-          tabsList.scrollTo({
-            left: targetScroll,
-            behavior: 'smooth'
-          });
+        if (isActive) {
+          /* Forzar reflow para reiniciar la animación de la barra de progreso de 2.5s */
+          void btn.offsetWidth;
+          btn.classList.add('is-active');
+          if (shouldScrollTab) {
+            var btnLeft = btn.offsetLeft;
+            var btnWidth = btn.offsetWidth;
+            var listWidth = tabsList.clientWidth;
+            var targetScroll = Math.max(0, btnLeft - (listWidth / 2) + (btnWidth / 2));
+            tabsList.scrollTo({
+              left: targetScroll,
+              behavior: 'smooth'
+            });
+          }
         }
       });
+
+      if (switchTimeout) {
+        clearTimeout(switchTimeout);
+        switchTimeout = null;
+      }
+
+      if (animateTransition) {
+        showcase.classList.add('is-switching');
+        switchTimeout = setTimeout(function () {
+          applyProfessionalContent(item);
+          showcase.classList.remove('is-switching');
+        }, 140);
+      } else {
+        showcase.classList.remove('is-switching');
+        applyProfessionalContent(item);
+      }
+
+      restartAutoPlay();
     }
 
     tabBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
         var rawIdx = parseInt(btn.getAttribute('data-prof-index') || '0', 10);
         if (!isNaN(rawIdx)) {
-          selectProfessional(rawIdx, true);
+          selectProfessional(rawIdx, true, true);
         }
       });
     });
 
     if (prevBtn) {
       prevBtn.addEventListener('click', function () {
-        selectProfessional(currentIndex - 1, true);
+        selectProfessional(currentIndex - 1, true, true);
       });
     }
 
     if (nextBtn) {
       nextBtn.addEventListener('click', function () {
-        selectProfessional(currentIndex + 1, true);
+        selectProfessional(currentIndex + 1, true, true);
       });
     }
 
@@ -914,17 +950,17 @@
       if (e.key === 'ArrowLeft') {
         e.preventDefault();
         var prevIdx = ((currentIndex - 1) + total) % total;
-        selectProfessional(prevIdx, true);
+        selectProfessional(prevIdx, true, true);
         if (tabBtns[prevIdx]) tabBtns[prevIdx].focus();
       } else if (e.key === 'ArrowRight') {
         e.preventDefault();
         var nextIdx = (currentIndex + 1) % total;
-        selectProfessional(nextIdx, true);
+        selectProfessional(nextIdx, true, true);
         if (tabBtns[nextIdx]) tabBtns[nextIdx].focus();
       }
     });
 
-    selectProfessional(0, false);
+    selectProfessional(0, false, false);
   }
 
   /* 7. Sliders horizontales de Participaciones Destacadas (Loop Infinito Automático) */

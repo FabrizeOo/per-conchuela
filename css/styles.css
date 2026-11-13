@@ -2461,6 +2461,7 @@ textarea {
   line-height: 1.2;
   margin: 0 0 0.2rem;
   letter-spacing: -0.015em;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .prof-spotlight-role {
@@ -2469,6 +2470,7 @@ textarea {
   font-weight: 400;
   color: #57534E;
   margin: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .prof-spotlight-visual {
@@ -2509,13 +2511,15 @@ textarea {
   object-fit: contain;
   object-position: center bottom;
   display: block;
-  transition: opacity 0.22s ease, transform 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.2s ease, transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .prof-editorial-showcase.is-switching .prof-spotlight-quote,
+.prof-editorial-showcase.is-switching .prof-spotlight-name,
+.prof-editorial-showcase.is-switching .prof-spotlight-role,
 .prof-editorial-showcase.is-switching .prof-spotlight-img {
-  opacity: 0.25;
-  transform: translateY(4px);
+  opacity: 0;
+  transform: translateY(6px);
 }
 
 .prof-selector-bar {
@@ -2564,6 +2568,22 @@ textarea {
   opacity: 1;
 }
 
+.prof-tab-btn::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2.5px;
+  background-color: rgba(220, 83, 24, 0.22);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.prof-tab-btn.is-active::before {
+  opacity: 1;
+}
+
 .prof-tab-btn::after {
   content: '';
   position: absolute;
@@ -2574,11 +2594,19 @@ textarea {
   background-color: #DC5318;
   transform: scaleX(0);
   transform-origin: left center;
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes profTabProgress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 .prof-tab-btn.is-active::after {
-  transform: scaleX(1);
+  animation: profTabProgress 2.5s linear forwards;
 }
 
 .prof-tab-thumb {
